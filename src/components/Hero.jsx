@@ -4,21 +4,22 @@ import GoldButton from './ui/GoldButton'
 import Pill from './ui/Pill'
 import hairCover from '/assets/hair-maxx-cover.png'
 import heightCover from '/assets/height-maxx-cover.png'
+import beardCover from '/assets/beard-maxx-cover.png'
 
 const covers = [
-  { lbl: 'BEARD',  img: null,        tilt: '-rotate-[10deg]', off: '-translate-x-[28%] sm:-translate-x-[32%] md:-translate-x-[36%]', z: 10 },
+  { lbl: 'BEARD',  img: beardCover,  tilt: '-rotate-[10deg]', off: '-translate-x-[28%] sm:-translate-x-[32%] md:-translate-x-[36%]', z: 10 },
   { lbl: 'HEIGHT', img: heightCover, tilt: 'rotate-[10deg]',  off: 'translate-x-[28%] sm:translate-x-[32%] md:translate-x-[36%]',   z: 15 },
   { lbl: 'HAIR',   img: hairCover,   tilt: 'rotate-[1deg]',   off: 'translate-x-0',                                                   z: 20 },
 ]
 
 export default function Hero() {
   return (
-    <section id="top" className="relative pt-24 md:pt-36 pb-14 md:pb-24 overflow-hidden grain">
+    <section id="top" className="relative pt-20 md:pt-36 pb-14 md:pb-24 overflow-hidden grain">
       <div className="max-w-container mx-auto px-5 md:px-8">
         <div className="grid lg:grid-cols-[1.15fr_1fr] gap-8 lg:gap-16 items-center">
 
-          {/* Left — copy */}
-          <div>
+          {/* Left — copy (order-2 on mobile so covers appear first) */}
+          <div className="order-2 lg:order-1">
             <FadeUp>
               <Pill tone="muted" className="mb-6">
                 <span className="w-1.5 h-1.5 rounded-full bg-gold inline-block" />
@@ -41,7 +42,7 @@ export default function Hero() {
 
             <FadeUp delay={240}>
               <div className="mt-7 flex flex-col sm:flex-row gap-3 sm:items-center">
-                <GoldButton href="#bundle" size="xl" className="w-full sm:w-auto">
+                <GoldButton href="/bundle" size="xl" className="w-full sm:w-auto">
                   Get the bundle — ₹249
                 </GoldButton>
                 <a href="#guides"
@@ -62,10 +63,10 @@ export default function Hero() {
             </FadeUp>
           </div>
 
-          {/* Right — PDF fan */}
-          <FadeUp delay={180}>
+          {/* Right — PDF fan (order-1 on mobile so it appears above copy) */}
+          <FadeUp delay={180} className="order-1 lg:order-2">
             <div className="relative max-w-[460px] mx-auto w-full">
-              <div className="relative aspect-[3/4] w-full flex items-center justify-center">
+              <div className="relative h-[260px] sm:h-auto sm:aspect-[3/4] w-full flex items-center justify-center">
                 {covers.map(g => (
                   <div
                     key={g.lbl}

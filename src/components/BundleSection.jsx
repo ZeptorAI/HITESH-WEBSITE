@@ -2,20 +2,13 @@ import { CheckCircle2, Flame } from 'lucide-react'
 import FadeUp from './ui/FadeUp'
 import Pill from './ui/Pill'
 import GoldButton from './ui/GoldButton'
-import hairCover from '/assets/hair-maxx-cover.png'
-import heightCover from '/assets/height-maxx-cover.png'
+import bundleCovers from '/assets/bundle-covers.png'
 
 const included = [
   'Hair Care Maxx Guide',
   'Height Maxx Guide',
   'Beard Maxx Guide',
   'Lifetime access, free updates',
-]
-
-const stackCovers = [
-  { lbl: 'HEIGHT', img: heightCover, tilt: '-rotate-[10deg]', off: '-translate-x-[32%]', z: 10 },
-  { lbl: 'HAIR',   img: hairCover,   tilt: 'rotate-[2deg]',   off: 'translate-x-0',      z: 20 },
-  { lbl: 'BEARD',  img: null,        tilt: 'rotate-[12deg]',  off: 'translate-x-[32%]',  z: 15 },
 ]
 
 export default function BundleSection() {
@@ -53,7 +46,7 @@ export default function BundleSection() {
             </FadeUp>
             <FadeUp delay={280}>
               <div className="mt-9">
-                <GoldButton href="#" size="xl" className="w-full sm:w-auto sm:min-w-[280px]">
+                <GoldButton href="/bundle" size="xl" className="w-full sm:w-auto sm:min-w-[280px]">
                   Get the bundle — ₹249
                 </GoldButton>
                 <p className="mt-4 text-sm text-text-muted flex items-center gap-2">
@@ -64,27 +57,14 @@ export default function BundleSection() {
             </FadeUp>
           </div>
 
-          {/* Right — stacked PDF fan */}
+          {/* Right — bundle image */}
           <FadeUp delay={140}>
-            <div className="relative h-[360px] md:h-[480px] flex items-center justify-center">
-              {stackCovers.map((g, i) => (
-                <div
-                  key={g.lbl}
-                  className={`absolute border border-border-2 rounded-[8px] w-[54%] sm:w-[46%] md:w-[48%] aspect-[3/4] max-w-[260px] overflow-hidden shadow-[0_20px_60px_-10px_rgba(0,0,0,0.7)] transition-transform ${g.tilt} ${g.off} ${g.img ? 'bg-bg' : 'placeholder-stripes'}`}
-                  style={{ zIndex: g.z }}
-                >
-                  {g.img ? (
-                    <img src={g.img} alt={`${g.lbl} Maxx cover`} className="w-full h-full object-cover block" />
-                  ) : (
-                    <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
-                      <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-text-muted">Guide 03</div>
-                      <div className="font-display font-bold text-3xl tracking-tighter text-gold mt-3">{g.lbl}</div>
-                      <div className="mt-3 w-12 h-px bg-border-2" />
-                      <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-muted mt-3">cover · soon</div>
-                    </div>
-                  )}
-                </div>
-              ))}
+            <div className="flex items-center justify-center">
+              <img
+                src={bundleCovers}
+                alt="Hair Maxxing, Height Maxx and Beard Maxxing guides"
+                className="w-full max-w-[520px] rounded-[12px] shadow-[0_24px_80px_-12px_rgba(0,0,0,0.8)]"
+              />
             </div>
           </FadeUp>
 

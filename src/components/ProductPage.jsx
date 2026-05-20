@@ -6,6 +6,7 @@ import {
   BookOpen, Download, Smartphone, Globe, FileText,
 } from 'lucide-react'
 import { motion as m } from 'framer-motion'
+import bundleCovers from '/assets/bundle-covers.png'
 import FadeUp from './ui/FadeUp'
 import Pill from './ui/Pill'
 import GoldButton from './ui/GoldButton'
@@ -17,6 +18,7 @@ export const RAZORPAY_LINKS = {
   beard:  '#',
   height: '#',
   bundle: '#',
+  kit:    '#',
 }
 
 // ── Sticky Header ─────────────────────────────────────────────────────────────
@@ -277,25 +279,32 @@ function BundleUpsell() {
     <section className="py-14 border-t border-border">
       <div className="max-w-container mx-auto px-5 md:px-8">
         <FadeUp>
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 bg-surface border border-gold/20 rounded-[12px] p-6 md:p-8">
-            <div>
-              <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-gold mb-1.5">
-                Better deal
+          <div className="bg-surface border border-gold/20 rounded-[12px] overflow-hidden">
+            <img
+              src={bundleCovers}
+              alt="Hair, Height and Beard Maxxing guides"
+              className="w-full block"
+            />
+            <div className="p-6 md:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+              <div>
+                <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-gold mb-1.5">
+                  Better deal
+                </div>
+                <h3 className="font-display font-bold text-xl md:text-2xl tracking-tighter">
+                  Want all 3?{' '}
+                  <span className="text-gold">₹249</span>
+                  <span className="ml-2 text-base font-sans font-normal text-text-muted line-through">
+                    ₹297
+                  </span>
+                </h3>
+                <p className="text-text-muted text-sm mt-1">
+                  Hair + Beard + Height — save ₹48.
+                </p>
               </div>
-              <h3 className="font-display font-bold text-xl md:text-2xl tracking-tighter">
-                Want all 3?{' '}
-                <span className="text-gold">₹249</span>
-                <span className="ml-2 text-base font-sans font-normal text-text-muted line-through">
-                  ₹297
-                </span>
-              </h3>
-              <p className="text-text-muted text-sm mt-1">
-                Hair + Beard + Height — save ₹48.
-              </p>
+              <GoldButton href="/bundle" size="lg" className="shrink-0 w-full sm:w-auto">
+                Get the Bundle <ArrowRight size={14} />
+              </GoldButton>
             </div>
-            <GoldButton href={RAZORPAY_LINKS.bundle} size="lg" className="shrink-0">
-              Get the Bundle <ArrowRight size={14} />
-            </GoldButton>
           </div>
         </FadeUp>
       </div>
@@ -324,8 +333,8 @@ function BrotherhoodMention() {
             </p>
           </FadeUp>
           <FadeUp delay={160}>
-            <OutlineButton href="/#brotherhood">
-              Learn about Brotherhood <ArrowRight size={14} />
+            <OutlineButton href="/kit">
+              Learn about the Full Kit <ArrowRight size={14} />
             </OutlineButton>
           </FadeUp>
         </div>
@@ -416,7 +425,7 @@ function ProductFinalCTA({ slug, name }) {
             <GoldButton href={RAZORPAY_LINKS[slug]} size="xl">
               ₹99 — Get {name} Now <ArrowRight size={18} />
             </GoldButton>
-            <OutlineButton href={RAZORPAY_LINKS.bundle} size="lg">
+            <OutlineButton href="/bundle" size="lg">
               All 3 for ₹249 <ArrowRight size={14} />
             </OutlineButton>
           </div>

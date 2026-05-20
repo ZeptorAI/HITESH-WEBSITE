@@ -1,4 +1,5 @@
 import ProductPage from '../components/ProductPage'
+import beardCover from '/assets/beard-maxx-cover.png'
 
 const data = {
   slug: 'beard',
@@ -28,7 +29,7 @@ const data = {
     "Guys who've tried beard oils for months with no results (you've been sold the wrong thing)",
     "Anyone who wants a structured 90-day plan instead of random tips",
   ],
-  cover: null,
+  cover: beardCover,
   valueNote: "Less than one bottle of the beard oil that isn't working.",
   faqs: [
     {

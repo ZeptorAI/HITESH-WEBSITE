@@ -43,7 +43,7 @@ export default function Nav() {
         </nav>
 
         <div className="hidden md:block">
-          <GoldButton href="#bundle">Get started <ArrowRight size={16} /></GoldButton>
+          <GoldButton href="/bundle">Get started <ArrowRight size={16} /></GoldButton>
         </div>
 
         <button
@@ -65,7 +65,7 @@ export default function Nav() {
               </a>
             ))}
             <div className="pt-4">
-              <GoldButton href="#bundle" onClick={() => setOpen(false)} className="w-full">
+              <GoldButton href="/bundle" onClick={() => setOpen(false)} className="w-full">
                 Get started <ArrowRight size={16} />
               </GoldButton>
             </div>

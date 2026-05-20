@@ -5,6 +5,8 @@ import App from './App'
 import HairPage from './pages/HairPage'
 import BeardPage from './pages/BeardPage'
 import HeightPage from './pages/HeightPage'
+import BundlePage from './pages/BundlePage'
+import KitPage from './pages/KitPage'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -15,6 +17,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/hair" element={<HairPage />} />
         <Route path="/beard" element={<BeardPage />} />
         <Route path="/height" element={<HeightPage />} />
+        <Route path="/bundle" element={<BundlePage />} />
+        <Route path="/kit" element={<KitPage />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

@@ -4,6 +4,7 @@ import Pill from './ui/Pill'
 import OutlineButton from './ui/OutlineButton'
 import hairCover from '/assets/hair-maxx-cover.png'
 import heightCover from '/assets/height-maxx-cover.png'
+import beardCover from '/assets/beard-maxx-cover.png'
 
 const guides = [
   {
@@ -31,7 +32,7 @@ const guides = [
     href: "/height",
   },
   {
-    tag: "Guide 03", label: "BEARD", cover: null,
+    tag: "Guide 03", label: "BEARD", cover: beardCover,
     title: "Beard Maxx", subtitle: "Fill in patches. Grow what won't grow.",
     bullets: [
       "Minoxidil application protocol for beard",
