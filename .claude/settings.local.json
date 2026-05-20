@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:api.anthropic.com)",
+      "Read(//c/Users/ASUS/Downloads/**)",
+      "Bash(python3 -c ' *)",
+      "Bash(npm --version)",
+      "PowerShell(node --version)",
+      "PowerShell(npm --version)",
+      "PowerShell(Get-ChildItem \"C:\\\\\", \"C:\\\\Program Files\", \"C:\\\\Program Files \\(x86\\)\", \"$env:LOCALAPPDATA\", \"$env:APPDATA\" -Recurse -Depth 2 -ErrorAction SilentlyContinue -Filter \"node.exe\" | Select-Object -First 5 FullName)",
+      "Bash(npm install *)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); cd \"C:\\\\Users\\\\ASUS\\\\Desktop\\\\HITESH WEBSITE\"; npm install react-router-dom)",
+      "Bash(Get-Content \"C:\\\\Users\\\\ASUS\\\\.claude\\\\projects\\\\C--Users-ASUS-Desktop-HITESH-WEBSITE\\\\f755e37f-ef28-4400-b42a-44bddf33177d.jsonl\" -Encoding UTF8)",
+      "Bash(Select-String -Pattern \"Hair Care Maxx|Beard Maxx|Height Maxx|ProductPage|RAZORPAY|product detail|product page\")",
+      "Bash(Select-Object -First 30)",
+      "PowerShell($lines = Get-Content \"C:\\\\Users\\\\ASUS\\\\.claude\\\\projects\\\\C--Users-ASUS-Desktop-HITESH-WEBSITE\\\\f755e37f-ef28-4400-b42a-44bddf33177d.jsonl\" -Encoding UTF8; $lines | Where-Object { $_ -match \"RAZORPAY|ProductPage|product detail page|WhatsInside|SampleInsight|WhoItIsFor|PricingBlock\" } | Select-Object -First 5)",
+      "PowerShell(\\(Get-Content \"C:\\\\Users\\\\ASUS\\\\Desktop\\\\HITESH WEBSITE\\\\src\\\\components\\\\ProductPage.jsx\"\\).Count)"
+    ]
+  }
+}

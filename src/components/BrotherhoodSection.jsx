@@ -1,0 +1,72 @@
+import { Check, Users } from 'lucide-react'
+import FadeUp from './ui/FadeUp'
+import Pill from './ui/Pill'
+import GoldButton from './ui/GoldButton'
+import OutlineButton from './ui/OutlineButton'
+import Placeholder from './ui/Placeholder'
+
+const features = [
+  'Weekly Q&A with me in private group',
+  'Monthly live Zoom calls (recorded)',
+  'Photo reviews and feedback from peers',
+  'Accountability check-ins every Sunday',
+  'First access to all new guides + drops',
+  'Direct WhatsApp line for urgent questions',
+]
+
+export default function BrotherhoodSection() {
+  return (
+    <section id="brotherhood" className="py-24 md:py-32 border-t border-border">
+      <div className="max-w-container mx-auto px-5 md:px-8">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <FadeUp>
+            <Placeholder label="brotherhood-group-photo.jpg" ratio="4/5" className="w-full max-w-[480px]" />
+          </FadeUp>
+
+          <div>
+            <FadeUp>
+              <Pill tone="gold" className="mb-5"><Users size={12} /> The Brotherhood</Pill>
+            </FadeUp>
+            <FadeUp delay={80}>
+              <h2 className="display-section text-[2.5rem] sm:text-[3.25rem] md:text-[4rem]">
+                You won't do this alone<span className="text-gold">.</span>
+              </h2>
+            </FadeUp>
+            <FadeUp delay={140}>
+              <p className="mt-5 text-text-secondary text-lg leading-[1.6] max-w-[520px]">
+                1,200+ Indian men in one private group. Same age. Same goals. Same protocols.
+                You ask, they answer. Weekly. Daily, if you need it.
+              </p>
+            </FadeUp>
+
+            <FadeUp delay={220}>
+              <ul className="mt-8 grid sm:grid-cols-2 gap-x-6 gap-y-3.5">
+                {features.map((f, i) => (
+                  <li key={i} className="flex gap-2.5 text-[14px] leading-[1.5] text-text-secondary">
+                    <Check size={15} className="text-gold shrink-0 mt-0.5" strokeWidth={2.25} />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </FadeUp>
+
+            <FadeUp delay={300}>
+              <div className="mt-9 flex items-baseline gap-3">
+                <span className="font-display font-bold text-4xl md:text-5xl tracking-tighter text-gold">₹499</span>
+                <span className="text-text-secondary text-sm">/ month · cancel anytime</span>
+              </div>
+              <div className="mt-5 flex flex-col sm:flex-row gap-3">
+                <GoldButton href="#" size="lg" className="w-full sm:w-auto">
+                  Join the Brotherhood
+                </GoldButton>
+                <OutlineButton href="#bundle" size="lg" className="w-full sm:w-auto">
+                  Bundled in Full Kit
+                </OutlineButton>
+              </div>
+            </FadeUp>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
