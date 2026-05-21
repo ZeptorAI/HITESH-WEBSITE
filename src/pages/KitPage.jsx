@@ -8,9 +8,8 @@ import Pill from '../components/ui/Pill'
 import GoldButton from '../components/ui/GoldButton'
 import OutlineButton from '../components/ui/OutlineButton'
 import bundleCovers from '/assets/bundle-covers.png'
-// Drop these in public/assets/ when ready:
-// import communityImg from '/assets/whatsapp-community.png'
-// import calculatorImg from '/assets/calculator-screenshot.png'
+import communityImg from '/assets/whatsapp-community.png'
+import calculatorImg from '/assets/calculator-screenshot.png'
 
 const communityPerks = [
   { Icon: MessageCircle, title: "Diet Plans Monthly",        body: "Personalized monthly diet plans updated for Indian food sources, seasons, and your goals." },
@@ -58,7 +57,7 @@ function FAQItem({ q, a, open, onToggle }) {
 // Placeholder card when image not yet available
 function ImgPlaceholder({ label, sub }) {
   return (
-    <div className="placeholder-stripes aspect-[4/3] flex items-center justify-center rounded-t-[10px]">
+    <div className="placeholder-stripes aspect-[9/16] flex items-center justify-center rounded-t-[10px]">
       <div className="text-center p-4">
         <div className="text-gold font-mono text-[10px] uppercase tracking-[0.2em] mb-2">{label}</div>
         <div className="text-text-muted text-xs">{sub}</div>
@@ -161,8 +160,7 @@ export default function KitPage() {
             {/* Component 2 — WhatsApp Community */}
             <FadeUp delay={120} className="w-full md:flex-1">
               <div className="bg-surface border border-border rounded-[10px] overflow-hidden h-full">
-                {/* Replace ImgPlaceholder with <img> once you add public/assets/whatsapp-community.png */}
-                <ImgPlaceholder label="02 — WhatsApp Community" sub="Add whatsapp-community.png to public/assets/" />
+                <img src={communityImg} alt="WhatsApp Community" className="w-full block" />
                 <div className="p-5">
                   <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-gold mb-2">02 — Community</div>
                   <div className="font-display font-bold text-lg tracking-tighter">WhatsApp Community</div>
@@ -183,8 +181,7 @@ export default function KitPage() {
             {/* Component 3 — 90-day Calculator */}
             <FadeUp delay={240} className="w-full md:flex-1">
               <div className="bg-surface border border-border rounded-[10px] overflow-hidden h-full">
-                {/* Replace ImgPlaceholder with <img> once you add public/assets/calculator-screenshot.png */}
-                <ImgPlaceholder label="03 — 90-Day Calculator" sub="Add calculator-screenshot.png to public/assets/" />
+                <img src={calculatorImg} alt="90-Day Custom Plan Calculator" className="w-full block" />
                 <div className="p-5">
                   <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-gold mb-2">03 — Calculator</div>
                   <div className="font-display font-bold text-lg tracking-tighter">90-Day Custom Plan</div>

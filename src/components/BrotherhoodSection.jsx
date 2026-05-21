@@ -3,7 +3,7 @@ import FadeUp from './ui/FadeUp'
 import Pill from './ui/Pill'
 import GoldButton from './ui/GoldButton'
 import OutlineButton from './ui/OutlineButton'
-import Placeholder from './ui/Placeholder'
+import brotherhoodPhoto from '/assets/brotherhood-group-photo.png'
 
 const features = [
   'Weekly Q&A with me in private group',
@@ -20,7 +20,7 @@ export default function BrotherhoodSection() {
       <div className="max-w-container mx-auto px-5 md:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <FadeUp>
-            <Placeholder label="brotherhood-group-photo.jpg" ratio="4/5" className="w-full max-w-[480px]" />
+            <img src={brotherhoodPhoto} alt="The Brotherhood community" className="w-full max-w-[480px] rounded-[10px] shadow-xl shadow-black/40 block" />
           </FadeUp>
 
           <div>
