@@ -27,6 +27,6 @@ jobs:
         with:
           server: 82.25.120.237
           username: u346161893
-          password: ${{ secrets.FTP_PASSWORD }}
+          password: Nigga@0624
           server-dir: /public_html/
           local-dir: ./dist/
