@@ -17,8 +17,8 @@ export default function BundleSection() {
       <div className="max-w-container mx-auto px-5 md:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-          {/* Left — copy */}
-          <div>
+          {/* Left — copy (order-2 on mobile so image shows first) */}
+          <div className="order-2 lg:order-1">
             <FadeUp>
               <Pill tone="gold" className="mb-6"><Flame size={12} /> Most picked this week</Pill>
             </FadeUp>
@@ -57,8 +57,8 @@ export default function BundleSection() {
             </FadeUp>
           </div>
 
-          {/* Right — bundle image */}
-          <FadeUp delay={140}>
+          {/* Right — bundle image (order-1 on mobile so image shows first) */}
+          <FadeUp delay={140} className="order-1 lg:order-2">
             <div className="flex items-center justify-center">
               <img
                 src={bundleCovers}

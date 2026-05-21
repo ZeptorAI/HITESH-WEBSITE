@@ -25,8 +25,8 @@ export default function App() {
         <GuidesSection />
         <BundleSection />
         <PremiumSection />
-        <TestimonialsSection />
         <BrotherhoodSection />
+        <TestimonialsSection />
         <FAQSection />
         <FinalCTA />
       </main>

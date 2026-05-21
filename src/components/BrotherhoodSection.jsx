@@ -1,8 +1,6 @@
 import { Check, Users } from 'lucide-react'
 import FadeUp from './ui/FadeUp'
 import Pill from './ui/Pill'
-import GoldButton from './ui/GoldButton'
-import OutlineButton from './ui/OutlineButton'
 import brotherhoodPhoto from '/assets/brotherhood-group-photo.png'
 
 const features = [
@@ -50,20 +48,6 @@ export default function BrotherhoodSection() {
               </ul>
             </FadeUp>
 
-            <FadeUp delay={300}>
-              <div className="mt-9 flex items-baseline gap-3">
-                <span className="font-display font-bold text-4xl md:text-5xl tracking-tighter text-gold">₹499</span>
-                <span className="text-text-secondary text-sm">/ month · cancel anytime</span>
-              </div>
-              <div className="mt-5 flex flex-col sm:flex-row gap-3">
-                <GoldButton href="#" size="lg" className="w-full sm:w-auto">
-                  Join the Brotherhood
-                </GoldButton>
-                <OutlineButton href="#bundle" size="lg" className="w-full sm:w-auto">
-                  Bundled in Full Kit
-                </OutlineButton>
-              </div>
-            </FadeUp>
           </div>
         </div>
       </div>
