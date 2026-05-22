@@ -14,11 +14,11 @@ import OutlineButton from './ui/OutlineButton'
 
 // ─── Razorpay links — swap these once payment links are created ───────────────
 export const RAZORPAY_LINKS = {
-  hair:   '#',
-  beard:  '#',
-  height: '#',
-  bundle: '#',
-  kit:    '#',
+  hair:   'https://rzp.io/rzp/t9bVYuV',
+  beard:  'https://rzp.io/rzp/t5BP4M6',
+  height: 'https://rzp.io/rzp/OC9TDdoC',
+  bundle: 'https://rzp.io/rzp/ixUBVyZ',
+  kit:    'https://rzp.io/rzp/46naUPXM',
 }
 
 // ── Sticky Header ─────────────────────────────────────────────────────────────

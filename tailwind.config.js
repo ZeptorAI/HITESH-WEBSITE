@@ -22,6 +22,7 @@ export default {
         display: ['"Bricolage Grotesque"', 'sans-serif'],
         sans: ['Inter', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
+        serif: ['"Instrument Serif"', 'serif'],
       },
       letterSpacing: {
         tightest: '-0.04em',
