@@ -1,34 +1,18 @@
 import { useState, useEffect } from "react"
-import { useSearchParams } from "react-router-dom"
 import { Check, Plus } from "lucide-react"
 
-// ── Upsell links — keyed by what the user already bought ─────────────────────
-const UPSELL_LINKS = {
-  hair:   "https://rzp.io/rzp/MhT3L6a",  // add beard + height
-  beard:  "https://rzp.io/rzp/aOcUpMs",  // add hair + height
-  height: "https://rzp.io/rzp/LUiHg1l",  // add hair + beard
-}
+// ── Placeholder — swap once Razorpay link is ready ───────────────────────────
+const UPSELL_LINK = "https://rzp.io/rzp/t5BP4M6"
 const SUPPORT_PHONE = "+919814508715"
+const TIMER_KEY = "upsell_expiry_hair-height"
 
-// ── Product map ───────────────────────────────────────────────────────────────
-const PRODUCTS = {
-  hair:   { name: "Hair Fixed",    others: ["Beard Maxxed", "Height Maxxed"] },
-  beard:  { name: "Beard Maxxed",  others: ["Hair Fixed",   "Height Maxxed"] },
-  height: { name: "Height Maxxed", others: ["Hair Fixed",   "Beard Maxxed"]  },
-}
+const OWNED = ["Hair Fixed", "Height Maxxed"]
+const ADDING = "Beard Maxxed"
 
-export default function ThankYouPage() {
-  const [searchParams] = useSearchParams()
-  const rawProduct = searchParams.get("product") || "hair"
-  const productKey = PRODUCTS[rawProduct] ? rawProduct : "hair"
-  const userName = searchParams.get("name") || "friend"
-  const product = PRODUCTS[productKey]
-
+export default function ThankYouHairHeightPage() {
   const [timerDisplay, setTimerDisplay] = useState("15:00")
 
-  // Real persistent countdown — survives page refresh
   useEffect(() => {
-    const TIMER_KEY = "upsell_expiry_" + productKey
     let expiry = parseInt(localStorage.getItem(TIMER_KEY) || "0")
 
     if (!expiry || expiry < Date.now()) {
@@ -50,14 +34,13 @@ export default function ThankYouPage() {
       )
     }
 
-    tick() // run immediately so there's no 1-second blank
+    tick()
     const interval = setInterval(tick, 1000)
     return () => clearInterval(interval)
-  }, [productKey])
+  }, [])
 
   return (
     <>
-      {/* Keyframe animations */}
       <style>{`
         @keyframes ty-pulse {
           0%, 100% { opacity: 1; }
@@ -73,7 +56,6 @@ export default function ThankYouPage() {
         .ty-pdf-add:hover { transform: translateX(4px); border-color: rgba(212,175,55,0.45) !important; }
         .ty-cta { transition: transform 0.2s ease, box-shadow 0.2s ease; }
         .ty-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(212,175,55,0.35); }
-
       `}</style>
 
       <div
@@ -104,9 +86,7 @@ export default function ThankYouPage() {
               }}>
                 <Check size={11} strokeWidth={3} color="#4ADE80" />
               </div>
-              <span style={{
-                fontSize: 11, fontWeight: 600, letterSpacing: "0.13em", color: "#4ADE80",
-              }}>
+              <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.13em", color: "#4ADE80" }}>
                 PAYMENT CONFIRMED
               </span>
             </div>
@@ -123,42 +103,26 @@ export default function ThankYouPage() {
             <h1 style={{
               fontFamily: '"Bricolage Grotesque", sans-serif', fontWeight: 800,
               fontSize: "clamp(34px, 8vw, 40px)", lineHeight: 1.1,
-              letterSpacing: "-0.03em", margin: "0 0 2px", color: "#F5F5F5",
-            }}>
-              {userName}.
-            </h1>
-            <h1 style={{
-              fontFamily: '"Bricolage Grotesque", sans-serif', fontWeight: 800,
-              fontSize: "clamp(34px, 8vw, 40px)", lineHeight: 1.1,
               letterSpacing: "-0.03em", color: "#D4AF37", margin: "0 0 20px",
             }}>
               You are in.
             </h1>
             <p style={{ color: "#A1A1AA", fontSize: 16, lineHeight: 1.6, margin: 0 }}>
               Your{" "}
-              <span style={{ color: "#F5F5F5", fontWeight: 600 }}>{product.name}</span>
-              {" "}PDF is on its way.
+              <span style={{ color: "#F5F5F5", fontWeight: 600 }}>Hair Fixed + Height Maxxed</span>
+              {" "}PDFs are on their way.
             </p>
           </div>
 
           {/* ── 3. Delivery Channels ── */}
-          <div style={{
-            display: "grid", gridTemplateColumns: "1fr 1fr",
-            gap: 12, marginBottom: 14,
-          }}>
-            {[
-              { emoji: "💬", label: "WHATSAPP" },
-              { emoji: "✉️", label: "EMAIL" },
-            ].map((ch) => (
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 14 }}>
+            {[{ emoji: "💬", label: "WHATSAPP" }, { emoji: "✉️", label: "EMAIL" }].map((ch) => (
               <div key={ch.label} style={{
                 background: "#141414", border: "1px solid #1F1F1F",
                 borderRadius: 14, padding: "20px 16px", textAlign: "center",
               }}>
                 <div style={{ fontSize: 30, marginBottom: 10 }}>{ch.emoji}</div>
-                <div style={{
-                  fontSize: 10, fontWeight: 600, letterSpacing: "0.13em",
-                  color: "#52525B", marginBottom: 12,
-                }}>
+                <div style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.13em", color: "#52525B", marginBottom: 12 }}>
                   {ch.label}
                 </div>
                 <div style={{
@@ -166,41 +130,27 @@ export default function ThankYouPage() {
                   background: "rgba(74,222,128,0.07)", border: "1px solid rgba(74,222,128,0.18)",
                   borderRadius: 999, padding: "5px 12px",
                 }}>
-                  <span className="ty-dot" style={{
-                    width: 6, height: 6, borderRadius: "50%",
-                    background: "#4ADE80", display: "block", flexShrink: 0,
-                  }} />
+                  <span className="ty-dot" style={{ width: 6, height: 6, borderRadius: "50%", background: "#4ADE80", display: "block", flexShrink: 0 }} />
                   <span style={{ fontSize: 12, fontWeight: 600, color: "#4ADE80" }}>Sent</span>
                 </div>
               </div>
             ))}
           </div>
-          <p style={{
-            fontSize: 13, color: "#52525B", textAlign: "center",
-            lineHeight: 1.65, marginBottom: 44,
-          }}>
+          <p style={{ fontSize: 13, color: "#52525B", textAlign: "center", lineHeight: 1.65, marginBottom: 44 }}>
             Open either to download. Save the WhatsApp number — Hitesh sends weekly tips,
             protocols, and product drops there.
           </p>
 
           {/* ── 4. Editorial Separator ── */}
-          <div style={{
-            display: "flex", alignItems: "center", gap: 16, marginBottom: 36,
-          }}>
-            <div style={{
-              flex: 1, height: 1,
-              background: "linear-gradient(90deg, transparent, #2A2A2A)",
-            }} />
+          <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 36 }}>
+            <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, #2A2A2A)" }} />
             <span style={{
               fontFamily: '"Instrument Serif", serif', fontStyle: "italic",
               color: "#52525B", fontSize: 14, whiteSpace: "nowrap",
             }}>
               one more thing
             </span>
-            <div style={{
-              flex: 1, height: 1,
-              background: "linear-gradient(90deg, #2A2A2A, transparent)",
-            }} />
+            <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, #2A2A2A, transparent)" }} />
           </div>
 
           {/* ── 5. Upsell Card ── */}
@@ -208,32 +158,25 @@ export default function ThankYouPage() {
             background: "#121212", border: "1px solid #1F1F1F", borderRadius: 22,
             padding: "32px 26px", marginBottom: 20, position: "relative", overflow: "hidden",
           }}>
-            {/* Gold top-edge line */}
             <div style={{
               position: "absolute", top: 0, left: "8%", right: "8%", height: 1,
               background: "linear-gradient(90deg, transparent, #D4AF37, transparent)",
             }} />
-            {/* Soft gold glow — top right */}
             <div style={{
               position: "absolute", top: -80, right: -80, width: 240, height: 240,
               background: "radial-gradient(circle, rgba(212,175,55,0.07) 0%, transparent 65%)",
               pointerEvents: "none",
             }} />
 
-            {/* a. One-time offer tag */}
+            {/* a. Tag */}
             <div style={{ marginBottom: 22 }}>
               <div style={{
                 display: "inline-flex", alignItems: "center", gap: 8,
                 background: "rgba(212,175,55,0.07)", border: "1px solid rgba(212,175,55,0.18)",
                 borderRadius: 999, padding: "6px 14px",
               }}>
-                <span className="ty-dot" style={{
-                  width: 6, height: 6, borderRadius: "50%",
-                  background: "#D4AF37", display: "block", flexShrink: 0,
-                }} />
-                <span style={{
-                  fontSize: 10, fontWeight: 700, letterSpacing: "0.15em", color: "#D4AF37",
-                }}>
+                <span className="ty-dot" style={{ width: 6, height: 6, borderRadius: "50%", background: "#D4AF37", display: "block", flexShrink: 0 }} />
+                <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.15em", color: "#D4AF37" }}>
                   ONE-TIME OFFER
                 </span>
               </div>
@@ -245,15 +188,13 @@ export default function ThankYouPage() {
               fontSize: "clamp(27px, 6vw, 32px)", lineHeight: 1.18,
               letterSpacing: "-0.02em", margin: "0 0 14px", color: "#F5F5F5",
             }}>
-              Don't fix just one thing.<br />
-              <span style={{ color: "#D4AF37" }}>Fix all three.</span>
+              Two down. One to go.<br />
+              <span style={{ color: "#D4AF37" }}>Complete the stack.</span>
             </h2>
 
             {/* c. Subtitle */}
-            <p style={{
-              color: "#A1A1AA", fontSize: 15, lineHeight: 1.65, margin: "0 0 24px",
-            }}>
-              Most guys come back in 2 weeks and buy the other two anyway. Skip the wait — and the regret.
+            <p style={{ color: "#A1A1AA", fontSize: 15, lineHeight: 1.65, margin: "0 0 24px" }}>
+              You have hair and height sorted. Add the beard protocol now — most guys wish they had started it at the same time.
             </p>
 
             {/* d. Price Block */}
@@ -261,95 +202,75 @@ export default function ThankYouPage() {
               background: "#0D0D0D", border: "1px solid #1A1A1A", borderRadius: 14,
               padding: "22px 16px", textAlign: "center", marginBottom: 22,
             }}>
-              <div style={{
-                display: "flex", alignItems: "center", justifyContent: "center",
-                gap: 10, marginBottom: 6,
-              }}>
-                <span style={{
-                  color: "#52525B", fontSize: 17, textDecoration: "line-through",
-                  fontFamily: '"JetBrains Mono", monospace',
-                }}>
-                  ₹198
-                </span>
-                <span style={{
-                  border: "1px solid rgba(212,175,55,0.35)", borderRadius: 6,
-                  padding: "2px 9px", fontSize: 11, fontWeight: 700,
-                  color: "#D4AF37", letterSpacing: "0.07em",
-                }}>
-                  SAVE ₹49
-                </span>
+              <div style={{ fontSize: 13, color: "#52525B", marginBottom: 6, letterSpacing: "0.05em" }}>
+                ADD-ON PRICE
               </div>
               <div style={{
                 fontFamily: '"Bricolage Grotesque", sans-serif', fontWeight: 800,
                 fontSize: "clamp(48px, 11vw, 56px)", lineHeight: 1,
                 color: "#D4AF37", letterSpacing: "-0.03em",
               }}>
-                ₹149
+                ₹99
               </div>
+              <div style={{ fontSize: 13, color: "#52525B", marginTop: 6 }}>one guide · instant access</div>
             </div>
 
             {/* e. PDF List */}
             <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 24 }}>
-              {/* Owned item */}
-              <div style={{
-                display: "flex", alignItems: "center", justifyContent: "space-between",
-                background: "rgba(74,222,128,0.04)", border: "1px solid rgba(74,222,128,0.14)",
-                borderRadius: 10, padding: "13px 14px",
-              }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                  <div style={{
-                    width: 26, height: 26, borderRadius: "50%", flexShrink: 0,
-                    background: "rgba(74,222,128,0.12)", border: "1px solid rgba(74,222,128,0.28)",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                  }}>
-                    <Check size={13} strokeWidth={3} color="#4ADE80" />
-                  </div>
-                  <span style={{ fontSize: 14, fontWeight: 600, color: "#F5F5F5" }}>
-                    {product.name}
-                  </span>
-                </div>
-                <span style={{
-                  fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", color: "#4ADE80",
-                  background: "rgba(74,222,128,0.09)", border: "1px solid rgba(74,222,128,0.18)",
-                  borderRadius: 6, padding: "3px 9px",
-                }}>
-                  YOURS
-                </span>
-              </div>
-
-              {/* Adding items */}
-              {product.others.map((pdfName) => (
-                <div key={pdfName} className="ty-pdf-add" style={{
+              {OWNED.map((name) => (
+                <div key={name} style={{
                   display: "flex", alignItems: "center", justifyContent: "space-between",
-                  background: "rgba(212,175,55,0.02)", border: "1px solid rgba(212,175,55,0.09)",
+                  background: "rgba(74,222,128,0.04)", border: "1px solid rgba(74,222,128,0.14)",
                   borderRadius: 10, padding: "13px 14px",
                 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                     <div style={{
                       width: 26, height: 26, borderRadius: "50%", flexShrink: 0,
-                      background: "rgba(212,175,55,0.08)", border: "1px solid rgba(212,175,55,0.22)",
+                      background: "rgba(74,222,128,0.12)", border: "1px solid rgba(74,222,128,0.28)",
                       display: "flex", alignItems: "center", justifyContent: "center",
                     }}>
-                      <Plus size={13} strokeWidth={3} color="#D4AF37" />
+                      <Check size={13} strokeWidth={3} color="#4ADE80" />
                     </div>
-                    <span style={{ fontSize: 14, fontWeight: 600, color: "#A1A1AA" }}>
-                      {pdfName}
-                    </span>
+                    <span style={{ fontSize: 14, fontWeight: 600, color: "#F5F5F5" }}>{name}</span>
                   </div>
                   <span style={{
-                    fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", color: "#D4AF37",
-                    background: "rgba(212,175,55,0.07)", border: "1px solid rgba(212,175,55,0.18)",
+                    fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", color: "#4ADE80",
+                    background: "rgba(74,222,128,0.09)", border: "1px solid rgba(74,222,128,0.18)",
                     borderRadius: 6, padding: "3px 9px",
                   }}>
-                    ADD
+                    YOURS
                   </span>
                 </div>
               ))}
+
+              <div className="ty-pdf-add" style={{
+                display: "flex", alignItems: "center", justifyContent: "space-between",
+                background: "rgba(212,175,55,0.02)", border: "1px solid rgba(212,175,55,0.09)",
+                borderRadius: 10, padding: "13px 14px",
+              }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                  <div style={{
+                    width: 26, height: 26, borderRadius: "50%", flexShrink: 0,
+                    background: "rgba(212,175,55,0.08)", border: "1px solid rgba(212,175,55,0.22)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                  }}>
+                    <Plus size={13} strokeWidth={3} color="#D4AF37" />
+                  </div>
+                  <span style={{ fontSize: 14, fontWeight: 600, color: "#A1A1AA" }}>{ADDING}</span>
+                </div>
+                <span style={{
+                  fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", color: "#D4AF37",
+                  background: "rgba(212,175,55,0.07)", border: "1px solid rgba(212,175,55,0.18)",
+                  borderRadius: 6, padding: "3px 9px",
+                }}>
+                  ADD
+                </span>
+              </div>
             </div>
 
-            {/* f. CTA Button */}
+            {/* f. CTA */}
             <a
-              href={UPSELL_LINKS[productKey]}
+              href={UPSELL_LINK}
               className="ty-cta"
               style={{
                 display: "block", width: "100%", padding: "17px",
@@ -359,7 +280,7 @@ export default function ThankYouPage() {
                 cursor: "pointer", boxSizing: "border-box",
               }}
             >
-              Add Both for ₹149 →
+              Add Beard Maxxed for ₹99 →
             </a>
 
             {/* g. Countdown */}
@@ -377,7 +298,7 @@ export default function ThankYouPage() {
                 fontFamily: '"Instrument Serif", serif', fontStyle: "italic",
                 fontSize: 13, color: "#3F3F46", margin: 0,
               }}>
-                Only available on this page. Close it and the price goes back to ₹198.
+                Only available on this page. Close it and the price goes back to ₹99.
               </p>
             </div>
           </div>
@@ -388,17 +309,12 @@ export default function ThankYouPage() {
               Questions about your order?{" "}
               <a
                 href={"https://wa.me/" + SUPPORT_PHONE.replace(/\D/g, "")}
-                style={{
-                  color: "#71717A", textDecoration: "underline",
-                  textDecorationColor: "rgba(113,113,122,0.35)",
-                }}
+                style={{ color: "#71717A", textDecoration: "underline", textDecorationColor: "rgba(113,113,122,0.35)" }}
               >
                 WhatsApp +91-98145-08715
               </a>
             </p>
-            <p style={{ color: "#3F3F46", fontSize: 12, margin: 0 }}>
-              Hitesh — The Brotherhood
-            </p>
+            <p style={{ color: "#3F3F46", fontSize: 12, margin: 0 }}>Hitesh — The Brotherhood</p>
           </div>
 
         </div>

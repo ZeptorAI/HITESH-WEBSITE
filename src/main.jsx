@@ -8,6 +8,8 @@ import HeightPage from './pages/HeightPage'
 import BundlePage from './pages/BundlePage'
 import KitPage from './pages/KitPage'
 import ThankYouPage from './pages/ThankYouPage'
+import ThankYouHairBeardPage from './pages/ThankYouHairBeardPage'
+import ThankYouHairHeightPage from './pages/ThankYouHairHeightPage'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -21,6 +23,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/bundle" element={<BundlePage />} />
         <Route path="/kit" element={<KitPage />} />
         <Route path="/thank-you" element={<ThankYouPage />} />
+        <Route path="/thank-you-hair-beard" element={<ThankYouHairBeardPage />} />
+        <Route path="/thank-you-hair-height" element={<ThankYouHairHeightPage />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
