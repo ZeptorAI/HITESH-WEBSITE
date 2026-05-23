@@ -15,7 +15,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div>
             <a href="#top" className="font-display font-bold text-2xl tracking-tighter text-text-primary">
-              Hitesh<span className="text-gold">.</span>
+              Hitesh Grover<span className="text-gold">.</span>
             </a>
             <p className="mt-3 text-text-muted text-sm max-w-[360px] leading-[1.6]">
               Hair, height, beard, and looksmaxxing protocols for Indian men 16–30. Made in India.

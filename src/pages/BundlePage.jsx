@@ -83,7 +83,7 @@ export default function BundlePage() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-bg/90 backdrop-blur-md border-b border-border">
         <div className="max-w-container mx-auto px-5 md:px-8 h-16 flex items-center justify-between">
           <Link to="/" className="font-display font-bold text-xl tracking-tighter text-text-primary hover:text-gold transition-colors">
-            Hitesh<span className="text-gold">.</span>
+            Hitesh Grover<span className="text-gold">.</span>
           </Link>
           <OutlineButton href="/kit" size="md">
             Full Kit — ₹499 <ArrowRight size={14} />
@@ -240,7 +240,7 @@ export default function BundlePage() {
       <footer className="py-10 border-t border-border">
         <div className="max-w-container mx-auto px-5 md:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-text-muted">
           <Link to="/" className="font-display font-bold text-xl tracking-tighter text-text-primary hover:text-gold transition-colors">
-            Hitesh<span className="text-gold">.</span>
+            Hitesh Grover<span className="text-gold">.</span>
           </Link>
           <p className="text-center">© 2026 Hitesh. All content is informational. Consult a doctor before starting any protocol.</p>
           <Link to="/" className="hover:text-text-secondary transition-colors">← Back to home</Link>

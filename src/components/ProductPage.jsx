@@ -30,7 +30,7 @@ function ProductPageHeader() {
           to="/"
           className="font-display font-bold text-xl tracking-tighter text-text-primary hover:text-gold transition-colors"
         >
-          Hitesh<span className="text-gold">.</span>
+          Hitesh Grover<span className="text-gold">.</span>
         </Link>
         <GoldButton href={RAZORPAY_LINKS.bundle} size="md">
           All 3 — ₹249 <ArrowRight size={14} />
@@ -444,7 +444,7 @@ function ProductFooter() {
           to="/"
           className="font-display font-bold text-xl tracking-tighter text-text-primary hover:text-gold transition-colors"
         >
-          Hitesh<span className="text-gold">.</span>
+          Hitesh Grover<span className="text-gold">.</span>
         </Link>
         <p className="text-center text-xs">
           © 2026 Hitesh. All content is informational. Consult a doctor before starting any protocol.

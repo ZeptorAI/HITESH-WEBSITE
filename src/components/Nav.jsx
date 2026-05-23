@@ -30,7 +30,7 @@ export default function Nav() {
     >
       <div className="max-w-container mx-auto px-5 md:px-8 h-16 md:h-[72px] flex items-center justify-between">
         <a href="#top" className="font-display font-bold text-xl md:text-2xl tracking-tighter text-text-primary">
-          Hitesh<span className="text-gold">.</span>
+          Hitesh Grover<span className="text-gold">.</span>
         </a>
 
         <nav className="hidden md:flex items-center gap-8">
