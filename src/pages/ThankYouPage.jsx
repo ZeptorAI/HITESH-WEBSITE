@@ -276,7 +276,7 @@ export default function ThankYouPage() {
                   padding: "2px 9px", fontSize: 11, fontWeight: 700,
                   color: "#D4AF37", letterSpacing: "0.07em",
                 }}>
-                  SAVE ₹99
+                  SAVE ₹299
                 </span>
               </div>
               <div style={{
@@ -284,7 +284,7 @@ export default function ThankYouPage() {
                 fontSize: "clamp(48px, 11vw, 56px)", lineHeight: 1,
                 color: "#D4AF37", letterSpacing: "-0.03em",
               }}>
-                ₹499
+                ₹299
               </div>
             </div>
 
@@ -318,30 +318,34 @@ export default function ThankYouPage() {
               </div>
 
               {/* Adding items */}
-              {product.others.map((pdfName) => (
+              {product.others.map((pdfName, idx) => (
                 <div key={pdfName} className="ty-pdf-add" style={{
                   display: "flex", alignItems: "center", justifyContent: "space-between",
-                  background: "rgba(212,175,55,0.02)", border: "1px solid rgba(212,175,55,0.09)",
+                  background: idx === 1 ? "rgba(74,222,128,0.02)" : "rgba(212,175,55,0.02)",
+                  border: idx === 1 ? "1px solid rgba(74,222,128,0.12)" : "1px solid rgba(212,175,55,0.09)",
                   borderRadius: 10, padding: "13px 14px",
                 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                     <div style={{
                       width: 26, height: 26, borderRadius: "50%", flexShrink: 0,
-                      background: "rgba(212,175,55,0.08)", border: "1px solid rgba(212,175,55,0.22)",
+                      background: idx === 1 ? "rgba(74,222,128,0.08)" : "rgba(212,175,55,0.08)",
+                      border: idx === 1 ? "1px solid rgba(74,222,128,0.22)" : "1px solid rgba(212,175,55,0.22)",
                       display: "flex", alignItems: "center", justifyContent: "center",
                     }}>
-                      <Plus size={13} strokeWidth={3} color="#D4AF37" />
+                      <Plus size={13} strokeWidth={3} color={idx === 1 ? "#4ADE80" : "#D4AF37"} />
                     </div>
                     <span style={{ fontSize: 14, fontWeight: 600, color: "#A1A1AA" }}>
                       {pdfName}
                     </span>
                   </div>
                   <span style={{
-                    fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", color: "#D4AF37",
-                    background: "rgba(212,175,55,0.07)", border: "1px solid rgba(212,175,55,0.18)",
+                    fontSize: 10, fontWeight: 700, letterSpacing: "0.1em",
+                    color: idx === 1 ? "#4ADE80" : "#D4AF37",
+                    background: idx === 1 ? "rgba(74,222,128,0.09)" : "rgba(212,175,55,0.07)",
+                    border: idx === 1 ? "1px solid rgba(74,222,128,0.18)" : "1px solid rgba(212,175,55,0.18)",
                     borderRadius: 6, padding: "3px 9px",
                   }}>
-                    ADD
+                    {idx === 1 ? "FREE" : "ADD"}
                   </span>
                 </div>
               ))}
@@ -359,7 +363,7 @@ export default function ThankYouPage() {
                 cursor: "pointer", boxSizing: "border-box",
               }}
             >
-              Add Both for ₹499 →
+              Add Both for ₹299 →
             </a>
 
             {/* g. Countdown */}
