@@ -363,7 +363,7 @@ export default function ThankYouPage() {
                 cursor: "pointer", boxSizing: "border-box",
               }}
             >
-              Add Both for ₹299 →
+              Get Both — ₹299 (2nd Guide FREE) →
             </a>
 
             {/* g. Countdown */}
