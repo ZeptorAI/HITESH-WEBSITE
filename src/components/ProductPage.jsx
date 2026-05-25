@@ -33,7 +33,7 @@ function ProductPageHeader() {
           Hitesh Grover<span className="text-gold">.</span>
         </Link>
         <GoldButton href={RAZORPAY_LINKS.bundle} size="md">
-          All 3 — ₹249 <ArrowRight size={14} />
+          All 3 — ₹599 <ArrowRight size={14} />
         </GoldButton>
       </div>
     </header>
@@ -50,7 +50,7 @@ function ProductHero({ slug, name, tagline, subheadline, cover }) {
           {/* ── Left / main column ── */}
           <div>
             <FadeUp>
-              <Pill tone="gold" className="mb-5">{name} · ₹99</Pill>
+              <Pill tone="gold" className="mb-5">{name} · ₹299</Pill>
             </FadeUp>
             <FadeUp delay={60}>
               <h1 className="display-hero text-[2.5rem] sm:text-[3.25rem] md:text-[4.25rem]">
@@ -87,7 +87,7 @@ function ProductHero({ slug, name, tagline, subheadline, cover }) {
             <FadeUp delay={200}>
               <div className="mt-7 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3">
                 <GoldButton href={RAZORPAY_LINKS[slug]} size="lg" className="w-full sm:w-auto">
-                  ₹99 — Get Instant Access <ArrowRight size={16} />
+                  ₹299 — Get Instant Access <ArrowRight size={16} />
                 </GoldButton>
                 <p className="text-sm text-text-muted text-center sm:text-left">Instant download · No subscription</p>
               </div>
@@ -257,7 +257,7 @@ function PricingBlock({ slug, name, valueNote }) {
               {name}
             </div>
             <div className="font-display font-bold text-[4.5rem] md:text-[5.5rem] tracking-tighter text-gold leading-none mb-2">
-              ₹99
+              ₹299
             </div>
             <p className="text-text-muted text-sm mb-7">{valueNote}</p>
             <GoldButton href={RAZORPAY_LINKS[slug]} size="xl" className="w-full">
@@ -292,13 +292,13 @@ function BundleUpsell() {
                 </div>
                 <h3 className="font-display font-bold text-xl md:text-2xl tracking-tighter">
                   Want all 3?{' '}
-                  <span className="text-gold">₹249</span>
+                  <span className="text-gold">₹599</span>
                   <span className="ml-2 text-base font-sans font-normal text-text-muted line-through">
-                    ₹297
+                    ₹897
                   </span>
                 </h3>
                 <p className="text-text-muted text-sm mt-1">
-                  Hair + Beard + Height — save ₹48.
+                  Hair + Beard + Height — 3rd guide FREE.
                 </p>
               </div>
               <GoldButton href="/bundle" size="lg" className="shrink-0 w-full sm:w-auto">
@@ -319,7 +319,7 @@ function BrotherhoodMention() {
       <div className="max-w-container mx-auto px-5 md:px-8">
         <div className="max-w-[640px]">
           <FadeUp>
-            <Pill tone="muted" className="mb-4">Brotherhood · ₹499/month</Pill>
+            <Pill tone="muted" className="mb-4">Full Transformation Kit · ₹1199</Pill>
           </FadeUp>
           <FadeUp delay={60}>
             <h3 className="display-section text-[1.75rem] md:text-[2.25rem] mb-3">
@@ -417,16 +417,16 @@ function ProductFinalCTA({ slug, name }) {
         </FadeUp>
         <FadeUp delay={80}>
           <p className="mt-4 text-text-secondary text-lg max-w-[400px] mx-auto">
-            {name} — ₹99. Instant access. No subscriptions.
+            {name} — ₹299. Instant access. No subscriptions.
           </p>
         </FadeUp>
         <FadeUp delay={140}>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
             <GoldButton href={RAZORPAY_LINKS[slug]} size="xl">
-              ₹99 — Get {name} Now <ArrowRight size={18} />
+              ₹299 — Get {name} Now <ArrowRight size={18} />
             </GoldButton>
             <OutlineButton href="/bundle" size="lg">
-              All 3 for ₹249 <ArrowRight size={14} />
+              All 3 for ₹599 <ArrowRight size={14} />
             </OutlineButton>
           </div>
         </FadeUp>

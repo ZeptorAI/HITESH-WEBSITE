@@ -25,7 +25,7 @@ export default function FinalCTA() {
         <FadeUp delay={240}>
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
             <GoldButton href="/bundle" size="xl" className="w-full sm:w-auto sm:min-w-[280px]">
-              Get the bundle — ₹249
+              Get the bundle — ₹599
             </GoldButton>
             <OutlineButton href="/kit" size="lg" className="w-full sm:w-auto">
               See the Full Kit

@@ -24,13 +24,13 @@ export default function BundleSection() {
             </FadeUp>
             <FadeUp delay={80}>
               <h2 className="display-section text-[2.5rem] sm:text-[3.5rem] md:text-[4.5rem]">
-                Or get all three.<br /><span className="text-gold">Save ₹48.</span>
+                Buy 2, get the<br /><span className="text-gold">3rd FREE.</span>
               </h2>
             </FadeUp>
             <FadeUp delay={160}>
               <div className="mt-7 flex items-baseline gap-4">
-                <span className="text-text-muted text-2xl line-through font-mono">₹300</span>
-                <span className="text-gold font-display font-bold text-5xl md:text-6xl tracking-tighter">₹249</span>
+                <span className="text-text-muted text-2xl line-through font-mono">₹897</span>
+                <span className="text-gold font-display font-bold text-5xl md:text-6xl tracking-tighter">₹599</span>
                 <span className="text-text-secondary text-sm">one-time</span>
               </div>
             </FadeUp>
@@ -47,7 +47,7 @@ export default function BundleSection() {
             <FadeUp delay={280}>
               <div className="mt-9">
                 <GoldButton href="/bundle" size="xl" className="w-full sm:w-auto sm:min-w-[280px]">
-                  Get the bundle — ₹249
+                  Get the bundle — ₹599
                 </GoldButton>
                 <p className="mt-4 text-sm text-text-muted flex items-center gap-2">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className="text-gold shrink-0"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/></svg>

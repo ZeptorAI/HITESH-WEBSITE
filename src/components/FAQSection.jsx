@@ -10,7 +10,7 @@ const faqs = [
   { q: "How is this delivered?", a: "Instantly. After payment you'll get a WhatsApp message with download links for all guides. You also get email access. Lifetime access — re-download anytime." },
   { q: "I'm under 18 / over 30. Is this for me?", a: "Sweet spot is 16–30. Height Maxx specifically targets growth plate optimization for under-25. Everything else (Hair, Beard) works at any age, but adjust expectations after 35." },
   { q: "What about side effects from Minoxidil / Finasteride?", a: "The guides cover dosage, brands, side-effect monitoring, and when to stop. They're informational — always consult a doctor before starting any medication." },
-  { q: "Is the Brotherhood worth ₹499/month?", a: "You get monthly live calls, weekly Q&A, daily peer support. If you'd pay ₹1,500 for one consultation, this is cheaper. Cancel anytime, no questions." },
+  { q: "Is the Full Kit worth ₹1199?", a: "You get all 3 guides (worth ₹897 if bought separately), the private Brotherhood community with direct DM access to Hitesh, and the 90-day custom calculator. One payment, lifetime access. 7-day refund if you're not satisfied." },
   { q: "Refund policy?", a: "PDFs: no refunds (you already have the content). Full Transformation Kit: 7-day refund if you go through the audit and don't feel you have a plan. Brotherhood: cancel before next billing." },
 ]
 

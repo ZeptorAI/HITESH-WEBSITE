@@ -1,4 +1,4 @@
-import { Book, MessageCircle, Users, Star, Shield } from 'lucide-react'
+import { Book, MessageCircle, Users, Star, Shield, Flame } from 'lucide-react'
 import FadeUp from './ui/FadeUp'
 import Pill from './ui/Pill'
 import GoldButton from './ui/GoldButton'
@@ -33,7 +33,10 @@ export default function PremiumSection() {
           <div className="absolute -top-px left-10 right-10 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
 
           <FadeUp>
-            <Pill tone="gold" className="mb-6"><Star size={12} /> Best value</Pill>
+            <div className="flex flex-wrap items-center gap-3 mb-6">
+              <Pill tone="gold"><Star size={12} /> Best value</Pill>
+              <Pill tone="red"><Flame size={12} /> LIMITED TIME</Pill>
+            </div>
           </FadeUp>
 
           <div className="grid lg:grid-cols-[1.2fr_1fr] gap-10 lg:gap-16 items-start">
@@ -52,8 +55,8 @@ export default function PremiumSection() {
               </FadeUp>
               <FadeUp delay={240}>
                 <div className="mt-8 flex items-baseline gap-3 flex-wrap">
-                  <span className="text-text-muted line-through font-mono text-xl">₹987</span>
-                  <span className="text-gold font-display font-bold text-5xl md:text-6xl tracking-tighter">₹499</span>
+                  <span className="text-text-muted line-through font-mono text-xl">₹2997</span>
+                  <span className="text-gold font-display font-bold text-5xl md:text-6xl tracking-tighter">₹1199</span>
                   <span className="text-text-secondary text-sm">one-time · lifetime</span>
                 </div>
               </FadeUp>

@@ -2,7 +2,7 @@ import FadeUp from './ui/FadeUp'
 import Pill from './ui/Pill'
 
 const steps = [
-  { n: '01', title: 'Pay ₹249',                  body: 'One tap. UPI, card, or wallet. No subscriptions, no upsells.' },
+  { n: '01', title: 'Pay ₹599',                  body: 'One tap. UPI, card, or wallet. No subscriptions, no upsells.' },
   { n: '02', title: 'Get it on WhatsApp',         body: 'All three PDFs hit your inbox in 60 seconds. Open and start reading.' },
   { n: '03', title: 'Look different in 26 days',  body: 'Follow the daily protocols. Track progress. Stack the wins.' },
 ]

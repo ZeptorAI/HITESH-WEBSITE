@@ -16,7 +16,7 @@ const guides = [
       "DHT-blocking lifestyle changes that actually work",
       "60-day transformation timeline",
     ],
-    cta: "Get Hair Care Maxx — ₹99",
+    cta: "Get Hair Care Maxx — ₹299",
     href: "/hair",
   },
   {
@@ -28,7 +28,7 @@ const guides = [
       "Footwear, styling, and angle tactics",
       "For anyone under 25 — growth plate optimization",
     ],
-    cta: "Get Height Maxx — ₹99",
+    cta: "Get Height Maxx — ₹299",
     href: "/height",
   },
   {
@@ -40,7 +40,7 @@ const guides = [
       "Diet, supplements, and DHT optimization for facial hair",
       "Patch-fill strategies while you grow",
     ],
-    cta: "Get Beard Maxx — ₹99",
+    cta: "Get Beard Maxx — ₹299",
     href: "/beard",
   },
 ]
@@ -50,7 +50,7 @@ function GuideCard({ tag, label, cover, title, subtitle, bullets, cta, href }) {
     <div className="bg-surface border border-border rounded-[8px] p-6 md:p-7 flex flex-col h-full card-hover">
       <div className="flex items-start justify-between mb-5">
         <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-muted">{tag}</span>
-        <span className="font-mono text-xs text-gold">₹99</span>
+        <span className="font-mono text-xs text-gold">₹299</span>
       </div>
 
       <div className="mb-6">
@@ -94,7 +94,7 @@ export default function GuidesSection() {
     <section id="guides" className="py-24 md:py-32 border-t border-border">
       <div className="max-w-container mx-auto px-5 md:px-8">
         <div className="max-w-[640px]">
-          <FadeUp><Pill tone="muted" className="mb-5">3 guides · ₹99 each</Pill></FadeUp>
+          <FadeUp><Pill tone="muted" className="mb-5">3 guides · ₹299 each</Pill></FadeUp>
           <FadeUp delay={60}>
             <h2 className="display-section text-[2.5rem] sm:text-[3.25rem] md:text-[4.25rem]">
               Pick your weapon<span className="text-gold">.</span>
@@ -102,7 +102,7 @@ export default function GuidesSection() {
           </FadeUp>
           <FadeUp delay={120}>
             <p className="mt-5 text-lg text-text-secondary leading-[1.6]">
-              Three guides. ₹99 each. Or get all three for ₹249.
+              Three guides. ₹299 each. Or get all three for ₹599 — 3rd guide FREE.
             </p>
           </FadeUp>
         </div>

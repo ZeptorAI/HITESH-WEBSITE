@@ -46,7 +46,7 @@ const data = {
     },
     {
       q: "Can I share this with friends?",
-      a: "It's for personal use only. If your friend needs it, it's ₹99. Send them the link.",
+      a: "It's for personal use only. If your friend needs it, it's ₹299. Send them the link.",
     },
     {
       q: "I can find hair loss info free online. Why pay?",

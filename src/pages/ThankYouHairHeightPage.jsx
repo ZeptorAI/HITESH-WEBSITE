@@ -210,7 +210,7 @@ export default function ThankYouHairHeightPage() {
                 fontSize: "clamp(48px, 11vw, 56px)", lineHeight: 1,
                 color: "#D4AF37", letterSpacing: "-0.03em",
               }}>
-                ₹99
+                ₹299
               </div>
               <div style={{ fontSize: 13, color: "#52525B", marginTop: 6 }}>one guide · instant access</div>
             </div>
@@ -280,7 +280,7 @@ export default function ThankYouHairHeightPage() {
                 cursor: "pointer", boxSizing: "border-box",
               }}
             >
-              Add Beard Maxxed for ₹99 →
+              Add Beard Maxxed for ₹299 →
             </a>
 
             {/* g. Countdown */}
@@ -298,7 +298,7 @@ export default function ThankYouHairHeightPage() {
                 fontFamily: '"Instrument Serif", serif', fontStyle: "italic",
                 fontSize: 13, color: "#3F3F46", margin: 0,
               }}>
-                Only available on this page. Close it and the price goes back to ₹99.
+                Only available on this page. Close it and the price goes back to ₹299.
               </p>
             </div>
           </div>

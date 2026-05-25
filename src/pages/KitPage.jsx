@@ -28,10 +28,10 @@ const calculatorPoints = [
 
 const faqs = [
   { q: "What's included in the Full Kit?", a: "All 3 PDF guides (Hair Fixed, Beard Maxxed, Height Maxxed) + access to the private WhatsApp community + the 90-day custom calculator. Everything in one payment." },
-  { q: "Is this a one-time payment or monthly?", a: "₹499 one-time. Lifetime access to the guides and calculator. The WhatsApp community is ongoing — no recurring charge." },
+  { q: "Is this a one-time payment or monthly?", a: "₹1199 one-time. Lifetime access to the guides and calculator. The WhatsApp community is ongoing — no recurring charge." },
   { q: "What exactly is the 90-day calculator?", a: "It's a custom tool that takes your skin condition, diet, and lifestyle as inputs and outputs a personalised 90-day plan for hair, beard, and height. Not a generic PDF — built specifically for your numbers." },
   { q: "Is there a refund policy?", a: "7-day refund if you go through the onboarding and don't feel you have a clear plan forward. DM on Instagram to request." },
-  { q: "Can I just buy the bundle without the community?", a: "Yes — the 3-guide bundle is ₹249 at the previous page. The Full Kit adds the community and calculator on top." },
+  { q: "Can I just buy the bundle without the community?", a: "Yes — the 3-guide bundle is ₹599 at the previous page. The Full Kit adds the community and calculator on top." },
 ]
 
 function FAQItem({ q, a, open, onToggle }) {
@@ -79,7 +79,7 @@ export default function KitPage() {
             Hitesh Grover<span className="text-gold">.</span>
           </Link>
           <GoldButton href={RAZORPAY_LINKS.kit} size="md">
-            Claim Full Kit — ₹499 <ArrowRight size={14} />
+            Claim Full Kit — ₹1199 <ArrowRight size={14} />
           </GoldButton>
         </div>
       </header>
@@ -88,7 +88,7 @@ export default function KitPage() {
       <section className="pt-28 pb-16 md:pt-36 md:pb-20">
         <div className="max-w-container mx-auto px-5 md:px-8 max-w-[760px]">
           <FadeUp>
-            <Pill tone="gold" className="mb-5">Full Transformation Kit · ₹499</Pill>
+            <Pill tone="gold" className="mb-5">Full Transformation Kit · ₹1199</Pill>
           </FadeUp>
           <FadeUp delay={60}>
             <h1 className="display-hero text-[2.5rem] sm:text-[3.25rem] md:text-[4.5rem]">
@@ -103,18 +103,18 @@ export default function KitPage() {
           </FadeUp>
           <FadeUp delay={180}>
             <div className="mt-7 flex flex-wrap items-baseline gap-3">
-              <span className="text-text-muted line-through font-mono text-xl">₹987</span>
-              <span className="text-gold font-display font-bold text-5xl tracking-tighter">₹499</span>
+              <span className="text-text-muted line-through font-mono text-xl">₹2997</span>
+              <span className="text-gold font-display font-bold text-5xl tracking-tighter">₹1199</span>
               <span className="text-text-muted text-sm">one-time · lifetime</span>
             </div>
           </FadeUp>
           <FadeUp delay={230}>
             <div className="mt-6 flex flex-col sm:flex-row gap-3">
               <GoldButton href={RAZORPAY_LINKS.kit} size="xl" className="w-full sm:w-auto">
-                Claim the Full Kit — ₹499 <ArrowRight size={18} />
+                Claim the Full Kit — ₹1199 <ArrowRight size={18} />
               </GoldButton>
               <OutlineButton href="/bundle" size="lg" className="w-full sm:w-auto">
-                Just the bundle — ₹249
+                Just the bundle — ₹599
               </OutlineButton>
             </div>
             <p className="mt-3 text-xs text-text-muted flex items-center gap-1.5">
@@ -258,12 +258,12 @@ export default function KitPage() {
           <FadeUp>
             <div className="max-w-[500px] mx-auto bg-surface border border-gold/30 rounded-[12px] p-7 md:p-9 text-center relative overflow-hidden">
               <div className="absolute -top-px left-10 right-10 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
-              <Pill tone="gold" className="mb-4">Best value</Pill>
-              <div className="font-display font-bold text-[4.5rem] tracking-tighter text-gold leading-none mb-1">₹499</div>
-              <p className="text-text-muted text-sm mb-2"><span className="line-through mr-2">₹987</span>You save ₹488</p>
+              <Pill tone="gold" className="mb-4">LIMITED TIME — Best value</Pill>
+              <div className="font-display font-bold text-[4.5rem] tracking-tighter text-gold leading-none mb-1">₹1199</div>
+              <p className="text-text-muted text-sm mb-2"><span className="line-through mr-2">₹2997</span>You save ₹1798</p>
               <p className="text-text-secondary text-[13px] mb-7">3 Guides + WhatsApp Community + 90-Day Calculator</p>
               <GoldButton href={RAZORPAY_LINKS.kit} size="xl" className="w-full">
-                Claim the Full Kit — ₹499 <ArrowRight size={18} />
+                Claim the Full Kit — ₹1199 <ArrowRight size={18} />
               </GoldButton>
               <p className="mt-4 text-xs text-text-muted flex items-center justify-center gap-1.5">
                 <Shield size={12} className="text-gold shrink-0" />
@@ -303,12 +303,12 @@ export default function KitPage() {
           </FadeUp>
           <FadeUp delay={80}>
             <p className="mt-4 text-text-secondary text-lg max-w-[420px] mx-auto">
-              Full Kit — ₹499. One payment, everything included, instant access.
+              Full Kit — ₹1199. One payment, everything included, instant access.
             </p>
           </FadeUp>
           <FadeUp delay={140}>
             <GoldButton href={RAZORPAY_LINKS.kit} size="xl" className="mt-8">
-              Claim the Full Kit — ₹499 <ArrowRight size={18} />
+              Claim the Full Kit — ₹1199 <ArrowRight size={18} />
             </GoldButton>
           </FadeUp>
         </div>

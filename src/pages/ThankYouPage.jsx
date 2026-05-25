@@ -269,14 +269,14 @@ export default function ThankYouPage() {
                   color: "#52525B", fontSize: 17, textDecoration: "line-through",
                   fontFamily: '"JetBrains Mono", monospace',
                 }}>
-                  ₹198
+                  ₹598
                 </span>
                 <span style={{
                   border: "1px solid rgba(212,175,55,0.35)", borderRadius: 6,
                   padding: "2px 9px", fontSize: 11, fontWeight: 700,
                   color: "#D4AF37", letterSpacing: "0.07em",
                 }}>
-                  SAVE ₹49
+                  SAVE ₹99
                 </span>
               </div>
               <div style={{
@@ -284,7 +284,7 @@ export default function ThankYouPage() {
                 fontSize: "clamp(48px, 11vw, 56px)", lineHeight: 1,
                 color: "#D4AF37", letterSpacing: "-0.03em",
               }}>
-                ₹149
+                ₹499
               </div>
             </div>
 
@@ -359,7 +359,7 @@ export default function ThankYouPage() {
                 cursor: "pointer", boxSizing: "border-box",
               }}
             >
-              Add Both for ₹149 →
+              Add Both for ₹499 →
             </a>
 
             {/* g. Countdown */}
@@ -377,7 +377,7 @@ export default function ThankYouPage() {
                 fontFamily: '"Instrument Serif", serif', fontStyle: "italic",
                 fontSize: 13, color: "#3F3F46", margin: 0,
               }}>
-                Only available on this page. Close it and the price goes back to ₹198.
+                Only available on this page. Close it and the price goes back to ₹598.
               </p>
             </div>
           </div>
