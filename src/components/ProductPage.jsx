@@ -107,7 +107,7 @@ function ProductHero({ slug, name, tagline, subheadline, cover }) {
                   href={RAZORPAY_LINKS[slug]}
                   className="flex items-center justify-center gap-2 w-full border border-gold/45 bg-surface hover:bg-surface/60 text-gold font-semibold text-[14px] px-5 py-3.5 rounded-[8px] transition-all active:scale-[0.98]"
                 >
-                  ₹299 — Get Instant Access <ArrowRight size={15} />
+                  ₹299 — {name} <ArrowRight size={15} />
                 </a>
 
                 <p className="text-xs text-text-muted">Instant download · No subscription</p>
