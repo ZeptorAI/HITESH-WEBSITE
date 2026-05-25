@@ -87,25 +87,28 @@ function ProductHero({ slug, name, tagline, subheadline, cover }) {
             {/* CTA */}
             <FadeUp delay={200}>
               <div className="mt-7 flex flex-col gap-3 w-full sm:max-w-[420px]">
-                {/* Primary — single guide */}
-                <GoldButton href={RAZORPAY_LINKS[slug]} size="lg" className="w-full">
-                  ₹299 — Get Instant Access <ArrowRight size={16} />
-                </GoldButton>
-
-                {/* Secondary — bundle upsell */}
+                {/* Primary — bundle (gold/yellow fill) */}
                 <div className="relative pt-2.5">
                   <span className="absolute top-0 left-4 bg-bg border border-gold/40 rounded-full px-2.5 py-0.5 text-[10px] font-bold text-gold tracking-[0.12em] uppercase z-10">
                     Best Value
                   </span>
                   <a
                     href={RAZORPAY_LINKS.bundle}
-                    className="flex items-center justify-center gap-2 w-full border border-gold/40 bg-gold/8 hover:bg-gold/15 text-gold font-semibold text-[14px] px-5 py-3.5 rounded-[8px] transition-all active:scale-[0.98]"
+                    className="flex items-center justify-center gap-2 w-full bg-gold hover:bg-gold-dark text-bg font-bold text-[15px] px-5 py-3.5 rounded-[8px] transition-all active:scale-[0.98]"
                   >
                     Buy All 3 — ₹599
-                    <span className="text-xs text-gold/65 font-normal">· 1 Guide FREE</span>
+                    <span className="text-xs font-normal opacity-70">· 1 Guide FREE</span>
                     <ArrowRight size={14} className="shrink-0" />
                   </a>
                 </div>
+
+                {/* Secondary — single guide (dark bg, gold border) */}
+                <a
+                  href={RAZORPAY_LINKS[slug]}
+                  className="flex items-center justify-center gap-2 w-full border border-gold/45 bg-surface hover:bg-surface/60 text-gold font-semibold text-[14px] px-5 py-3.5 rounded-[8px] transition-all active:scale-[0.98]"
+                >
+                  ₹299 — Get Instant Access <ArrowRight size={15} />
+                </a>
 
                 <p className="text-xs text-text-muted">Instant download · No subscription</p>
               </div>
