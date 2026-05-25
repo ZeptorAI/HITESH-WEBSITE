@@ -11,6 +11,7 @@ import FadeUp from './ui/FadeUp'
 import Pill from './ui/Pill'
 import GoldButton from './ui/GoldButton'
 import OutlineButton from './ui/OutlineButton'
+import BundleOfferPopup from './BundleOfferPopup'
 
 // ─── Razorpay links — swap these once payment links are created ───────────────
 export const RAZORPAY_LINKS = {
@@ -85,11 +86,28 @@ function ProductHero({ slug, name, tagline, subheadline, cover }) {
 
             {/* CTA */}
             <FadeUp delay={200}>
-              <div className="mt-7 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3">
-                <GoldButton href={RAZORPAY_LINKS[slug]} size="lg" className="w-full sm:w-auto">
+              <div className="mt-7 flex flex-col gap-3 w-full sm:max-w-[420px]">
+                {/* Primary — single guide */}
+                <GoldButton href={RAZORPAY_LINKS[slug]} size="lg" className="w-full">
                   ₹299 — Get Instant Access <ArrowRight size={16} />
                 </GoldButton>
-                <p className="text-sm text-text-muted text-center sm:text-left">Instant download · No subscription</p>
+
+                {/* Secondary — bundle upsell */}
+                <div className="relative pt-2.5">
+                  <span className="absolute top-0 left-4 bg-bg border border-gold/40 rounded-full px-2.5 py-0.5 text-[10px] font-bold text-gold tracking-[0.12em] uppercase z-10">
+                    Best Value
+                  </span>
+                  <a
+                    href={RAZORPAY_LINKS.bundle}
+                    className="flex items-center justify-center gap-2 w-full border border-gold/40 bg-gold/8 hover:bg-gold/15 text-gold font-semibold text-[14px] px-5 py-3.5 rounded-[8px] transition-all active:scale-[0.98]"
+                  >
+                    Buy All 3 — ₹599
+                    <span className="text-xs text-gold/65 font-normal">· 1 Guide FREE</span>
+                    <ArrowRight size={14} className="shrink-0" />
+                  </a>
+                </div>
+
+                <p className="text-xs text-text-muted">Instant download · No subscription</p>
               </div>
             </FadeUp>
           </div>
@@ -465,6 +483,7 @@ export default function ProductPage({
 }) {
   return (
     <div className="bg-bg text-text-primary min-h-screen">
+      <BundleOfferPopup />
       <ProductPageHeader />
       <ProductHero
         slug={slug} name={name}
