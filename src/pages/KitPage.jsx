@@ -31,7 +31,7 @@ const faqs = [
   { q: "Is this a one-time payment or monthly?", a: "₹1199 one-time. Lifetime access to the guides and calculator. The WhatsApp community is ongoing — no recurring charge." },
   { q: "What exactly is the 90-day calculator?", a: "It's a custom tool that takes your skin condition, diet, and lifestyle as inputs and outputs a personalised 90-day plan for hair, beard, and height. Not a generic PDF — built specifically for your numbers." },
   { q: "Is there a refund policy?", a: "7-day refund if you go through the onboarding and don't feel you have a clear plan forward. DM on Instagram to request." },
-  { q: "Can I just buy the bundle without the community?", a: "Yes — the 3-guide bundle is ₹599 at the previous page. The Full Kit adds the community and calculator on top." },
+  { q: "Can I just buy the bundle without the community?", a: "Yes — the 3-guide bundle is ₹595 at the previous page. The Full Kit adds the community and calculator on top." },
 ]
 
 function FAQItem({ q, a, open, onToggle }) {
@@ -114,7 +114,7 @@ export default function KitPage() {
                 Claim the Full Kit — ₹1199 <ArrowRight size={18} />
               </GoldButton>
               <OutlineButton href="/bundle" size="lg" className="w-full sm:w-auto">
-                Just the bundle — ₹599
+                Just the bundle — ₹595
               </OutlineButton>
             </div>
             <p className="mt-3 text-xs text-text-muted flex items-center gap-1.5">

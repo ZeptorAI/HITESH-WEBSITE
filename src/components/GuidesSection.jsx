@@ -102,7 +102,7 @@ export default function GuidesSection() {
           </FadeUp>
           <FadeUp delay={120}>
             <p className="mt-5 text-lg text-text-secondary leading-[1.6]">
-              Three guides. ₹299 each. Or get all three for ₹599 — 3rd guide FREE.
+              Three guides. ₹299 each. Or get all three for ₹595 — 3rd guide FREE.
             </p>
           </FadeUp>
         </div>

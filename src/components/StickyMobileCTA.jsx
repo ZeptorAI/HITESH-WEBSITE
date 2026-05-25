@@ -24,7 +24,7 @@ export default function StickyMobileCTA() {
             href="/bundle"
             className="flex items-center justify-center gap-2 w-full bg-gold text-bg font-semibold rounded-[8px] py-4 text-base transition-all hover:bg-gold-dark active:scale-[0.98]"
           >
-            Get the bundle — ₹599
+            Get the bundle — ₹595
           </a>
         </motion.div>
       )}

@@ -47,7 +47,7 @@ const guides = [
 
 const faqs = [
   { q: "What exactly do I get?", a: "All three guides: Hair Fixed, Beard Maxxed, and Height Maxxed. Instant PDF download, lifetime access. Delivered to your WhatsApp immediately after payment." },
-  { q: "How is this different from buying individually?", a: "You save ₹298 — ₹299 x 3 = ₹897, bundle is ₹599. The 3rd guide is completely FREE. Everything arrives in one WhatsApp message so it's all in one place." },
+  { q: "How is this different from buying individually?", a: "You save ₹298 — ₹299 x 3 = ₹897, bundle is ₹595. The 3rd guide is completely FREE. Everything arrives in one WhatsApp message so it's all in one place." },
   { q: "Is there a refund policy?", a: "PDFs are non-refundable once downloaded. If there's an issue with your order, DM on Instagram and it'll be sorted." },
   { q: "Can I buy just one guide?", a: "Yes — each guide is ₹299 individually. Click any guide name above to go to its page." },
   { q: "Want the community and custom plan too?", a: "Upgrade to the Full Kit for ₹1199 — includes everything in the bundle plus the WhatsApp community and a 90-day custom calculator." },
@@ -120,13 +120,13 @@ export default function BundlePage() {
               <FadeUp delay={190}>
                 <div className="mt-7 flex flex-wrap items-baseline gap-3">
                   <span className="text-text-muted line-through font-mono text-xl">₹897</span>
-                  <span className="text-gold font-display font-bold text-5xl tracking-tighter">₹599</span>
+                  <span className="text-gold font-display font-bold text-5xl tracking-tighter">₹595</span>
                   <span className="text-text-muted text-sm">one-time · instant access</span>
                 </div>
               </FadeUp>
               <FadeUp delay={230}>
                 <GoldButton href={RAZORPAY_LINKS.bundle} size="xl" className="mt-6 w-full sm:w-auto">
-                  Get the Bundle — ₹599 <ArrowRight size={18} />
+                  Get the Bundle — ₹595 <ArrowRight size={18} />
                 </GoldButton>
                 <p className="mt-3 text-xs text-text-muted">Paid via Razorpay · Instant WhatsApp delivery · No subscription</p>
               </FadeUp>
@@ -183,11 +183,11 @@ export default function BundlePage() {
           <FadeUp>
             <div className="max-w-[460px] mx-auto bg-surface border border-border rounded-[12px] p-7 md:p-9 text-center">
               <Pill tone="gold" className="mb-4">3rd Guide FREE</Pill>
-              <div className="font-display font-bold text-[4.5rem] tracking-tighter text-gold leading-none mb-1">₹599</div>
+              <div className="font-display font-bold text-[4.5rem] tracking-tighter text-gold leading-none mb-1">₹595</div>
               <p className="text-text-muted text-sm mb-2"><span className="line-through mr-2">₹897</span>You save ₹298</p>
               <p className="text-text-secondary text-[14px] mb-7">Hair Fixed + Beard Maxxed + Height Maxxed</p>
               <GoldButton href={RAZORPAY_LINKS.bundle} size="xl" className="w-full">
-                Get the Bundle — ₹599 <ArrowRight size={18} />
+                Get the Bundle — ₹595 <ArrowRight size={18} />
               </GoldButton>
               <p className="mt-4 text-xs text-text-muted">Paid via Razorpay · Secure · Instant WhatsApp delivery</p>
             </div>

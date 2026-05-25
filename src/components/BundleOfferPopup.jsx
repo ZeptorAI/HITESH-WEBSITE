@@ -130,7 +130,7 @@ export default function BundleOfferPopup() {
                 {/* Price */}
                 <div className="flex items-baseline gap-3 mb-5">
                   <span className="text-text-muted line-through font-mono text-base">₹897</span>
-                  <span className="text-gold font-display font-bold text-[2.6rem] tracking-tighter leading-none">₹599</span>
+                  <span className="text-gold font-display font-bold text-[2.6rem] tracking-tighter leading-none">₹595</span>
                   <span className="text-text-secondary text-xs">one-time</span>
                 </div>
 
@@ -146,7 +146,7 @@ export default function BundleOfferPopup() {
                   href={RAZORPAY_LINKS.bundle}
                   className="flex items-center justify-center gap-2 w-full bg-gold text-bg font-bold text-[15px] rounded-[10px] py-4 hover:bg-gold-dark active:scale-[0.98] transition-all"
                 >
-                  Get All 3 — ₹599 <ArrowRight size={16} />
+                  Get All 3 — ₹595 <ArrowRight size={16} />
                 </a>
 
                 {/* Skip link */}
@@ -186,7 +186,7 @@ export default function BundleOfferPopup() {
                 href={RAZORPAY_LINKS.bundle}
                 className="shrink-0 flex items-center gap-1 bg-bg text-gold text-[11px] font-bold px-3 py-1.5 rounded-full hover:bg-bg/90 transition-colors whitespace-nowrap"
               >
-                Get All 3 — ₹599 <ArrowRight size={11} />
+                Get All 3 — ₹595 <ArrowRight size={11} />
               </a>
             </div>
           </motion.div>

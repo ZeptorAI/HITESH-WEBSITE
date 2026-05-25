@@ -43,7 +43,7 @@ export default function Hero() {
             <FadeUp delay={240}>
               <div className="mt-7 flex flex-col sm:flex-row gap-3 sm:items-center">
                 <GoldButton href="/bundle" size="xl" className="w-full sm:w-auto">
-                  Get the bundle — ₹599
+                  Get the bundle — ₹595
                 </GoldButton>
                 <a href="#guides"
                   className="text-gold hover:text-gold-light text-sm font-medium inline-flex items-center justify-center sm:justify-start gap-1.5 px-2 py-3 sm:py-0 transition-colors">

@@ -34,7 +34,7 @@ function ProductPageHeader() {
           Hitesh Grover<span className="text-gold">.</span>
         </Link>
         <GoldButton href={RAZORPAY_LINKS.bundle} size="md">
-          All 3 — ₹599 <ArrowRight size={14} />
+          All 3 — ₹595 <ArrowRight size={14} />
         </GoldButton>
       </div>
     </header>
@@ -96,7 +96,7 @@ function ProductHero({ slug, name, tagline, subheadline, cover }) {
                     href={RAZORPAY_LINKS.bundle}
                     className="flex items-center justify-center gap-2 w-full bg-gold hover:bg-gold-dark text-bg font-bold text-[15px] px-5 py-3.5 rounded-[8px] transition-all active:scale-[0.98]"
                   >
-                    Buy All 3 — ₹599
+                    Buy All 3 — ₹595
                     <span className="text-xs font-normal opacity-70">· 1 Guide FREE</span>
                     <ArrowRight size={14} className="shrink-0" />
                   </a>
@@ -313,7 +313,7 @@ function BundleUpsell() {
                 </div>
                 <h3 className="font-display font-bold text-xl md:text-2xl tracking-tighter">
                   Want all 3?{' '}
-                  <span className="text-gold">₹599</span>
+                  <span className="text-gold">₹595</span>
                   <span className="ml-2 text-base font-sans font-normal text-text-muted line-through">
                     ₹897
                   </span>
@@ -447,7 +447,7 @@ function ProductFinalCTA({ slug, name }) {
               ₹299 — Get {name} Now <ArrowRight size={18} />
             </GoldButton>
             <OutlineButton href="/bundle" size="lg">
-              All 3 for ₹599 <ArrowRight size={14} />
+              All 3 for ₹595 <ArrowRight size={14} />
             </OutlineButton>
           </div>
         </FadeUp>

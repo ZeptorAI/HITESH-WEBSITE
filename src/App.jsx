@@ -12,10 +12,12 @@ import FAQSection from './components/FAQSection'
 import FinalCTA from './components/FinalCTA'
 import Footer from './components/Footer'
 import StickyMobileCTA from './components/StickyMobileCTA'
+import BundleOfferPopup from './components/BundleOfferPopup'
 
 export default function App() {
   return (
     <>
+      <BundleOfferPopup />
       <Nav />
       <main>
         <Hero />
