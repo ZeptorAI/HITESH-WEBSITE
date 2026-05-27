@@ -62,7 +62,7 @@ export default function PremiumSection() {
               </FadeUp>
               <FadeUp delay={300}>
                 <div className="mt-8">
-                  <GoldButton href="/kit" size="xl" className="w-full sm:w-auto">
+                  <GoldButton href="/r/htsh-home-premium-kit" size="xl" className="w-full sm:w-auto">
                     Claim the Full Kit
                   </GoldButton>
                 </div>

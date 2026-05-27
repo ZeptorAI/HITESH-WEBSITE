@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Check, ArrowRight, Plus, Minus } from 'lucide-react'
-import { RAZORPAY_LINKS } from '../components/ProductPage'
 import FadeUp from '../components/ui/FadeUp'
 import Pill from '../components/ui/Pill'
 import GoldButton from '../components/ui/GoldButton'
@@ -85,7 +84,7 @@ export default function BundlePage() {
           <Link to="/" className="font-display font-bold text-xl tracking-tighter text-text-primary hover:text-gold transition-colors">
             Hitesh Grover<span className="text-gold">.</span>
           </Link>
-          <OutlineButton href="/kit" size="md">
+          <OutlineButton href="/r/htsh-bundle-header-kit" size="md">
             Full Kit — ₹1199 <ArrowRight size={14} />
           </OutlineButton>
         </div>
@@ -125,7 +124,7 @@ export default function BundlePage() {
                 </div>
               </FadeUp>
               <FadeUp delay={230}>
-                <GoldButton href={RAZORPAY_LINKS.bundle} size="xl" className="mt-6 w-full sm:w-auto">
+                <GoldButton href="/r/htsh-bundle-hero-buy" size="xl" className="mt-6 w-full sm:w-auto">
                   Get the Bundle — ₹595 <ArrowRight size={18} />
                 </GoldButton>
                 <p className="mt-3 text-xs text-text-muted">Paid via Razorpay · Instant WhatsApp delivery · No subscription</p>
@@ -167,7 +166,7 @@ export default function BundlePage() {
                       </li>
                     ))}
                   </ul>
-                  <Link to={`/${g.slug}`} className="mt-5 text-xs text-gold hover:text-gold-light transition-colors">
+                  <Link to={`/r/htsh-bundle-guide-${g.slug}`} className="mt-5 text-xs text-gold hover:text-gold-light transition-colors">
                     See full guide →
                   </Link>
                 </div>
@@ -186,7 +185,7 @@ export default function BundlePage() {
               <div className="font-display font-bold text-[4.5rem] tracking-tighter text-gold leading-none mb-1">₹595</div>
               <p className="text-text-muted text-sm mb-2"><span className="line-through mr-2">₹897</span>You save ₹298</p>
               <p className="text-text-secondary text-[14px] mb-7">Hair Fixed + Beard Maxxed + Height Maxxed</p>
-              <GoldButton href={RAZORPAY_LINKS.bundle} size="xl" className="w-full">
+              <GoldButton href="/r/htsh-bundle-pricing-buy" size="xl" className="w-full">
                 Get the Bundle — ₹595 <ArrowRight size={18} />
               </GoldButton>
               <p className="mt-4 text-xs text-text-muted">Paid via Razorpay · Secure · Instant WhatsApp delivery</p>
@@ -209,7 +208,7 @@ export default function BundlePage() {
                   Bundle + WhatsApp community + 90-day custom calculator.
                 </p>
               </div>
-              <OutlineButton href="/kit" size="lg" className="shrink-0 w-full sm:w-auto">
+              <OutlineButton href="/r/htsh-bundle-upsell-kit" size="lg" className="shrink-0 w-full sm:w-auto">
                 See the Full Kit <ArrowRight size={14} />
               </OutlineButton>
             </div>

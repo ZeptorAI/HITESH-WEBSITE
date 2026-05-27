@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ArrowRight, Flame, Zap } from 'lucide-react'
-import { RAZORPAY_LINKS } from './ProductPage'
-
 const EXPIRY_KEY = 'bundle_offer_expiry'
 const DISMISSED_KEY = 'bundle_offer_dismissed'
 const DURATION = 15 * 60 * 1000 // 15 minutes
@@ -143,7 +141,7 @@ export default function BundleOfferPopup() {
 
                 {/* Main CTA */}
                 <a
-                  href={RAZORPAY_LINKS.bundle}
+                  href="/r/htsh-popup-bundle"
                   className="flex items-center justify-center gap-2 w-full bg-gold text-bg font-bold text-[15px] rounded-[10px] py-4 hover:bg-gold-dark active:scale-[0.98] transition-all"
                 >
                   Get All 3 — ₹595 <ArrowRight size={16} />
@@ -183,7 +181,7 @@ export default function BundleOfferPopup() {
                 </span>
               </div>
               <a
-                href={RAZORPAY_LINKS.bundle}
+                href="/r/htsh-bar-bundle"
                 className="shrink-0 flex items-center gap-1 bg-bg text-gold text-[11px] font-bold px-3 py-1.5 rounded-full hover:bg-bg/90 transition-colors whitespace-nowrap"
               >
                 Get All 3 — ₹595 <ArrowRight size={11} />

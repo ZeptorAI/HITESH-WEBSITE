@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react"
 import { Check, Plus } from "lucide-react"
 
-// ── Placeholder — swap once Razorpay link is ready ───────────────────────────
-const UPSELL_LINK = "https://rzp.io/rzp/OC9TDdoC"
 const SUPPORT_PHONE = "+919814508715"
 const TIMER_KEY = "upsell_expiry_hair-beard"
 
@@ -270,7 +268,7 @@ export default function ThankYouHairBeardPage() {
 
             {/* f. CTA */}
             <a
-              href={UPSELL_LINK}
+              href="/r/htsh-ty-hairbeard-height"
               className="ty-cta"
               style={{
                 display: "block", width: "100%", padding: "17px",

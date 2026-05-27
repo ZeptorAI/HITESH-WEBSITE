@@ -23,7 +23,7 @@ export const RAZORPAY_LINKS = {
 }
 
 // ── Sticky Header ─────────────────────────────────────────────────────────────
-function ProductPageHeader() {
+function ProductPageHeader({ slug }) {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-bg/90 backdrop-blur-md border-b border-border">
       <div className="max-w-container mx-auto px-5 md:px-8 h-16 flex items-center justify-between">
@@ -33,7 +33,7 @@ function ProductPageHeader() {
         >
           Hitesh Grover<span className="text-gold">.</span>
         </Link>
-        <GoldButton href={RAZORPAY_LINKS.bundle} size="md">
+        <GoldButton href={`/r/htsh-${slug}-header-bundle`} size="md">
           All 3 — ₹595 <ArrowRight size={14} />
         </GoldButton>
       </div>
@@ -93,7 +93,7 @@ function ProductHero({ slug, name, tagline, subheadline, cover }) {
                     Best Value
                   </span>
                   <a
-                    href={RAZORPAY_LINKS.bundle}
+                    href={`/r/htsh-${slug}-hero-bundle`}
                     className="flex items-center justify-center gap-2 w-full bg-gold hover:bg-gold-dark text-bg font-bold text-[15px] px-5 py-3.5 rounded-[8px] transition-all active:scale-[0.98]"
                   >
                     Buy All 3 — ₹595
@@ -104,7 +104,7 @@ function ProductHero({ slug, name, tagline, subheadline, cover }) {
 
                 {/* Secondary — single guide (dark bg, gold border) */}
                 <a
-                  href={RAZORPAY_LINKS[slug]}
+                  href={`/r/htsh-${slug}-hero-buy`}
                   className="flex items-center justify-center gap-2 w-full border border-gold/45 bg-surface hover:bg-surface/60 text-gold font-semibold text-[14px] px-5 py-3.5 rounded-[8px] transition-all active:scale-[0.98]"
                 >
                   ₹299 — {name} <ArrowRight size={15} />
@@ -281,7 +281,7 @@ function PricingBlock({ slug, name, valueNote }) {
               ₹299
             </div>
             <p className="text-text-muted text-sm mb-7">{valueNote}</p>
-            <GoldButton href={RAZORPAY_LINKS[slug]} size="xl" className="w-full">
+            <GoldButton href={`/r/htsh-${slug}-pricing-buy`} size="xl" className="w-full">
               Get Instant Access <ArrowRight size={18} />
             </GoldButton>
             <p className="mt-4 text-xs text-text-muted">
@@ -295,7 +295,7 @@ function PricingBlock({ slug, name, valueNote }) {
 }
 
 // ── Bundle Upsell ─────────────────────────────────────────────────────────────
-function BundleUpsell() {
+function BundleUpsell({ slug }) {
   return (
     <section className="py-14 border-t border-border">
       <div className="max-w-container mx-auto px-5 md:px-8">
@@ -322,7 +322,7 @@ function BundleUpsell() {
                   Hair + Beard + Height — 3rd guide FREE.
                 </p>
               </div>
-              <GoldButton href="/bundle" size="lg" className="shrink-0 w-full sm:w-auto">
+              <GoldButton href={`/r/htsh-${slug}-upsell-bundle`} size="lg" className="shrink-0 w-full sm:w-auto">
                 Get the Bundle <ArrowRight size={14} />
               </GoldButton>
             </div>
@@ -334,7 +334,7 @@ function BundleUpsell() {
 }
 
 // ── Brotherhood Mention ───────────────────────────────────────────────────────
-function BrotherhoodMention() {
+function BrotherhoodMention({ slug }) {
   return (
     <section className="py-14 border-t border-border bg-surface/30">
       <div className="max-w-container mx-auto px-5 md:px-8">
@@ -354,7 +354,7 @@ function BrotherhoodMention() {
             </p>
           </FadeUp>
           <FadeUp delay={160}>
-            <OutlineButton href="/kit">
+            <OutlineButton href={`/r/htsh-${slug}-kit`}>
               Learn about the Full Kit <ArrowRight size={14} />
             </OutlineButton>
           </FadeUp>
@@ -443,10 +443,10 @@ function ProductFinalCTA({ slug, name }) {
         </FadeUp>
         <FadeUp delay={140}>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-            <GoldButton href={RAZORPAY_LINKS[slug]} size="xl">
+            <GoldButton href={`/r/htsh-${slug}-finalcta-buy`} size="xl">
               ₹299 — Get {name} Now <ArrowRight size={18} />
             </GoldButton>
-            <OutlineButton href="/bundle" size="lg">
+            <OutlineButton href={`/r/htsh-${slug}-finalcta-bundle`} size="lg">
               All 3 for ₹595 <ArrowRight size={14} />
             </OutlineButton>
           </div>
@@ -487,7 +487,7 @@ export default function ProductPage({
   return (
     <div className="bg-bg text-text-primary min-h-screen">
       <BundleOfferPopup />
-      <ProductPageHeader />
+      <ProductPageHeader slug={slug} />
       <ProductHero
         slug={slug} name={name}
         tagline={tagline} subheadline={subheadline} cover={cover}
@@ -498,8 +498,8 @@ export default function ProductPage({
       <WhoItIsForSection whoItIsFor={whoItIsFor} />
       <WhatYoullGetSection />
       <PricingBlock slug={slug} name={name} valueNote={valueNote} />
-      <BundleUpsell />
-      <BrotherhoodMention />
+      <BundleUpsell slug={slug} />
+      <BrotherhoodMention slug={slug} />
       <ProductFAQ faqs={faqs} />
       <ProductFinalCTA slug={slug} name={name} />
       <ProductFooter />

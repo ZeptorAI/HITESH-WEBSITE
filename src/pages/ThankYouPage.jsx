@@ -2,12 +2,6 @@ import { useState, useEffect } from "react"
 import { useSearchParams } from "react-router-dom"
 import { Check, Plus } from "lucide-react"
 
-// ── Upsell links — keyed by what the user already bought ─────────────────────
-const UPSELL_LINKS = {
-  hair:   "https://rzp.io/rzp/MhT3L6a",  // add beard + height
-  beard:  "https://rzp.io/rzp/aOcUpMs",  // add hair + height
-  height: "https://rzp.io/rzp/LUiHg1l",  // add hair + beard
-}
 const SUPPORT_PHONE = "+919814508715"
 
 // ── Product map ───────────────────────────────────────────────────────────────
@@ -353,7 +347,7 @@ export default function ThankYouPage() {
 
             {/* f. CTA Button */}
             <a
-              href={UPSELL_LINKS[productKey]}
+              href={`/r/htsh-ty-${productKey}-upsell`}
               className="ty-cta"
               style={{
                 display: "block", width: "100%", padding: "17px",

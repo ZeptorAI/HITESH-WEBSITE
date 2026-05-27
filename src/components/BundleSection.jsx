@@ -46,7 +46,7 @@ export default function BundleSection() {
             </FadeUp>
             <FadeUp delay={280}>
               <div className="mt-9">
-                <GoldButton href="/bundle" size="xl" className="w-full sm:w-auto sm:min-w-[280px]">
+                <GoldButton href="/r/htsh-home-bundle-cta" size="xl" className="w-full sm:w-auto sm:min-w-[280px]">
                   Get the bundle — ₹595
                 </GoldButton>
                 <p className="mt-4 text-sm text-text-muted flex items-center gap-2">

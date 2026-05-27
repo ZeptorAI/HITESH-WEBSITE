@@ -17,7 +17,7 @@ const guides = [
       "60-day transformation timeline",
     ],
     cta: "Get Hair Care Maxx — ₹299",
-    href: "/hair",
+    href: "/r/htsh-home-guides-hair",
   },
   {
     tag: "Guide 02", label: "HEIGHT", cover: heightCover,
@@ -29,7 +29,7 @@ const guides = [
       "For anyone under 25 — growth plate optimization",
     ],
     cta: "Get Height Maxx — ₹299",
-    href: "/height",
+    href: "/r/htsh-home-guides-height",
   },
   {
     tag: "Guide 03", label: "BEARD", cover: beardCover,
@@ -41,7 +41,7 @@ const guides = [
       "Patch-fill strategies while you grow",
     ],
     cta: "Get Beard Maxx — ₹299",
-    href: "/beard",
+    href: "/r/htsh-home-guides-beard",
   },
 ]
 

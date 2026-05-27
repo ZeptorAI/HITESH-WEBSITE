@@ -42,7 +42,7 @@ export default function Hero() {
 
             <FadeUp delay={240}>
               <div className="mt-7 flex flex-col sm:flex-row gap-3 sm:items-center">
-                <GoldButton href="/bundle" size="xl" className="w-full sm:w-auto">
+                <GoldButton href="/r/htsh-home-hero-bundle" size="xl" className="w-full sm:w-auto">
                   Get the bundle — ₹595
                 </GoldButton>
                 <a href="#guides"
