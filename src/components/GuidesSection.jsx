@@ -5,10 +5,11 @@ import OutlineButton from './ui/OutlineButton'
 import hairCover from '/assets/hair-maxx-cover.png'
 import heightCover from '/assets/height-maxx-cover.png'
 import beardCover from '/assets/beard-maxx-cover.png'
+import skinCover from '/assets/skin-maxx-cover.png'
 
 const guides = [
   {
-    tag: "Guide 01", label: "HAIR", cover: hairCover,
+    tag: "Guide 01", label: "HAIR", cover: hairCover, price: "₹299",
     title: "Hair Care Maxx", subtitle: "Stop hair loss. Regrow what you've lost.",
     bullets: [
       "Exact Minoxidil + Finasteride protocol for Indian skin",
@@ -20,7 +21,7 @@ const guides = [
     href: "/r/htsh-home-guides-hair",
   },
   {
-    tag: "Guide 02", label: "HEIGHT", cover: heightCover,
+    tag: "Guide 02", label: "HEIGHT", cover: heightCover, price: "₹299",
     title: "Height Maxx", subtitle: "Look 2 inches taller. Some of it permanent.",
     bullets: [
       "Posture protocols that add 1–1.5 inches instantly",
@@ -32,7 +33,7 @@ const guides = [
     href: "/r/htsh-home-guides-height",
   },
   {
-    tag: "Guide 03", label: "BEARD", cover: beardCover,
+    tag: "Guide 03", label: "BEARD", cover: beardCover, price: "₹299",
     title: "Beard Maxx", subtitle: "Fill in patches. Grow what won't grow.",
     bullets: [
       "Minoxidil application protocol for beard",
@@ -43,14 +44,26 @@ const guides = [
     cta: "Get Beard Maxx — ₹299",
     href: "/r/htsh-home-guides-beard",
   },
+  {
+    tag: "Guide 04", label: "SKIN", cover: skinCover, price: "₹349",
+    title: "90 Day Skin Reset", subtitle: "Clear skin in 90 days. For Indian men.",
+    bullets: [
+      "Exact actives protocol: retinol, niacinamide, AHA/BHA",
+      "Ingredient-first product picks under ₹1,500/month",
+      "Acne, pigmentation & oiliness — tackled together",
+      "Lifestyle triggers most guys never fix",
+    ],
+    cta: "Get Skin Reset — ₹349",
+    href: "/r/htsh-home-guides-skin",
+  },
 ]
 
-function GuideCard({ tag, label, cover, title, subtitle, bullets, cta, href }) {
+function GuideCard({ tag, label, cover, price = '₹299', title, subtitle, bullets, cta, href }) {
   return (
     <div className="bg-surface border border-border rounded-[8px] p-6 md:p-7 flex flex-col h-full card-hover">
       <div className="flex items-start justify-between mb-5">
         <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-muted">{tag}</span>
-        <span className="font-mono text-xs text-gold">₹299</span>
+        <span className="font-mono text-xs text-gold">{price}</span>
       </div>
 
       <div className="mb-6">
@@ -94,7 +107,7 @@ export default function GuidesSection() {
     <section id="guides" className="py-24 md:py-32 border-t border-border">
       <div className="max-w-container mx-auto px-5 md:px-8">
         <div className="max-w-[640px]">
-          <FadeUp><Pill tone="muted" className="mb-5">3 guides · ₹299 each</Pill></FadeUp>
+          <FadeUp><Pill tone="muted" className="mb-5">4 guides · from ₹299</Pill></FadeUp>
           <FadeUp delay={60}>
             <h2 className="display-section text-[2.5rem] sm:text-[3.25rem] md:text-[4.25rem]">
               Pick your weapon<span className="text-gold">.</span>
@@ -102,12 +115,12 @@ export default function GuidesSection() {
           </FadeUp>
           <FadeUp delay={120}>
             <p className="mt-5 text-lg text-text-secondary leading-[1.6]">
-              Three guides. ₹299 each. Or get all three for ₹595 — 3rd guide FREE.
+              Four guides. ₹299–₹349 each. Or get Hair + Beard + Height for ₹595 — 3rd guide FREE.
             </p>
           </FadeUp>
         </div>
 
-        <div className="mt-14 grid md:grid-cols-3 gap-5 md:gap-6">
+        <div className="mt-14 grid sm:grid-cols-2 xl:grid-cols-4 gap-5 md:gap-6">
           {guides.map((g, i) => (
             <FadeUp key={i} delay={i * 90}>
               <GuideCard {...g} />

@@ -22,7 +22,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_AIRTABLE_TOKEN: ${{ secrets.VITE_AIRTABLE_TOKEN }}
+          VITE_SHEETS_ENDPOINT: ${{ secrets.VITE_SHEETS_ENDPOINT }}
 
       - name: Deploy to Hostinger via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5

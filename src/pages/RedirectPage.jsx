@@ -2,12 +2,10 @@ import { useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { linkMap } from '../data/linkMap'
 
-const AIRTABLE_URL =
-  'https://api.airtable.com/v0/appMkbkolqSWG4s3Q/Link%20Clicks'
-const AIRTABLE_TOKEN = import.meta.env.VITE_AIRTABLE_TOKEN
+const SHEETS_ENDPOINT = import.meta.env.VITE_SHEETS_ENDPOINT
 
-const TIMEOUT_MS    = 800   // max wait before redirecting anyway
-const REDIRECT_DELAY = 150  // small pause so the fetch has a head-start
+const TIMEOUT_MS     = 800   // max wait before redirecting anyway
+const REDIRECT_DELAY = 150   // small pause so the fetch has a head-start
 
 export default function RedirectPage() {
   const { slug }    = useParams()
@@ -15,20 +13,15 @@ export default function RedirectPage() {
   const destination = linkMap[slug] || '/'
 
   useEffect(() => {
-    const logPromise = fetch(AIRTABLE_URL, {
+    const logPromise = fetch(SHEETS_ENDPOINT, {
       method: 'POST',
-      headers: {
-        Authorization:  `Bearer ${AIRTABLE_TOKEN}`,
-        'Content-Type': 'application/json',
-      },
+      mode: 'no-cors',          // avoids CORS preflight — Apps Script doesn't handle OPTIONS
+      headers: { 'Content-Type': 'text/plain' },  // simple header = no preflight
       body: JSON.stringify({
-        fields: {
-          Slug:         slug,
-          Timestamp:    new Date().toISOString(),
-          'User Agent': navigator.userAgent,
-          // only include Referrer when present — URL fields reject empty strings
-          ...(document.referrer ? { Referrer: document.referrer } : {}),
-        },
+        slug,
+        timestamp: new Date().toISOString(),
+        userAgent: navigator.userAgent,
+        referrer:  document.referrer || '',
       }),
     })
     .catch(() => {})  // never block the redirect on a network error

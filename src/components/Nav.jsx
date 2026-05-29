@@ -5,6 +5,7 @@ import GoldButton from './ui/GoldButton'
 const links = [
   { label: 'Guides',       href: '#guides' },
   { label: 'Bundle',       href: '#bundle' },
+  { label: 'Skin Reset',   href: '/r/htsh-home-nav-skin' },
   { label: 'Brotherhood',  href: '#brotherhood' },
   { label: 'FAQ',          href: '#faq' },
 ]

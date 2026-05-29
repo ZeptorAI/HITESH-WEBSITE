@@ -10,6 +10,7 @@ import KitPage from './pages/KitPage'
 import ThankYouPage from './pages/ThankYouPage'
 import ThankYouHairBeardPage from './pages/ThankYouHairBeardPage'
 import ThankYouHairHeightPage from './pages/ThankYouHairHeightPage'
+import SkinPage from './pages/SkinPage'
 import RedirectPage from './pages/RedirectPage'
 import './index.css'
 
@@ -26,6 +27,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/thank-you" element={<ThankYouPage />} />
         <Route path="/thank-you-hair-beard" element={<ThankYouHairBeardPage />} />
         <Route path="/thank-you-hair-height" element={<ThankYouHairHeightPage />} />
+        <Route path="/skin" element={<SkinPage />} />
         <Route path="/r/:slug" element={<RedirectPage />} />
       </Routes>
     </BrowserRouter>

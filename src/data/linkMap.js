@@ -113,6 +113,17 @@ export const linkMap = {
   // ── Thank You Hair+Height page — upsell Beard ────────────────────────────
   'htsh-ty-hairheight-beard':     RZP.beard,
 
+  // ── Skin Reset product page (/skin) ──────────────────────────────────────
+  'htsh-skin-header-buy':         'https://rzp.io/rzp/mWvoSkCo',
+  'htsh-skin-hero-buy':           'https://rzp.io/rzp/mWvoSkCo',
+  'htsh-skin-pricing-buy':        'https://rzp.io/rzp/mWvoSkCo',
+  'htsh-skin-finalcta-buy':       'https://rzp.io/rzp/mWvoSkCo',
+  'htsh-skin-kit':                '/kit',
+
+  // ── Homepage — Nav + Guides links for Skin ───────────────────────────────
+  'htsh-home-nav-skin':           '/skin',
+  'htsh-home-guides-skin':        '/skin',
+
   // ── External campaign links — Height Maxx ────────────────────────────────
   'htsh-height-1':                '/height',
   'htsh-height-2':                '/height',
