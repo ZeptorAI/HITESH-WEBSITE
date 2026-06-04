@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
@@ -12,6 +12,8 @@ import Pill from './ui/Pill'
 import GoldButton from './ui/GoldButton'
 import OutlineButton from './ui/OutlineButton'
 import BundleOfferPopup from './BundleOfferPopup'
+import StarRating from './ui/StarRating'
+import { trackViewContent, PRODUCT_MAP } from '../utils/metaPixel'
 
 // ─── Razorpay links — swap these once payment links are created ───────────────
 export const RAZORPAY_LINKS = {
@@ -42,7 +44,7 @@ function ProductPageHeader({ slug }) {
 }
 
 // ── Hero ──────────────────────────────────────────────────────────────────────
-function ProductHero({ slug, name, tagline, subheadline, cover }) {
+function ProductHero({ slug, name, tagline, subheadline, cover, rating, reviewCount }) {
   return (
     <section className="pt-28 pb-20 md:pt-36 md:pb-28">
       <div className="max-w-container mx-auto px-5 md:px-8">
@@ -82,6 +84,7 @@ function ProductHero({ slug, name, tagline, subheadline, cover }) {
               <p className="mt-5 text-text-secondary leading-[1.65] max-w-[520px]">
                 {subheadline}
               </p>
+              {rating && <StarRating rating={rating} reviewCount={reviewCount} />}
             </FadeUp>
 
             {/* CTA */}
@@ -483,7 +486,13 @@ export default function ProductPage({
   slug, name, tagline, subheadline,
   problem, whatsInside, sampleInsight,
   whoItIsFor, cover, faqs, valueNote,
+  rating, reviewCount,
 }) {
+  useEffect(() => {
+    const product = PRODUCT_MAP[slug]
+    if (product) trackViewContent(product)
+  }, [slug])
+
   return (
     <div className="bg-bg text-text-primary min-h-screen">
       <BundleOfferPopup />
@@ -491,6 +500,7 @@ export default function ProductPage({
       <ProductHero
         slug={slug} name={name}
         tagline={tagline} subheadline={subheadline} cover={cover}
+        rating={rating} reviewCount={reviewCount}
       />
       <ProblemSection problem={problem} />
       <WhatsInsideSection whatsInside={whatsInside} />

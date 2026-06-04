@@ -56,5 +56,5 @@ const data = {
 }
 
 export default function HairPage() {
-  return <ProductPage {...data} />
+  return <ProductPage {...data} rating={4.8} reviewCount="3,200+" />
 }

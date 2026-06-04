@@ -11,6 +11,7 @@ import ThankYouPage from './pages/ThankYouPage'
 import ThankYouHairBeardPage from './pages/ThankYouHairBeardPage'
 import ThankYouHairHeightPage from './pages/ThankYouHairHeightPage'
 import SkinPage from './pages/SkinPage'
+import ThankYouHairPage from './pages/ThankYouHairPage'
 import RedirectPage from './pages/RedirectPage'
 import './index.css'
 
@@ -25,6 +26,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/bundle" element={<BundlePage />} />
         <Route path="/kit" element={<KitPage />} />
         <Route path="/thank-you" element={<ThankYouPage />} />
+        <Route path="/thank-you-hair" element={<ThankYouHairPage />} />
         <Route path="/thank-you-hair-beard" element={<ThankYouHairBeardPage />} />
         <Route path="/thank-you-hair-height" element={<ThankYouHairHeightPage />} />
         <Route path="/skin" element={<SkinPage />} />

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
@@ -7,6 +7,8 @@ import {
 } from 'lucide-react'
 import skinCover from '/assets/skin-maxx-cover.png'
 import FadeUp from '../components/ui/FadeUp'
+import StarRating from '../components/ui/StarRating'
+import { trackViewContent, PRODUCT_MAP } from '../utils/metaPixel'
 import Pill from '../components/ui/Pill'
 import GoldButton from '../components/ui/GoldButton'
 import OutlineButton from '../components/ui/OutlineButton'
@@ -138,6 +140,7 @@ function SkinHero() {
               <p className="mt-5 text-text-secondary leading-[1.65] max-w-[520px]">
                 Most guys spend years buying random skincare products and fixing nothing. This is the playbook to fix your skin in 90 days — naturally, scientifically, without bullshit.
               </p>
+              <StarRating rating={4.9} reviewCount="890+" />
             </FadeUp>
 
             <FadeUp delay={200}>
@@ -497,6 +500,8 @@ function SkinFooter() {
 
 // ── Page ──────────────────────────────────────────────────────────────────────
 export default function SkinPage() {
+  useEffect(() => { trackViewContent(PRODUCT_MAP.skin) }, [])
+
   return (
     <div className="bg-bg text-text-primary min-h-screen">
       <SkinHeader />

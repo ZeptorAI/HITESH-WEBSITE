@@ -1,8 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Check, ArrowRight, Plus, Minus } from 'lucide-react'
 import FadeUp from '../components/ui/FadeUp'
+import StarRating from '../components/ui/StarRating'
+import { trackViewContent, PRODUCT_MAP } from '../utils/metaPixel'
 import Pill from '../components/ui/Pill'
 import GoldButton from '../components/ui/GoldButton'
 import OutlineButton from '../components/ui/OutlineButton'
@@ -73,6 +75,7 @@ function FAQItem({ q, a, open, onToggle }) {
 }
 
 export default function BundlePage() {
+  useEffect(() => { trackViewContent(PRODUCT_MAP.bundle) }, [])
   const [openIdx, setOpenIdx] = useState(0)
 
   return (
@@ -107,6 +110,7 @@ export default function BundlePage() {
                 <p className="mt-5 text-text-secondary leading-[1.65] max-w-[480px]">
                   Hair Fixed + Beard Maxxed + Height Maxxed. Everything you need to change how you look — in one order, delivered instantly to your WhatsApp.
                 </p>
+                <StarRating rating={4.8} reviewCount="1,400+" />
               </FadeUp>
 
               {/* Bundle image — mobile only */}

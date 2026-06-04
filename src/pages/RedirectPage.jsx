@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { linkMap } from '../data/linkMap'
+import { trackInitiateCheckout, resolveProductFromSlug } from '../utils/metaPixel'
 
 const SHEETS_ENDPOINT = import.meta.env.VITE_SHEETS_ENDPOINT
 
@@ -31,6 +32,8 @@ export default function RedirectPage() {
     Promise.race([logPromise, timeoutPromise]).then(() => {
       setTimeout(() => {
         if (destination.startsWith('http')) {
+          // Fire InitiateCheckout before leaving — REDIRECT_DELAY gives it time to send
+          trackInitiateCheckout(resolveProductFromSlug(slug))
           window.location.href = destination
         } else {
           navigate(destination, { replace: true })

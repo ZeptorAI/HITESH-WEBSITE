@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Check, ArrowRight, Plus, Minus, Shield, MessageCircle, Video, Gift, User, Calculator } from 'lucide-react'
+import { trackViewContent, PRODUCT_MAP } from '../utils/metaPixel'
 import FadeUp from '../components/ui/FadeUp'
 import Pill from '../components/ui/Pill'
 import GoldButton from '../components/ui/GoldButton'
@@ -66,6 +67,7 @@ function ImgPlaceholder({ label, sub }) {
 }
 
 export default function KitPage() {
+  useEffect(() => { trackViewContent(PRODUCT_MAP.kit) }, [])
   const [openIdx, setOpenIdx] = useState(0)
 
   return (

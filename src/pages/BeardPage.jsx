@@ -56,5 +56,5 @@ const data = {
 }
 
 export default function BeardPage() {
-  return <ProductPage {...data} />
+  return <ProductPage {...data} rating={4.7} reviewCount="2,100+" />
 }
