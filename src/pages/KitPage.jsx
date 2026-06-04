@@ -7,7 +7,7 @@ import FadeUp from '../components/ui/FadeUp'
 import Pill from '../components/ui/Pill'
 import GoldButton from '../components/ui/GoldButton'
 import OutlineButton from '../components/ui/OutlineButton'
-import bundleCovers from '/assets/bundle-covers.png'
+import bundleCovers from '/assets/bundle-covers.webp'
 import communityImg from '/assets/whatsapp-community.png'
 import calculatorImg from '/assets/calculator-screenshot.png'
 

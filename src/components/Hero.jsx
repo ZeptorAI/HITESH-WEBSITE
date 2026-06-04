@@ -2,14 +2,14 @@ import { ArrowDown, Check, Users } from 'lucide-react'
 import FadeUp from './ui/FadeUp'
 import GoldButton from './ui/GoldButton'
 import Pill from './ui/Pill'
-import hairCover from '/assets/hair-maxx-cover.png'
-import heightCover from '/assets/height-maxx-cover.png'
-import beardCover from '/assets/beard-maxx-cover.png'
+import hairCover from '/assets/hair-maxx-cover.webp'
+import heightCover from '/assets/height-maxx-cover.webp'
+import beardCover from '/assets/beard-maxx-cover.webp'
 
 const covers = [
-  { lbl: 'BEARD',  img: beardCover,  tilt: '-rotate-[10deg]', off: '-translate-x-[28%] sm:-translate-x-[32%] md:-translate-x-[36%]', z: 10 },
-  { lbl: 'HEIGHT', img: heightCover, tilt: 'rotate-[10deg]',  off: 'translate-x-[28%] sm:translate-x-[32%] md:translate-x-[36%]',   z: 15 },
-  { lbl: 'HAIR',   img: hairCover,   tilt: 'rotate-[1deg]',   off: 'translate-x-0',                                                   z: 20 },
+  { lbl: 'BEARD',  img: beardCover,  tilt: '-rotate-[10deg]', off: '-translate-x-[28%] sm:-translate-x-[32%] md:-translate-x-[36%]', z: 10, priority: false },
+  { lbl: 'HEIGHT', img: heightCover, tilt: 'rotate-[10deg]',  off: 'translate-x-[28%] sm:translate-x-[32%] md:translate-x-[36%]',   z: 15, priority: false },
+  { lbl: 'HAIR',   img: hairCover,   tilt: 'rotate-[1deg]',   off: 'translate-x-0',                                                   z: 20, priority: true  },
 ]
 
 export default function Hero() {
@@ -74,7 +74,15 @@ export default function Hero() {
                     style={{ zIndex: g.z }}
                   >
                     {g.img ? (
-                      <img src={g.img} alt={`${g.lbl} Maxx guide cover`} className="w-full h-full object-cover block" />
+                      <img
+                        src={g.img}
+                        alt={`${g.lbl} Maxx guide cover`}
+                        className="w-full h-full object-cover block"
+                        width="361" height="511"
+                        loading="eager"
+                        decoding="async"
+                        fetchPriority={g.priority ? 'high' : 'low'}
+                      />
                     ) : (
                       <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
                         <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-text-muted">Guide 03</div>

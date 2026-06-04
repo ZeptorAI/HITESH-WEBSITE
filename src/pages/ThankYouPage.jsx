@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router-dom'
-import hairCover   from '/assets/hair-maxx-cover.png'
-import beardCover  from '/assets/beard-maxx-cover.png'
-import heightCover from '/assets/height-maxx-cover.png'
+import hairCover   from '/assets/hair-maxx-cover.webp'
+import beardCover  from '/assets/beard-maxx-cover.webp'
+import heightCover from '/assets/height-maxx-cover.webp'
 import ThankYouTemplate from '../components/ThankYouTemplate'
 
 const PRODUCT_DATA = {

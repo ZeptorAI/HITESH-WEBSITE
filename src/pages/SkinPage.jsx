@@ -5,7 +5,7 @@ import {
   Check, ArrowRight, Plus, Minus,
   Download, Smartphone, Globe, FileText, Zap,
 } from 'lucide-react'
-import skinCover from '/assets/skin-maxx-cover.png'
+import skinCover from '/assets/skin-maxx-cover.webp'
 import FadeUp from '../components/ui/FadeUp'
 import StarRating from '../components/ui/StarRating'
 import { trackViewContent, PRODUCT_MAP } from '../utils/metaPixel'
@@ -131,7 +131,7 @@ function SkinHero() {
             <FadeUp delay={130}>
               <div className="md:hidden mt-8 flex justify-center">
                 <div className="border border-border rounded-[10px] w-[58%] aspect-[3/4] overflow-hidden bg-bg">
-                  <img src={skinCover} alt="90 Day Skin Reset guide cover" className="w-full h-full object-cover block" />
+                  <img src={skinCover} alt="90 Day Skin Reset guide cover" className="w-full h-full object-cover block" width="361" height="511" loading="eager" decoding="async" fetchPriority="high" />
                 </div>
               </div>
             </FadeUp>
@@ -159,7 +159,7 @@ function SkinHero() {
           {/* Cover image — desktop */}
           <FadeUp delay={100}>
             <div className="hidden md:block border border-border rounded-[10px] w-[220px] h-[300px] overflow-hidden bg-bg shrink-0">
-              <img src={skinCover} alt="90 Day Skin Reset guide cover" className="w-full h-full object-cover block" />
+              <img src={skinCover} alt="90 Day Skin Reset guide cover" className="w-full h-full object-cover block" width="361" height="511" loading="eager" decoding="async" fetchPriority="high" />
             </div>
           </FadeUp>
 

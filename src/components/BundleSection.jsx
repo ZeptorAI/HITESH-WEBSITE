@@ -2,7 +2,7 @@ import { CheckCircle2, Flame } from 'lucide-react'
 import FadeUp from './ui/FadeUp'
 import Pill from './ui/Pill'
 import GoldButton from './ui/GoldButton'
-import bundleCovers from '/assets/bundle-covers.png'
+import bundleCovers from '/assets/bundle-covers.webp'
 
 const included = [
   'Hair Care Maxx Guide',

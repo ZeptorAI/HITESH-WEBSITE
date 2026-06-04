@@ -1,5 +1,5 @@
 import ProductPage from '../components/ProductPage'
-import beardCover from '/assets/beard-maxx-cover.png'
+import beardCover from '/assets/beard-maxx-cover.webp'
 
 const data = {
   slug: 'beard',

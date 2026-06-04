@@ -1,5 +1,5 @@
 import ProductPage from '../components/ProductPage'
-import heightCover from '/assets/height-maxx-cover.png'
+import heightCover from '/assets/height-maxx-cover.webp'
 
 const data = {
   slug: 'height',

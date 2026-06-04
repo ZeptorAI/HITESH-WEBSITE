@@ -1,5 +1,5 @@
 import ProductPage from '../components/ProductPage'
-import hairCover from '/assets/hair-maxx-cover.png'
+import hairCover from '/assets/hair-maxx-cover.webp'
 
 const data = {
   slug: 'hair',

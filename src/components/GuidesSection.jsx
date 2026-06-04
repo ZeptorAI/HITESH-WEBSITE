@@ -2,10 +2,10 @@ import { Check, ArrowRight } from 'lucide-react'
 import FadeUp from './ui/FadeUp'
 import Pill from './ui/Pill'
 import OutlineButton from './ui/OutlineButton'
-import hairCover from '/assets/hair-maxx-cover.png'
-import heightCover from '/assets/height-maxx-cover.png'
-import beardCover from '/assets/beard-maxx-cover.png'
-import skinCover from '/assets/skin-maxx-cover.png'
+import hairCover from '/assets/hair-maxx-cover.webp'
+import heightCover from '/assets/height-maxx-cover.webp'
+import beardCover from '/assets/beard-maxx-cover.webp'
+import skinCover from '/assets/skin-maxx-cover.webp'
 
 const guides = [
   {
@@ -69,7 +69,7 @@ function GuideCard({ tag, label, cover, price = '₹299', title, subtitle, bulle
       <div className="mb-6">
         {cover ? (
           <div className="border border-border rounded-[6px] aspect-[3/4] max-h-[220px] mx-auto w-[60%] overflow-hidden bg-bg">
-            <img src={cover} alt={`${label} guide cover`} className="w-full h-full object-cover block" />
+            <img src={cover} alt={`${label} guide cover`} className="w-full h-full object-cover block" width="361" height="511" loading="lazy" decoding="async" />
           </div>
         ) : (
           <div className="placeholder-stripes border border-border rounded-[6px] aspect-[3/4] max-h-[220px] mx-auto w-[60%] flex items-center justify-center">

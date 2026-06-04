@@ -8,10 +8,10 @@ import { trackViewContent, PRODUCT_MAP } from '../utils/metaPixel'
 import Pill from '../components/ui/Pill'
 import GoldButton from '../components/ui/GoldButton'
 import OutlineButton from '../components/ui/OutlineButton'
-import bundleCovers from '/assets/bundle-covers.png'
-import hairCover from '/assets/hair-maxx-cover.png'
-import beardCover from '/assets/beard-maxx-cover.png'
-import heightCover from '/assets/height-maxx-cover.png'
+import bundleCovers from '/assets/bundle-covers.webp'
+import hairCover from '/assets/hair-maxx-cover.webp'
+import beardCover from '/assets/beard-maxx-cover.webp'
+import heightCover from '/assets/height-maxx-cover.webp'
 
 const guides = [
   {
@@ -116,7 +116,7 @@ export default function BundlePage() {
               {/* Bundle image — mobile only */}
               <FadeUp delay={150}>
                 <div className="md:hidden mt-8">
-                  <img src={bundleCovers} alt="All 3 guides" className="w-full rounded-[10px] shadow-2xl shadow-black/60" />
+                  <img src={bundleCovers} alt="All 3 guides" className="w-full rounded-[10px] shadow-2xl shadow-black/60" width="651" height="366" loading="eager" decoding="async" fetchPriority="high" />
                 </div>
               </FadeUp>
 
@@ -138,7 +138,7 @@ export default function BundlePage() {
             {/* Bundle image — desktop */}
             <FadeUp delay={100}>
               <div className="hidden md:block w-[300px] lg:w-[360px]">
-                <img src={bundleCovers} alt="All 3 guides" className="w-full rounded-[10px] shadow-2xl shadow-black/50" />
+                <img src={bundleCovers} alt="All 3 guides" className="w-full rounded-[10px] shadow-2xl shadow-black/50" width="651" height="366" loading="eager" decoding="async" fetchPriority="high" />
               </div>
             </FadeUp>
           </div>
@@ -158,7 +158,7 @@ export default function BundlePage() {
               <FadeUp key={i} delay={i * 70}>
                 <div className="bg-surface border border-border rounded-[10px] p-5 flex flex-col h-full">
                   <div className="border border-border rounded-[8px] overflow-hidden mb-5 aspect-[3/4] max-h-[200px] w-[55%] mx-auto">
-                    <img src={g.cover} alt={g.name} className="w-full h-full object-cover block" />
+                    <img src={g.cover} alt={g.name} className="w-full h-full object-cover block" width="361" height="511" loading="lazy" decoding="async" />
                   </div>
                   <div className="font-display font-bold text-lg tracking-tighter">{g.name}</div>
                   <p className="text-text-muted text-[13px] mt-1 mb-4 leading-[1.5]">{g.tagline}</p>

@@ -6,7 +6,7 @@ import {
   BookOpen, Download, Smartphone, Globe, FileText,
 } from 'lucide-react'
 import { motion as m } from 'framer-motion'
-import bundleCovers from '/assets/bundle-covers.png'
+import bundleCovers from '/assets/bundle-covers.webp'
 import FadeUp from './ui/FadeUp'
 import Pill from './ui/Pill'
 import GoldButton from './ui/GoldButton'
@@ -65,7 +65,7 @@ function ProductHero({ slug, name, tagline, subheadline, cover, rating, reviewCo
               <div className="md:hidden mt-8 flex justify-center">
                 {cover ? (
                   <div className="border border-border rounded-[10px] w-[58%] overflow-hidden bg-bg shadow-2xl shadow-black/60">
-                    <img src={cover} alt={`${name} cover`} className="w-full block" />
+                    <img src={cover} alt={`${name} cover`} className="w-full block" width="361" height="511" loading="eager" decoding="async" fetchPriority="high" />
                   </div>
                 ) : (
                   <div className="placeholder-stripes border border-border rounded-[10px] w-[58%] aspect-[3/4] flex items-center justify-center">
@@ -122,7 +122,7 @@ function ProductHero({ slug, name, tagline, subheadline, cover, rating, reviewCo
           <FadeUp delay={100}>
             {cover ? (
               <div className="hidden md:block border border-border rounded-[10px] w-[220px] overflow-hidden bg-bg shadow-2xl shadow-black/50">
-                <img src={cover} alt={`${name} cover`} className="w-full block" />
+                <img src={cover} alt={`${name} cover`} className="w-full block" width="361" height="511" loading="eager" decoding="async" fetchPriority="high" />
               </div>
             ) : (
               <div className="hidden md:flex placeholder-stripes border border-border rounded-[10px] w-[220px] h-[300px] items-center justify-center">

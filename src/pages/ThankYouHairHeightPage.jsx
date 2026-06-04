@@ -1,4 +1,4 @@
-import beardCover from '/assets/beard-maxx-cover.png'
+import beardCover from '/assets/beard-maxx-cover.webp'
 import ThankYouTemplate from '../components/ThankYouTemplate'
 
 export default function ThankYouHairHeightPage() {
