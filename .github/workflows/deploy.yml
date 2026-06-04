@@ -24,13 +24,20 @@ jobs:
         env:
           VITE_SHEETS_ENDPOINT: ${{ secrets.VITE_SHEETS_ENDPOINT }}
 
-      - name: Deploy to Hostinger via SFTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
-          local-dir: ./dist/
-          protocol: ftps-legacy
-          port: 21
+      - name: Install lftp
+        run: sudo apt-get install -y lftp
+
+      - name: Deploy via lftp
+        run: |
+          lftp -c "
+          set ssl:verify-certificate false;
+          set ftp:passive-mode true;
+          open -u $FTP_USER,$FTP_PASS ftp://$FTP_HOST;
+          mirror --reverse --delete --verbose --parallel=4 ./dist/ $FTP_DIR;
+          bye
+          "
+        env:
+          FTP_HOST: ${{ secrets.FTP_SERVER }}
+          FTP_USER: ${{ secrets.FTP_USERNAME }}
+          FTP_PASS: ${{ secrets.FTP_PASSWORD }}
+          FTP_DIR:  ${{ secrets.FTP_SERVER_DIR }}
