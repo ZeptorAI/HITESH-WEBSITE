@@ -1,7 +1,7 @@
 import { Check, Users } from 'lucide-react'
 import FadeUp from './ui/FadeUp'
 import Pill from './ui/Pill'
-import brotherhoodPhoto from '/assets/brotherhood-group-photo.png'
+import brotherhoodPhoto from '/assets/brotherhood-group-photo.webp'
 
 const features = [
   'Weekly Q&A with me in private group',
@@ -18,7 +18,7 @@ export default function BrotherhoodSection() {
       <div className="max-w-container mx-auto px-5 md:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <FadeUp>
-            <img src={brotherhoodPhoto} alt="The Brotherhood community" className="w-full max-w-[480px] rounded-[10px] shadow-xl shadow-black/40 block" />
+            <img src={brotherhoodPhoto} alt="The Brotherhood community" className="w-full max-w-[480px] rounded-[10px] shadow-xl shadow-black/40 block" width="900" height="1500" loading="lazy" decoding="async" />
           </FadeUp>
 
           <div>
