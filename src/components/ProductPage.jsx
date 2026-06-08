@@ -43,67 +43,8 @@ function ProductPageHeader({ slug }) {
   )
 }
 
-// ── Discount CTA (optional — only shown when originalPrice prop passed) ───────
-function DiscountCTA({ slug, name, originalPrice, discountedPrice }) {
-  const [applied, setApplied] = useState(false)
-
-  return (
-    <div className="flex flex-col gap-3">
-
-      {/* Price display — animates from original to discounted on tick */}
-      <div className="flex items-baseline gap-3 h-8">
-        {applied && (
-          <span className="font-mono text-text-muted line-through text-[15px]">
-            ₹{originalPrice}
-          </span>
-        )}
-        <span className={`font-mono font-bold transition-all duration-300 ${applied ? 'text-gold text-[1.6rem]' : 'text-text-primary text-[1.6rem]'}`}>
-          ₹{applied ? discountedPrice : originalPrice}
-        </span>
-        {applied && (
-          <span className="text-[11px] font-bold tracking-[0.1em] uppercase text-gold bg-gold/10 border border-gold/25 rounded-[5px] px-2 py-0.5">
-            Save ₹{originalPrice - discountedPrice}
-          </span>
-        )}
-      </div>
-
-      {/* Checkbox option */}
-      <button
-        onClick={() => setApplied(v => !v)}
-        className="flex items-center gap-3 text-left group"
-      >
-        <div className={`w-6 h-6 rounded-[6px] border-2 flex items-center justify-center shrink-0 transition-all duration-200 ${
-          applied
-            ? 'bg-gold border-gold shadow-[0_0_10px_rgba(212,175,55,0.5)]'
-            : 'border-gold bg-gold/10 shadow-[0_0_8px_rgba(212,175,55,0.3)] group-hover:shadow-[0_0_14px_rgba(212,175,55,0.5)]'
-        }`}>
-          {applied && <Check size={11} className="text-bg" strokeWidth={3} />}
-        </div>
-        <span className={`text-[13px] leading-[1.4] transition-colors ${applied ? 'text-gold font-medium' : 'text-text-secondary group-hover:text-text-primary'}`}>
-          {applied ? '10-min discount applied!' : 'Tick to claim your 10-min reader discount'}
-        </span>
-      </button>
-
-      {/* Buy button — active only after discount applied */}
-      {applied ? (
-        <a
-          href={`/r/htsh-${slug}-hero-buy`}
-          className="flex items-center justify-center gap-2 w-full border border-gold/45 bg-surface hover:bg-surface/60 text-gold font-semibold text-[14px] px-5 py-3.5 rounded-[8px] transition-all active:scale-[0.98]"
-        >
-          ₹{discountedPrice} — {name} <ArrowRight size={15} />
-        </a>
-      ) : (
-        <div className="flex items-center justify-center gap-2 w-full border border-border bg-surface/30 text-text-muted text-[14px] px-5 py-3.5 rounded-[8px] cursor-not-allowed select-none">
-          ₹{originalPrice} — {name} <ArrowRight size={15} className="opacity-40" />
-        </div>
-      )}
-
-    </div>
-  )
-}
-
 // ── Hero ──────────────────────────────────────────────────────────────────────
-function ProductHero({ slug, name, tagline, subheadline, cover, rating, reviewCount, originalPrice, discountedPrice }) {
+function ProductHero({ slug, name, tagline, subheadline, cover, rating, reviewCount }) {
   return (
     <section className="pt-28 pb-20 md:pt-36 md:pb-28">
       <div className="max-w-container mx-auto px-5 md:px-8">
@@ -164,21 +105,13 @@ function ProductHero({ slug, name, tagline, subheadline, cover, rating, reviewCo
                   </a>
                 </div>
 
-                {/* Secondary — single guide (or discount CTA if originalPrice passed) */}
-                {originalPrice ? (
-                  <DiscountCTA
-                    slug={slug} name={name}
-                    originalPrice={originalPrice}
-                    discountedPrice={discountedPrice ?? 299}
-                  />
-                ) : (
-                  <a
-                    href={`/r/htsh-${slug}-hero-buy`}
-                    className="flex items-center justify-center gap-2 w-full border border-gold/45 bg-surface hover:bg-surface/60 text-gold font-semibold text-[14px] px-5 py-3.5 rounded-[8px] transition-all active:scale-[0.98]"
-                  >
-                    ₹299 — {name} <ArrowRight size={15} />
-                  </a>
-                )}
+                {/* Secondary — single guide */}
+                <a
+                  href={`/r/htsh-${slug}-hero-buy`}
+                  className="flex items-center justify-center gap-2 w-full border border-gold/45 bg-surface hover:bg-surface/60 text-gold font-semibold text-[14px] px-5 py-3.5 rounded-[8px] transition-all active:scale-[0.98]"
+                >
+                  ₹299 — {name} <ArrowRight size={15} />
+                </a>
 
                 <p className="text-xs text-text-muted">Instant download · No subscription</p>
               </div>
@@ -554,7 +487,6 @@ export default function ProductPage({
   problem, whatsInside, sampleInsight,
   whoItIsFor, cover, faqs, valueNote,
   rating, reviewCount,
-  originalPrice, discountedPrice,
 }) {
   useEffect(() => {
     const product = PRODUCT_MAP[slug]
@@ -569,7 +501,6 @@ export default function ProductPage({
         slug={slug} name={name}
         tagline={tagline} subheadline={subheadline} cover={cover}
         rating={rating} reviewCount={reviewCount}
-        originalPrice={originalPrice} discountedPrice={discountedPrice}
       />
       <ProblemSection problem={problem} />
       <WhatsInsideSection whatsInside={whatsInside} />
