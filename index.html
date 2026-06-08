@@ -4,16 +4,53 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hitesh — Looksmaxx in 26 days.</title>
+
+    <!-- Preconnect + DNS-prefetch for all third-party origins -->
+    <link rel="preconnect" href="https://checkout.razorpay.com" crossorigin>
+    <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
+    <link rel="dns-prefetch" href="https://checkout.razorpay.com">
+    <link rel="dns-prefetch" href="https://connect.facebook.net">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!--
+      Google Fonts — non-blocking load (display fonts only; Inter is self-hosted).
+      rel="preload" fetches the CSS without blocking render.
+      onload swaps it to a real stylesheet once downloaded.
+      <noscript> fallback for JS-disabled environments.
+    -->
     <link
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap"
+      />
+    </noscript>
+
     <!-- Preload LCP hero image (hair cover, front of homepage fan) -->
     <link rel="preload" as="image" href="/assets/hair-maxx-cover.webp" fetchpriority="high" />
+  </head>
+  <body class="bg-bg">
+    <div id="root"></div>
 
-    <!-- Meta Pixel -->
+    <!--
+      Main app bundle.
+      type="module" scripts are deferred by the HTML spec — they never block render.
+      No explicit `defer` attribute needed.
+    -->
+    <script type="module" src="/src/main.jsx"></script>
+
+    <!--
+      Meta Pixel — moved to bottom of <body> so it never blocks initial render.
+      fbq() is stubbed synchronously (queue-based) so ViewContent / InitiateCheckout
+      calls from React still work even if fbevents.js hasn't loaded yet.
+      The actual fbevents.js is loaded with async=true inside the snippet.
+    -->
     <script>
       !function(f,b,e,v,n,t,s)
       {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -26,15 +63,9 @@
       fbq('init', '1423003419171271');
       fbq('track', 'PageView');
     </script>
-    <!-- End Meta Pixel -->
-  </head>
-  <body class="bg-bg">
-    <!-- Meta Pixel noscript fallback -->
     <noscript>
       <img height="1" width="1" style="display:none"
         src="https://www.facebook.com/tr?id=1423003419171271&ev=PageView&noscript=1" />
     </noscript>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
