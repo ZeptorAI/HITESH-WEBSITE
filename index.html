@@ -5,32 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hitesh — Looksmaxx in 26 days.</title>
 
-    <!-- Preconnect + DNS-prefetch for all third-party origins -->
+    <!-- Preconnect + DNS-prefetch for third-party origins (no Google Fonts — all fonts now self-hosted) -->
     <link rel="preconnect" href="https://checkout.razorpay.com" crossorigin>
     <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
     <link rel="dns-prefetch" href="https://checkout.razorpay.com">
     <link rel="dns-prefetch" href="https://connect.facebook.net">
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <!--
-      Google Fonts — non-blocking load (display fonts only; Inter is self-hosted).
-      rel="preload" fetches the CSS without blocking render.
-      onload swaps it to a real stylesheet once downloaded.
-      <noscript> fallback for JS-disabled environments.
-    -->
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap"
-      />
-    </noscript>
 
     <!-- Preload LCP hero image (hair cover, front of homepage fan) -->
     <link rel="preload" as="image" href="/assets/hair-maxx-cover.webp" fetchpriority="high" />

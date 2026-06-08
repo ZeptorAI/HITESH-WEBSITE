@@ -140,7 +140,7 @@ export default function KitPage() {
             {/* Component 1 — Bundle PDFs */}
             <FadeUp delay={0} className="w-full md:flex-1">
               <div className="bg-surface border border-border rounded-[10px] overflow-hidden h-full">
-                <img src={bundleCovers} alt="All 3 PDF guides" className="w-full block" />
+                <img src={bundleCovers} alt="All 3 PDF guides" className="w-full block" loading="lazy" decoding="async" />
                 <div className="p-5">
                   <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-gold mb-2">01 — PDF Guides</div>
                   <div className="font-display font-bold text-lg tracking-tighter">All 3 Guides</div>
@@ -161,7 +161,7 @@ export default function KitPage() {
             {/* Component 2 — WhatsApp Community */}
             <FadeUp delay={120} className="w-full md:flex-1">
               <div className="bg-surface border border-border rounded-[10px] overflow-hidden h-full">
-                <img src={communityImg} alt="WhatsApp Community" className="w-full block" />
+                <img src={communityImg} alt="WhatsApp Community" className="w-full block" loading="lazy" decoding="async" />
                 <div className="p-5">
                   <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-gold mb-2">02 — Community</div>
                   <div className="font-display font-bold text-lg tracking-tighter">WhatsApp Community</div>
@@ -182,7 +182,7 @@ export default function KitPage() {
             {/* Component 3 — 90-day Calculator */}
             <FadeUp delay={240} className="w-full md:flex-1">
               <div className="bg-surface border border-border rounded-[10px] overflow-hidden h-full">
-                <img src={calculatorImg} alt="90-Day Custom Plan Calculator" className="w-full block" />
+                <img src={calculatorImg} alt="90-Day Custom Plan Calculator" className="w-full block" loading="lazy" decoding="async" />
                 <div className="p-5">
                   <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-gold mb-2">03 — Calculator</div>
                   <div className="font-display font-bold text-lg tracking-tighter">90-Day Custom Plan</div>

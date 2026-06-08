@@ -79,9 +79,9 @@ export default function Hero() {
                         alt={`${g.lbl} Maxx guide cover`}
                         className="w-full h-full object-cover block"
                         width="361" height="511"
-                        loading="eager"
+                        loading={g.priority ? 'eager' : 'lazy'}
                         decoding="async"
-                        fetchPriority={g.priority ? 'high' : 'low'}
+                        fetchPriority={g.priority ? 'high' : undefined}
                       />
                     ) : (
                       <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">

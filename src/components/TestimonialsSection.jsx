@@ -44,6 +44,8 @@ export default function TestimonialsSection() {
                   src={s.src}
                   alt={s.alt}
                   className="w-full block"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             </FadeUp>
