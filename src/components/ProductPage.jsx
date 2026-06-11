@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Check, ArrowRight, Plus, Minus,
-  BookOpen, Download, Smartphone, Globe, FileText,
+  BookOpen, Download, Smartphone, Globe, FileText, Loader2,
 } from 'lucide-react'
 import { motion as m } from 'framer-motion'
 import bundleCovers from '/assets/bundle-covers.webp'
@@ -25,7 +25,7 @@ export const RAZORPAY_LINKS = {
 }
 
 // ── Sticky Header ─────────────────────────────────────────────────────────────
-function ProductPageHeader({ slug }) {
+function ProductPageHeader({ slug, hideHeaderCTA = false }) {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-bg/90 backdrop-blur-md border-b border-border">
       <div className="max-w-container mx-auto px-5 md:px-8 h-16 flex items-center justify-between">
@@ -35,16 +35,154 @@ function ProductPageHeader({ slug }) {
         >
           Hitesh Grover<span className="text-gold">.</span>
         </Link>
-        <GoldButton href={`/r/htsh-${slug}-header-bundle`} size="md">
-          All 3 — ₹595 <ArrowRight size={14} />
-        </GoldButton>
+        {!hideHeaderCTA && (
+          <GoldButton href={`/r/htsh-${slug}-header-bundle`} size="md">
+            All 3 — ₹595 <ArrowRight size={14} />
+          </GoldButton>
+        )}
       </div>
     </header>
   )
 }
 
+// ── Before/After Hero (Hair page only) ───────────────────────────────────────
+function BeforeAfterHero({ slug, name, subheadline, beforeImage, afterImage, rating, reviewCount }) {
+  const [buying, setBuying] = useState(false)
+
+  return (
+    <section className="pt-28 pb-20 md:pt-36 md:pb-24">
+      <div className="max-w-[640px] mx-auto px-5 md:px-8">
+
+        <FadeUp>
+          <h1 className="display-hero text-[clamp(1.75rem,9vw,3.5rem)] whitespace-nowrap">
+            Everything between
+          </h1>
+        </FadeUp>
+
+        {/* Before / After widget */}
+        <FadeUp delay={130}>
+          <div className="mt-6 rounded-[14px] border border-border overflow-hidden">
+
+            {/* Column headers */}
+            <div className="grid grid-cols-2 border-b border-border bg-surface/40">
+              <div className="py-2.5 px-4 text-[13px] text-text-secondary text-center border-r border-border">
+                this photo ↓
+              </div>
+              <div className="py-2.5 px-4 text-[13px] text-text-secondary text-center">
+                and this photo ↓
+              </div>
+            </div>
+
+            {/* Images */}
+            <div className="relative grid grid-cols-2">
+              {/* Before */}
+              <div className="relative border-r border-border">
+                <span className="absolute top-2.5 left-2.5 z-10 bg-bg/80 backdrop-blur-sm text-text-primary text-[9px] font-bold uppercase tracking-[0.12em] px-2 py-[3px] rounded-[4px]">
+                  BEFORE
+                </span>
+                <img
+                  src={beforeImage}
+                  alt="Before — Day 1"
+                  className="w-full aspect-[3/4] object-cover object-top block"
+                  width="480" height="640"
+                  loading="eager"
+                  decoding="async"
+                />
+                <span className="absolute bottom-2.5 left-0 right-0 text-center text-[11px] text-white/60">
+                  Day 1
+                </span>
+              </div>
+
+              {/* Gold arrow divider */}
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-gold border-[3px] border-bg flex items-center justify-center shadow-[0_0_16px_rgba(212,175,55,0.5)]">
+                <ArrowRight size={14} className="text-bg" strokeWidth={2.5} />
+              </div>
+
+              {/* After */}
+              <div className="relative">
+                <span className="absolute top-2.5 left-2.5 z-10 bg-gold text-bg text-[9px] font-bold uppercase tracking-[0.12em] px-2 py-[3px] rounded-[4px]">
+                  AFTER
+                </span>
+                <img
+                  src={afterImage}
+                  alt="After — Day 90"
+                  className="w-full aspect-[3/4] object-cover object-top block"
+                  width="480" height="640"
+                  loading="eager"
+                  decoding="async"
+                />
+                <span className="absolute bottom-2.5 left-0 right-0 text-center text-[11px] text-white/60">
+                  Day 90
+                </span>
+              </div>
+            </div>
+
+            {/* Caption */}
+            <div className="px-4 py-3.5 border-t border-border bg-surface/40 text-center">
+              <p className="text-[13px] text-text-secondary">
+                Same crown · <span className="text-gold font-medium">90 days</span> on the protocol · No transplant
+              </p>
+            </div>
+          </div>
+        </FadeUp>
+
+        <FadeUp delay={180}>
+          <h1 className="display-hero text-[2.6rem] sm:text-[3.5rem] mt-5">
+            ...is in the guide<span className="text-gold">.</span>
+          </h1>
+        </FadeUp>
+
+        {/* Primary CTA */}
+        <FadeUp delay={220}>
+          <div className="mt-6 flex flex-col gap-3">
+            <button
+              onClick={() => {
+                setBuying(true)
+                setTimeout(() => {
+                  window.location.href = `/checkout-info?product=${slug}&amount=${(PRODUCT_MAP[slug]?.value || 299) * 100}`
+                }, 200)
+              }}
+              disabled={buying}
+              className={`flex items-center justify-center gap-2 w-full font-bold text-[15px] px-5 py-4 rounded-[8px] transition-all active:scale-[0.98] ${
+                buying
+                  ? 'bg-gold/60 text-bg cursor-not-allowed'
+                  : 'bg-gold hover:bg-gold-dark text-bg'
+              }`}
+            >
+              {buying ? (
+                <>
+                  <Loader2 size={16} className="animate-spin shrink-0" />
+                  Loading…
+                </>
+              ) : (
+                <>Get the guide — ₹299 <ArrowRight size={15} /></>
+              )}
+            </button>
+            <p className="text-xs text-text-muted text-center">Instant download · No subscription</p>
+          </div>
+        </FadeUp>
+
+        {/* Subheadline + stars */}
+        <FadeUp delay={270}>
+          <p className="mt-6 text-text-secondary leading-[1.65]">
+            The exact protocol Hitesh wishes someone gave him at 20.{' '}
+            <strong className="text-text-primary font-semibold">
+              Scalp biology, DHT management, nutrition, treatments,
+            </strong>{' '}
+            and the 5 product serums compared side-by-side.
+          </p>
+          {rating && <StarRating rating={rating} reviewCount={reviewCount} />}
+        </FadeUp>
+
+      </div>
+    </section>
+  )
+}
+
 // ── Hero ──────────────────────────────────────────────────────────────────────
 function ProductHero({ slug, name, tagline, subheadline, cover, rating, reviewCount }) {
+  const [buying, setBuying] = useState(false)
+
   return (
     <section className="pt-28 pb-20 md:pt-36 md:pb-28">
       <div className="max-w-container mx-auto px-5 md:px-8">
@@ -108,9 +246,21 @@ function ProductHero({ slug, name, tagline, subheadline, cover, rating, reviewCo
                 {/* Secondary — single guide */}
                 <a
                   href={`/r/htsh-${slug}-hero-buy`}
-                  className="flex items-center justify-center gap-2 w-full border border-gold/45 bg-surface hover:bg-surface/60 text-gold font-semibold text-[14px] px-5 py-3.5 rounded-[8px] transition-all active:scale-[0.98]"
+                  onClick={() => setBuying(true)}
+                  className={`flex items-center justify-center gap-2 w-full border font-semibold text-[14px] px-5 py-3.5 rounded-[8px] transition-all active:scale-[0.98] ${
+                    buying
+                      ? 'border-gold/20 bg-surface text-gold/50 pointer-events-none'
+                      : 'border-gold/45 bg-surface hover:bg-surface/60 text-gold'
+                  }`}
                 >
-                  ₹299 — {name} <ArrowRight size={15} />
+                  {buying ? (
+                    <>
+                      <span className="w-[15px] h-[15px] rounded-full border-2 border-gold/20 border-t-gold animate-spin shrink-0" />
+                      Opening checkout…
+                    </>
+                  ) : (
+                    <>₹299 — {name} <ArrowRight size={15} /></>
+                  )}
                 </a>
 
                 <p className="text-xs text-text-muted">Instant download · No subscription</p>
@@ -487,6 +637,7 @@ export default function ProductPage({
   problem, whatsInside, sampleInsight,
   whoItIsFor, cover, faqs, valueNote,
   rating, reviewCount,
+  beforeImage, afterImage,
 }) {
   useEffect(() => {
     const product = PRODUCT_MAP[slug]
@@ -495,20 +646,28 @@ export default function ProductPage({
 
   return (
     <div className="bg-bg text-text-primary min-h-screen">
-      <BundleOfferPopup />
-      <ProductPageHeader slug={slug} />
-      <ProductHero
-        slug={slug} name={name}
-        tagline={tagline} subheadline={subheadline} cover={cover}
-        rating={rating} reviewCount={reviewCount}
-      />
+      {!beforeImage && <BundleOfferPopup />}
+      <ProductPageHeader slug={slug} hideHeaderCTA={!!beforeImage} />
+      {beforeImage ? (
+        <BeforeAfterHero
+          slug={slug} name={name} subheadline={subheadline}
+          beforeImage={beforeImage} afterImage={afterImage}
+          rating={rating} reviewCount={reviewCount}
+        />
+      ) : (
+        <ProductHero
+          slug={slug} name={name}
+          tagline={tagline} subheadline={subheadline} cover={cover}
+          rating={rating} reviewCount={reviewCount}
+        />
+      )}
       <ProblemSection problem={problem} />
-      <WhatsInsideSection whatsInside={whatsInside} />
+      {!beforeImage && <WhatsInsideSection whatsInside={whatsInside} />}
       <SampleInsightSection sampleInsight={sampleInsight} />
       <WhoItIsForSection whoItIsFor={whoItIsFor} />
       <WhatYoullGetSection />
       <PricingBlock slug={slug} name={name} valueNote={valueNote} />
-      <BundleUpsell slug={slug} />
+      {!beforeImage && <BundleUpsell slug={slug} />}
       <BrotherhoodMention slug={slug} />
       <ProductFAQ faqs={faqs} />
       <ProductFinalCTA slug={slug} name={name} />

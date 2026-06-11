@@ -1,7 +1,7 @@
 import ProductPage from '../components/ProductPage'
 import hairCover from '/assets/hair-maxx-cover.webp'
 
-const data = {
+export const data = {
   slug: 'hair',
   name: 'Hair Fixed',
   tagline: 'Stop Watching Your Hair Fall Out. Here\'s the Exact Fix.',

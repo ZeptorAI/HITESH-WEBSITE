@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import App from './App'
 import HairPage from './pages/HairPage'
+import Hair2Page from './pages/Hair2Page'
 import BeardPage from './pages/BeardPage'
 import HeightPage from './pages/HeightPage'
 import BundlePage from './pages/BundlePage'
@@ -13,6 +14,7 @@ import ThankYouHairHeightPage from './pages/ThankYouHairHeightPage'
 import SkinPage from './pages/SkinPage'
 import ThankYouHairPage from './pages/ThankYouHairPage'
 import RedirectPage from './pages/RedirectPage'
+import CheckoutInfo from './pages/CheckoutInfo'
 // Inter — body / UI text (self-hosted)
 import '@fontsource/inter/300.css'
 import '@fontsource/inter/400.css'
@@ -35,6 +37,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/hair" element={<HairPage />} />
+        <Route path="/hair2" element={<Hair2Page />} />
         <Route path="/beard" element={<BeardPage />} />
         <Route path="/height" element={<HeightPage />} />
         <Route path="/bundle" element={<BundlePage />} />
@@ -44,6 +47,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/thank-you-hair-beard" element={<ThankYouHairBeardPage />} />
         <Route path="/thank-you-hair-height" element={<ThankYouHairHeightPage />} />
         <Route path="/skin" element={<SkinPage />} />
+        <Route path="/checkout-info" element={<CheckoutInfo />} />
         <Route path="/r/:slug" element={<RedirectPage />} />
       </Routes>
     </BrowserRouter>
