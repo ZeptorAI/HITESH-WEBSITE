@@ -1,30 +1,21 @@
 import { useState } from 'react'
 import { useSearchParams, Link } from 'react-router-dom'
 import { ArrowLeft, ArrowRight, Loader2 } from 'lucide-react'
-import { trackInitiateCheckout, PRODUCT_MAP } from '../utils/metaPixel'
-import { RAZORPAY_LINKS } from '../components/ProductPage'
 
 export default function CheckoutInfo() {
   const [searchParams] = useSearchParams()
   const product = searchParams.get('product') || 'hair'
+  const amount  = parseInt(searchParams.get('amount') || '29900', 10)
 
-  const [name, setName] = useState('')
-  const [phone, setPhone] = useState('')
-  const [nameError, setNameError] = useState('')
+  const [name,       setName]       = useState('')
+  const [phone,      setPhone]      = useState('')
+  const [nameError,  setNameError]  = useState('')
   const [phoneError, setPhoneError] = useState('')
-  const [loading, setLoading] = useState(false)
+  const [error,      setError]      = useState('')
+  const [loading,    setLoading]    = useState(false)
 
-  const validateName = (v) => {
-    if (!v.trim()) return 'Name is required'
-    if (v.trim().length < 2) return 'Enter your full name'
-    return ''
-  }
-
-  const validatePhone = (v) => {
-    if (!v) return 'WhatsApp number is required'
-    if (v.length !== 10) return 'Enter a valid 10-digit number'
-    return ''
-  }
+  const validateName  = (v) => (!v.trim() || v.trim().length < 2) ? 'Enter your full name' : ''
+  const validatePhone = (v) => (!v || v.length !== 10)             ? 'Enter a valid 10-digit number' : ''
 
   const handlePhoneInput = (e) => {
     const digits = e.target.value.replace(/\D/g, '').slice(0, 10)
@@ -32,7 +23,7 @@ export default function CheckoutInfo() {
     if (phoneError) setPhoneError(validatePhone(digits))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
     const nErr = validateName(name)
@@ -42,12 +33,79 @@ export default function CheckoutInfo() {
     if (nErr || pErr) return
 
     setLoading(true)
+    setError('')
 
-    const productInfo = PRODUCT_MAP[product]
-    if (productInfo) trackInitiateCheckout(productInfo)
+    try {
+      if (!window.Razorpay) {
+        throw new Error('Payment system not ready. Please refresh and try again.')
+      }
 
-    const link = RAZORPAY_LINKS[product] || RAZORPAY_LINKS['hair']
-    window.location.href = link
+      const res = await fetch('https://hiteshmaxxed.com/api/create-order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          amount,
+          product,
+          customer: { name: name.trim(), phone: '+91' + phone },
+        }),
+      })
+
+      const orderData = await res.json()
+      if (!orderData.orderId) {
+        throw new Error(orderData.error || 'Failed to create order')
+      }
+
+      // Meta Pixel — InitiateCheckout
+      if (window.fbq) {
+        window.fbq('track', 'InitiateCheckout', {
+          value: orderData.amount / 100,
+          currency: 'INR',
+          content_name: product,
+        })
+      }
+
+      const options = {
+        key:      orderData.keyId,
+        amount:   orderData.amount,
+        currency: orderData.currency || 'INR',
+        order_id: orderData.orderId,
+        name:     'Hitesh Maxxed',
+        description: `${product.charAt(0).toUpperCase() + product.slice(1)} Maxx Guide`,
+        prefill: {
+          name:    name.trim(),
+          contact: '+91' + phone,
+          email:   `${phone}@hiteshmaxxed.com`,
+        },
+        theme: { color: '#D4AF37' },
+        handler(response) {
+          // Meta Pixel — Purchase
+          if (window.fbq) {
+            window.fbq('track', 'Purchase', {
+              value:        orderData.amount / 100,
+              currency:     'INR',
+              content_name: product,
+            })
+          }
+          window.location.href =
+            `/thank-you?product=${product}&order=${response.razorpay_order_id}&payment=${response.razorpay_payment_id}`
+        },
+        modal: {
+          ondismiss() { setLoading(false) },
+        },
+      }
+
+      const rzp = new window.Razorpay(options)
+      rzp.on('payment.failed', (response) => {
+        setError('Payment failed: ' + (response.error?.description || 'Please try again'))
+        setLoading(false)
+      })
+      rzp.open()
+
+    } catch (err) {
+      console.error('Checkout error:', err)
+      setError(err.message || 'Something went wrong. Please try again.')
+      setLoading(false)
+    }
   }
 
   return (
@@ -89,9 +147,7 @@ export default function CheckoutInfo() {
                   nameError ? 'border-red-500' : 'border-border focus:border-gold/60'
                 }`}
               />
-              {nameError && (
-                <p className="mt-1.5 text-[12px] text-red-400">{nameError}</p>
-              )}
+              {nameError && <p className="mt-1.5 text-[12px] text-red-400">{nameError}</p>}
             </div>
 
             {/* Phone */}
@@ -113,10 +169,11 @@ export default function CheckoutInfo() {
                   className="flex-1 bg-transparent px-4 py-3.5 text-[15px] text-text-primary placeholder:text-text-muted outline-none"
                 />
               </div>
-              {phoneError && (
-                <p className="mt-1.5 text-[12px] text-red-400">{phoneError}</p>
-              )}
+              {phoneError && <p className="mt-1.5 text-[12px] text-red-400">{phoneError}</p>}
             </div>
+
+            {/* General error */}
+            {error && <p className="text-[13px] text-red-400 text-center">{error}</p>}
 
             {/* Submit */}
             <button
@@ -130,13 +187,11 @@ export default function CheckoutInfo() {
             >
               {loading ? (
                 <>
-                  <Loader2 size={18} className="animate-spin" />
-                  Redirecting…
+                  <Loader2 size={20} className="animate-spin" />
+                  Opening payment…
                 </>
               ) : (
-                <>
-                  Fix my hair <ArrowRight size={16} />
-                </>
+                <>Fix my hair <ArrowRight size={16} /></>
               )}
             </button>
 
