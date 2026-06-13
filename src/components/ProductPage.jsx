@@ -14,6 +14,7 @@ import OutlineButton from './ui/OutlineButton'
 import BundleOfferPopup from './BundleOfferPopup'
 import StarRating from './ui/StarRating'
 import { trackViewContent, PRODUCT_MAP } from '../utils/metaPixel'
+import CheckoutModal from './CheckoutModal'
 
 // ─── Razorpay links — swap these once payment links are created ───────────────
 export const RAZORPAY_LINKS = {
@@ -25,7 +26,7 @@ export const RAZORPAY_LINKS = {
 }
 
 // ── Sticky Header ─────────────────────────────────────────────────────────────
-function ProductPageHeader({ slug, hideHeaderCTA = false }) {
+function ProductPageHeader({ slug, hideHeaderCTA = false, openModal }) {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-bg/90 backdrop-blur-md border-b border-border">
       <div className="max-w-container mx-auto px-5 md:px-8 h-16 flex items-center justify-between">
@@ -36,7 +37,7 @@ function ProductPageHeader({ slug, hideHeaderCTA = false }) {
           Hitesh Grover<span className="text-gold">.</span>
         </Link>
         {!hideHeaderCTA && (
-          <GoldButton href={`/r/htsh-${slug}-header-bundle`} size="md">
+          <GoldButton onClick={() => openModal('bundle', 595)} size="md">
             All 3 — ₹595 <ArrowRight size={14} />
           </GoldButton>
         )}
@@ -180,9 +181,7 @@ function BeforeAfterHero({ slug, name, subheadline, beforeImage, afterImage, rat
 }
 
 // ── Hero ──────────────────────────────────────────────────────────────────────
-function ProductHero({ slug, name, tagline, subheadline, cover, rating, reviewCount }) {
-  const [buying, setBuying] = useState(false)
-
+function ProductHero({ slug, name, tagline, subheadline, cover, rating, reviewCount, openModal }) {
   return (
     <section className="pt-28 pb-20 md:pt-36 md:pb-28">
       <div className="max-w-container mx-auto px-5 md:px-8">
@@ -244,24 +243,12 @@ function ProductHero({ slug, name, tagline, subheadline, cover, rating, reviewCo
                 </div>
 
                 {/* Secondary — single guide */}
-                <a
-                  href={`/r/htsh-${slug}-hero-buy`}
-                  onClick={() => setBuying(true)}
-                  className={`flex items-center justify-center gap-2 w-full border font-semibold text-[14px] px-5 py-3.5 rounded-[8px] transition-all active:scale-[0.98] ${
-                    buying
-                      ? 'border-gold/20 bg-surface text-gold/50 pointer-events-none'
-                      : 'border-gold/45 bg-surface hover:bg-surface/60 text-gold'
-                  }`}
+                <button
+                  onClick={() => openModal(slug, PRODUCT_MAP[slug]?.value || 299)}
+                  className="flex items-center justify-center gap-2 w-full border border-gold/45 bg-surface hover:bg-surface/60 text-gold font-semibold text-[14px] px-5 py-3.5 rounded-[8px] transition-all active:scale-[0.98]"
                 >
-                  {buying ? (
-                    <>
-                      <span className="w-[15px] h-[15px] rounded-full border-2 border-gold/20 border-t-gold animate-spin shrink-0" />
-                      Opening checkout…
-                    </>
-                  ) : (
-                    <>₹299 — {name} <ArrowRight size={15} /></>
-                  )}
-                </a>
+                  ₹{PRODUCT_MAP[slug]?.value || 299} — {name} <ArrowRight size={15} />
+                </button>
 
                 <p className="text-xs text-text-muted">Instant download · No subscription</p>
               </div>
@@ -421,7 +408,7 @@ function WhatYoullGetSection() {
 }
 
 // ── Pricing Block ─────────────────────────────────────────────────────────────
-function PricingBlock({ slug, name, valueNote }) {
+function PricingBlock({ slug, name, valueNote, openModal }) {
   return (
     <section className="py-16 md:py-20 border-t border-border bg-surface/30">
       <div className="max-w-container mx-auto px-5 md:px-8">
@@ -434,7 +421,7 @@ function PricingBlock({ slug, name, valueNote }) {
               ₹299
             </div>
             <p className="text-text-muted text-sm mb-7">{valueNote}</p>
-            <GoldButton href={`/r/htsh-${slug}-pricing-buy`} size="xl" className="w-full">
+            <GoldButton onClick={() => openModal(slug, PRODUCT_MAP[slug]?.value || 299)} size="xl" className="w-full">
               Get Instant Access <ArrowRight size={18} />
             </GoldButton>
             <p className="mt-4 text-xs text-text-muted">
@@ -580,7 +567,7 @@ function ProductFAQ({ faqs }) {
 }
 
 // ── Final CTA ─────────────────────────────────────────────────────────────────
-function ProductFinalCTA({ slug, name }) {
+function ProductFinalCTA({ slug, name, openModal }) {
   return (
     <section className="py-20 md:py-28 border-t border-border bg-surface/30">
       <div className="max-w-container mx-auto px-5 md:px-8 text-center">
@@ -596,8 +583,8 @@ function ProductFinalCTA({ slug, name }) {
         </FadeUp>
         <FadeUp delay={140}>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-            <GoldButton href={`/r/htsh-${slug}-finalcta-buy`} size="xl">
-              ₹299 — Get {name} Now <ArrowRight size={18} />
+            <GoldButton onClick={() => openModal(slug, PRODUCT_MAP[slug]?.value || 299)} size="xl">
+              ₹{PRODUCT_MAP[slug]?.value || 299} — Get {name} Now <ArrowRight size={18} />
             </GoldButton>
             <OutlineButton href={`/r/htsh-${slug}-finalcta-bundle`} size="lg">
               All 3 for ₹595 <ArrowRight size={14} />
@@ -639,6 +626,9 @@ export default function ProductPage({
   rating, reviewCount,
   beforeImage, afterImage, checkoutAmount,
 }) {
+  const [checkout, setCheckout] = useState({ open: false, product: '', amount: 0 })
+  const openModal = (product, amount) => setCheckout({ open: true, product, amount })
+
   useEffect(() => {
     const product = PRODUCT_MAP[slug]
     if (product) trackViewContent(product)
@@ -647,7 +637,7 @@ export default function ProductPage({
   return (
     <div className="bg-bg text-text-primary min-h-screen">
       {!beforeImage && <BundleOfferPopup />}
-      <ProductPageHeader slug={slug} hideHeaderCTA={!!beforeImage} />
+      <ProductPageHeader slug={slug} hideHeaderCTA={!!beforeImage} openModal={openModal} />
       {beforeImage ? (
         <BeforeAfterHero
           slug={slug} name={name} subheadline={subheadline}
@@ -660,6 +650,7 @@ export default function ProductPage({
           slug={slug} name={name}
           tagline={tagline} subheadline={subheadline} cover={cover}
           rating={rating} reviewCount={reviewCount}
+          openModal={openModal}
         />
       )}
       <ProblemSection problem={problem} />
@@ -667,12 +658,18 @@ export default function ProductPage({
       <SampleInsightSection sampleInsight={sampleInsight} />
       <WhoItIsForSection whoItIsFor={whoItIsFor} />
       <WhatYoullGetSection />
-      <PricingBlock slug={slug} name={name} valueNote={valueNote} />
+      <PricingBlock slug={slug} name={name} valueNote={valueNote} openModal={openModal} />
       {!beforeImage && <BundleUpsell slug={slug} />}
       <BrotherhoodMention slug={slug} />
       <ProductFAQ faqs={faqs} />
-      <ProductFinalCTA slug={slug} name={name} />
+      <ProductFinalCTA slug={slug} name={name} openModal={openModal} />
       <ProductFooter />
+      <CheckoutModal
+        open={checkout.open}
+        product={checkout.product}
+        amount={checkout.amount}
+        onClose={() => setCheckout(s => ({ ...s, open: false }))}
+      />
     </div>
   )
 }
