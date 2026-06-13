@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import CheckoutModal from '../components/CheckoutModal'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Check, ArrowRight, Plus, Minus, Shield, MessageCircle, Video, Gift, User, Calculator } from 'lucide-react'
 import { trackViewContent, PRODUCT_MAP } from '../utils/metaPixel'
@@ -69,6 +70,8 @@ function ImgPlaceholder({ label, sub }) {
 export default function KitPage() {
   useEffect(() => { trackViewContent(PRODUCT_MAP.kit) }, [])
   const [openIdx, setOpenIdx] = useState(0)
+  const [checkout, setCheckout] = useState({ open: false, product: '', amount: 0 })
+  const openModal = (product, amount) => setCheckout({ open: true, product, amount })
 
   return (
     <div className="bg-bg text-text-primary min-h-screen">
@@ -79,7 +82,7 @@ export default function KitPage() {
           <Link to="/" className="font-display font-bold text-xl tracking-tighter text-text-primary hover:text-gold transition-colors">
             Hitesh Grover<span className="text-gold">.</span>
           </Link>
-          <GoldButton href="/r/htsh-kit-header-buy" size="md">
+          <GoldButton onClick={() => openModal('kit', 1199)} size="md">
             Claim Full Kit — ₹1199 <ArrowRight size={14} />
           </GoldButton>
         </div>
@@ -111,7 +114,7 @@ export default function KitPage() {
           </FadeUp>
           <FadeUp delay={230}>
             <div className="mt-6 flex flex-col sm:flex-row gap-3">
-              <GoldButton href="/r/htsh-kit-hero-buy" size="xl" className="w-full sm:w-auto">
+              <GoldButton onClick={() => openModal('kit', 1199)} size="xl" className="w-full sm:w-auto">
                 Claim the Full Kit — ₹1199 <ArrowRight size={18} />
               </GoldButton>
               <OutlineButton href="/r/htsh-kit-hero-bundle" size="lg" className="w-full sm:w-auto">
@@ -263,7 +266,7 @@ export default function KitPage() {
               <div className="font-display font-bold text-[4.5rem] tracking-tighter text-gold leading-none mb-1">₹1199</div>
               <p className="text-text-muted text-sm mb-2"><span className="line-through mr-2">₹2997</span>You save ₹1798</p>
               <p className="text-text-secondary text-[13px] mb-7">3 Guides + WhatsApp Community + 90-Day Calculator</p>
-              <GoldButton href="/r/htsh-kit-pricing-buy" size="xl" className="w-full">
+              <GoldButton onClick={() => openModal('kit', 1199)} size="xl" className="w-full">
                 Claim the Full Kit — ₹1199 <ArrowRight size={18} />
               </GoldButton>
               <p className="mt-4 text-xs text-text-muted flex items-center justify-center gap-1.5">
@@ -308,7 +311,7 @@ export default function KitPage() {
             </p>
           </FadeUp>
           <FadeUp delay={140}>
-            <GoldButton href="/r/htsh-kit-finalcta-buy" size="xl" className="mt-8">
+            <GoldButton onClick={() => openModal('kit', 1199)} size="xl" className="mt-8">
               Claim the Full Kit — ₹1199 <ArrowRight size={18} />
             </GoldButton>
           </FadeUp>
@@ -326,6 +329,12 @@ export default function KitPage() {
         </div>
       </footer>
 
+      <CheckoutModal
+        open={checkout.open}
+        product={checkout.product}
+        amount={checkout.amount}
+        onClose={() => setCheckout(s => ({ ...s, open: false }))}
+      />
     </div>
   )
 }

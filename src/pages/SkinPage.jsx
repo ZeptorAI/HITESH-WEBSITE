@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import CheckoutModal from '../components/CheckoutModal'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Check, ArrowRight, Plus, Minus,
@@ -91,7 +92,7 @@ const FAQS = [
 ]
 
 // ── Sticky Header ─────────────────────────────────────────────────────────────
-function SkinHeader() {
+function SkinHeader({ openModal }) {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-bg/90 backdrop-blur-md border-b border-border">
       <div className="max-w-container mx-auto px-5 md:px-8 h-16 flex items-center justify-between">
@@ -101,7 +102,7 @@ function SkinHeader() {
         >
           Hitesh Grover<span className="text-gold">.</span>
         </Link>
-        <GoldButton href={HEADER_URL} size="md">
+        <GoldButton onClick={() => openModal('skin', 349)} size="md">
           Get Skin Reset — ₹349 <ArrowRight size={14} />
         </GoldButton>
       </div>
@@ -110,7 +111,7 @@ function SkinHeader() {
 }
 
 // ── Hero ──────────────────────────────────────────────────────────────────────
-function SkinHero() {
+function SkinHero({ openModal }) {
   return (
     <section className="pt-28 pb-20 md:pt-36 md:pb-28">
       <div className="max-w-container mx-auto px-5 md:px-8">
@@ -145,12 +146,12 @@ function SkinHero() {
 
             <FadeUp delay={200}>
               <div className="mt-7 flex flex-col gap-3 w-full sm:max-w-[360px]">
-                <a
-                  href={HERO_URL}
+                <button
+                  onClick={() => openModal('skin', 349)}
                   className="flex items-center justify-center gap-2 w-full bg-gold hover:bg-gold-dark text-bg font-bold text-[15px] px-5 py-3.5 rounded-[8px] transition-all active:scale-[0.98]"
                 >
                   ₹349 — Get Skin Reset <ArrowRight size={14} className="shrink-0" />
-                </a>
+                </button>
                 <p className="text-xs text-text-muted">Instant download · No subscription · Delivered to WhatsApp</p>
               </div>
             </FadeUp>
@@ -323,7 +324,7 @@ function SocialProofSection() {
 }
 
 // ── Pricing Block ─────────────────────────────────────────────────────────────
-function PricingBlock() {
+function PricingBlock({ openModal }) {
   return (
     <section className="py-16 md:py-20 border-t border-border">
       <div className="max-w-container mx-auto px-5 md:px-8">
@@ -338,7 +339,7 @@ function PricingBlock() {
             <p className="text-text-muted text-sm mb-7">
               Less than what you spend on one wrong product.
             </p>
-            <GoldButton href={PRICING_URL} size="xl" className="w-full">
+            <GoldButton onClick={() => openModal('skin', 349)} size="xl" className="w-full">
               Get Skin Reset — ₹349 <ArrowRight size={18} />
             </GoldButton>
             <p className="mt-4 text-xs text-text-muted">
@@ -444,7 +445,7 @@ function FAQSection() {
 }
 
 // ── Final CTA ─────────────────────────────────────────────────────────────────
-function FinalCTASection() {
+function FinalCTASection({ openModal }) {
   return (
     <section className="py-20 md:py-28 border-t border-border bg-surface/30">
       <div className="max-w-container mx-auto px-5 md:px-8 text-center">
@@ -461,7 +462,7 @@ function FinalCTASection() {
         </FadeUp>
         <FadeUp delay={140}>
           <div className="mt-8 flex justify-center">
-            <GoldButton href={FINALCTA_URL} size="xl">
+            <GoldButton onClick={() => openModal('skin', 349)} size="xl">
               Get Skin Reset — ₹349 <ArrowRight size={18} />
             </GoldButton>
           </div>
@@ -501,22 +502,30 @@ function SkinFooter() {
 // ── Page ──────────────────────────────────────────────────────────────────────
 export default function SkinPage() {
   useEffect(() => { trackViewContent(PRODUCT_MAP.skin) }, [])
+  const [checkout, setCheckout] = useState({ open: false, product: '', amount: 0 })
+  const openModal = (product, amount) => setCheckout({ open: true, product, amount })
 
   return (
     <div className="bg-bg text-text-primary min-h-screen">
-      <SkinHeader />
-      <SkinHero />
+      <SkinHeader openModal={openModal} />
+      <SkinHero openModal={openModal} />
       <ProblemSection />
       <WhatsInsideSection />
       <WhyItWorksSection />
       <WhoItIsForSection />
       <WhatYoullGetSection />
       <SocialProofSection />
-      <PricingBlock />
+      <PricingBlock openModal={openModal} />
       <BrotherhoodSection />
       <FAQSection />
-      <FinalCTASection />
+      <FinalCTASection openModal={openModal} />
       <SkinFooter />
+      <CheckoutModal
+        open={checkout.open}
+        product={checkout.product}
+        amount={checkout.amount}
+        onClose={() => setCheckout(s => ({ ...s, open: false }))}
+      />
     </div>
   )
 }
