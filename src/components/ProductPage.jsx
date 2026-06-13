@@ -232,14 +232,14 @@ function ProductHero({ slug, name, tagline, subheadline, cover, rating, reviewCo
                   <span className="absolute top-0 left-4 bg-bg border border-gold/40 rounded-full px-2.5 py-0.5 text-[10px] font-bold text-gold tracking-[0.12em] uppercase z-10">
                     Best Value
                   </span>
-                  <a
-                    href={`/r/htsh-${slug}-hero-bundle`}
+                  <button
+                    onClick={() => openModal('bundle', 595)}
                     className="flex items-center justify-center gap-2 w-full bg-gold hover:bg-gold-dark text-bg font-bold text-[15px] px-5 py-3.5 rounded-[8px] transition-all active:scale-[0.98]"
                   >
                     Buy All 3 — ₹595
                     <span className="text-xs font-normal opacity-70">· 1 Guide FREE</span>
                     <ArrowRight size={14} className="shrink-0" />
-                  </a>
+                  </button>
                 </div>
 
                 {/* Secondary — single guide */}
@@ -435,7 +435,7 @@ function PricingBlock({ slug, name, valueNote, openModal }) {
 }
 
 // ── Bundle Upsell ─────────────────────────────────────────────────────────────
-function BundleUpsell({ slug }) {
+function BundleUpsell({ slug, openModal }) {
   return (
     <section className="py-14 border-t border-border">
       <div className="max-w-container mx-auto px-5 md:px-8">
@@ -462,7 +462,7 @@ function BundleUpsell({ slug }) {
                   Hair + Beard + Height — 3rd guide FREE.
                 </p>
               </div>
-              <GoldButton href={`/r/htsh-${slug}-upsell-bundle`} size="lg" className="shrink-0 w-full sm:w-auto">
+              <GoldButton onClick={() => openModal('bundle', 595)} size="lg" className="shrink-0 w-full sm:w-auto">
                 Get the Bundle <ArrowRight size={14} />
               </GoldButton>
             </div>
@@ -586,7 +586,7 @@ function ProductFinalCTA({ slug, name, openModal }) {
             <GoldButton onClick={() => openModal(slug, PRODUCT_MAP[slug]?.value || 299)} size="xl">
               ₹{PRODUCT_MAP[slug]?.value || 299} — Get {name} Now <ArrowRight size={18} />
             </GoldButton>
-            <OutlineButton href={`/r/htsh-${slug}-finalcta-bundle`} size="lg">
+            <OutlineButton onClick={() => openModal('bundle', 595)} size="lg">
               All 3 for ₹595 <ArrowRight size={14} />
             </OutlineButton>
           </div>
@@ -659,7 +659,7 @@ export default function ProductPage({
       <WhoItIsForSection whoItIsFor={whoItIsFor} />
       <WhatYoullGetSection />
       <PricingBlock slug={slug} name={name} valueNote={valueNote} openModal={openModal} />
-      {!beforeImage && <BundleUpsell slug={slug} />}
+      {!beforeImage && <BundleUpsell slug={slug} openModal={openModal} />}
       <BrotherhoodMention slug={slug} />
       <ProductFAQ faqs={faqs} />
       <ProductFinalCTA slug={slug} name={name} openModal={openModal} />
