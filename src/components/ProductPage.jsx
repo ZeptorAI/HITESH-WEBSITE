@@ -47,11 +47,10 @@ function ProductPageHeader({ slug, hideHeaderCTA = false, openModal }) {
 }
 
 // ── Before/After Hero (Hair page only) ───────────────────────────────────────
-function BeforeAfterHero({ slug, name, subheadline, beforeImage, afterImage, rating, reviewCount, checkoutAmount }) {
-  const [buying, setBuying] = useState(false)
+function BeforeAfterHero({ slug, name, subheadline, beforeImage, afterImage, rating, reviewCount, checkoutAmount, openModal }) {
 
   return (
-    <section className="pt-28 pb-20 md:pt-36 md:pb-24">
+    <section className="pt-36 pb-20 md:pt-40 md:pb-24">
       <div className="max-w-[640px] mx-auto px-5 md:px-8">
 
         <FadeUp>
@@ -62,7 +61,7 @@ function BeforeAfterHero({ slug, name, subheadline, beforeImage, afterImage, rat
 
         {/* Before / After widget */}
         <FadeUp delay={130}>
-          <div className="mt-6 rounded-[14px] border border-border overflow-hidden">
+          <div className="mt-2 rounded-[14px] border border-border overflow-hidden">
 
             {/* Column headers */}
             <div className="grid grid-cols-2 border-b border-border bg-surface/40">
@@ -133,33 +132,24 @@ function BeforeAfterHero({ slug, name, subheadline, beforeImage, afterImage, rat
           </h1>
         </FadeUp>
 
-        {/* Primary CTA */}
+        {/* CTAs */}
         <FadeUp delay={220}>
           <div className="mt-6 flex flex-col gap-3">
+            {/* Bundle upsell — highlighted primary */}
             <button
-              onClick={() => {
-                setBuying(true)
-                setTimeout(() => {
-                  window.location.href = `/checkout-info?product=${slug}&amount=${checkoutAmount ?? (PRODUCT_MAP[slug]?.value || 299) * 100}`
-                }, 200)
-              }}
-              disabled={buying}
-              className={`flex items-center justify-center gap-2 w-full font-bold text-[15px] px-5 py-4 rounded-[8px] transition-all active:scale-[0.98] ${
-                buying
-                  ? 'bg-gold/60 text-bg cursor-not-allowed'
-                  : 'bg-gold hover:bg-gold-dark text-bg'
-              }`}
+              onClick={() => openModal('bundle', 595)}
+              className="flex items-center justify-center gap-2 w-full font-bold text-[15px] px-5 py-4 rounded-[8px] bg-gold hover:bg-gold-dark text-bg transition-all active:scale-[0.98]"
             >
-              {buying ? (
-                <>
-                  <Loader2 size={16} className="animate-spin shrink-0" />
-                  Loading…
-                </>
-              ) : (
-                <>Get the guide — ₹299 <ArrowRight size={15} /></>
-              )}
+              Buy all 3 — ₹595 &nbsp;·&nbsp; 1 guide free <ArrowRight size={15} />
             </button>
-            <p className="text-xs text-text-muted text-center">Instant download · No subscription</p>
+            {/* Single guide */}
+            <button
+              onClick={() => openModal(slug, PRODUCT_MAP[slug]?.value || 299)}
+              className="flex items-center justify-center gap-2 w-full font-semibold text-[14px] px-5 py-3.5 rounded-[8px] border border-gold/50 text-gold hover:border-gold hover:bg-gold/8 transition-all active:scale-[0.98]"
+            >
+              Get Hair Fixed only — ₹299
+            </button>
+            <p className="text-xs text-text-muted text-center">Instant WhatsApp delivery · No subscription</p>
           </div>
         </FadeUp>
 
@@ -181,17 +171,19 @@ function BeforeAfterHero({ slug, name, subheadline, beforeImage, afterImage, rat
 }
 
 // ── Hero ──────────────────────────────────────────────────────────────────────
-function ProductHero({ slug, name, tagline, subheadline, cover, rating, reviewCount, openModal }) {
+function ProductHero({ slug, name, tagline, subheadline, cover, rating, reviewCount, openModal, ctaFirst }) {
   return (
-    <section className="pt-28 pb-20 md:pt-36 md:pb-28">
+    <section className={`${ctaFirst ? 'pt-36' : 'pt-28'} pb-20 md:pt-36 md:pb-28`}>
       <div className="max-w-container mx-auto px-5 md:px-8">
         <div className="grid md:grid-cols-[1fr_auto] gap-10 md:gap-16 items-center">
 
           {/* ── Left / main column ── */}
-          <div>
-            <FadeUp>
-              <Pill tone="gold" className="mb-5">{name} · ₹299</Pill>
-            </FadeUp>
+          <div className={ctaFirst ? 'flex flex-col' : ''}>
+            {!ctaFirst && (
+              <FadeUp>
+                <Pill tone="gold" className="mb-5">{name} · ₹299</Pill>
+              </FadeUp>
+            )}
             <FadeUp delay={60}>
               <h1 className="display-hero text-[2.5rem] sm:text-[3.25rem] md:text-[4.25rem]">
                 {tagline}
@@ -199,7 +191,7 @@ function ProductHero({ slug, name, tagline, subheadline, cover, rating, reviewCo
             </FadeUp>
             {/* Cover — mobile only (between heading and subheadline) */}
             <FadeUp delay={130}>
-              <div className="md:hidden mt-8 flex justify-center">
+              <div className={`md:hidden ${ctaFirst ? 'mt-4' : 'mt-8'} flex justify-center`}>
                 {cover ? (
                   <div className="border border-border rounded-[10px] w-[58%] overflow-hidden bg-bg shadow-2xl shadow-black/60">
                     <img src={cover} alt={`${name} cover`} className="w-full block" width="361" height="511" loading="eager" decoding="async" fetchPriority="high" />
@@ -217,16 +209,19 @@ function ProductHero({ slug, name, tagline, subheadline, cover, rating, reviewCo
             </FadeUp>
 
             {/* Subheadline — below cover on mobile, below heading on desktop */}
-            <FadeUp delay={165}>
-              <p className="mt-5 text-text-secondary leading-[1.65] max-w-[520px]">
-                {subheadline}
-              </p>
-              {rating && <StarRating rating={rating} reviewCount={reviewCount} />}
-            </FadeUp>
+            <div className={ctaFirst ? 'order-[5] md:order-[4]' : ''}>
+              <FadeUp delay={165}>
+                <p className="mt-5 text-text-secondary leading-[1.65] max-w-[520px]">
+                  {subheadline}
+                </p>
+                {rating && <StarRating rating={rating} reviewCount={reviewCount} />}
+              </FadeUp>
+            </div>
 
             {/* CTA */}
+            <div className={ctaFirst ? 'order-[4] md:order-[5]' : ''}>
             <FadeUp delay={200}>
-              <div className="mt-7 flex flex-col gap-3 w-full sm:max-w-[420px]">
+              <div className={`${ctaFirst ? 'mt-4' : 'mt-7'} flex flex-col gap-3 w-full sm:max-w-[420px]`}>
                 {/* Primary — bundle (gold/yellow fill) */}
                 <div className="relative pt-2.5">
                   <span className="absolute top-0 left-4 bg-bg border border-gold/40 rounded-full px-2.5 py-0.5 text-[10px] font-bold text-gold tracking-[0.12em] uppercase z-10">
@@ -253,6 +248,7 @@ function ProductHero({ slug, name, tagline, subheadline, cover, rating, reviewCo
                 <p className="text-xs text-text-muted">Instant download · No subscription</p>
               </div>
             </FadeUp>
+            </div>
           </div>
 
           {/* ── Right column — desktop only ── */}
@@ -625,6 +621,7 @@ export default function ProductPage({
   whoItIsFor, cover, faqs, valueNote,
   rating, reviewCount,
   beforeImage, afterImage, checkoutAmount,
+  ctaFirst,
 }) {
   const [checkout, setCheckout] = useState({ open: false, product: '', amount: 0 })
   const openModal = (product, amount) => setCheckout({ open: true, product, amount })
@@ -636,7 +633,7 @@ export default function ProductPage({
 
   return (
     <div className="bg-bg text-text-primary min-h-screen">
-      {!beforeImage && <BundleOfferPopup />}
+      <BundleOfferPopup />
       <ProductPageHeader slug={slug} hideHeaderCTA={!!beforeImage} openModal={openModal} />
       {beforeImage ? (
         <BeforeAfterHero
@@ -644,6 +641,7 @@ export default function ProductPage({
           beforeImage={beforeImage} afterImage={afterImage}
           rating={rating} reviewCount={reviewCount}
           checkoutAmount={checkoutAmount}
+          openModal={openModal}
         />
       ) : (
         <ProductHero
@@ -651,6 +649,7 @@ export default function ProductPage({
           tagline={tagline} subheadline={subheadline} cover={cover}
           rating={rating} reviewCount={reviewCount}
           openModal={openModal}
+          ctaFirst={ctaFirst}
         />
       )}
       <ProblemSection problem={problem} />

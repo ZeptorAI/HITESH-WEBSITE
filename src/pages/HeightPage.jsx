@@ -56,5 +56,5 @@ const data = {
 }
 
 export default function HeightPage() {
-  return <ProductPage {...data} rating={4.6} reviewCount="2,800+" />
+  return <ProductPage {...data} rating={4.6} reviewCount="2,800+" ctaFirst />
 }

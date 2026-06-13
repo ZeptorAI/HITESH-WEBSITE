@@ -109,32 +109,46 @@ export default function BundlePage() {
                   All three guides.<br />One price.
                 </h1>
               </FadeUp>
-              <FadeUp delay={120}>
-                <p className="mt-5 text-text-secondary leading-[1.65] max-w-[480px]">
-                  Hair Fixed + Beard Maxxed + Height Maxxed. Everything you need to change how you look — in one order, delivered instantly to your WhatsApp.
-                </p>
-                <StarRating rating={4.8} reviewCount="1,400+" />
+
+              {/* Subheadline — desktop only, stays between heading and price */}
+              <FadeUp delay={100}>
+                <div className="hidden md:block">
+                  <p className="mt-5 text-text-secondary leading-[1.65] max-w-[480px]">
+                    Hair Fixed + Beard Maxxed + Height Maxxed. Everything you need to change how you look — in one order, delivered instantly to your WhatsApp.
+                  </p>
+                  <StarRating rating={4.8} reviewCount="1,400+" />
+                </div>
               </FadeUp>
 
-              {/* Bundle image — mobile only */}
-              <FadeUp delay={150}>
-                <div className="md:hidden mt-8">
+              {/* Bundle image — mobile only, right below heading */}
+              <FadeUp delay={120}>
+                <div className="md:hidden mt-5">
                   <img src={bundleCovers} alt="All 3 guides" className="w-full rounded-[10px] shadow-2xl shadow-black/60" width="651" height="366" loading="eager" decoding="async" fetchPriority="high" />
                 </div>
               </FadeUp>
 
-              <FadeUp delay={190}>
-                <div className="mt-7 flex flex-wrap items-baseline gap-3">
+              <FadeUp delay={160}>
+                <div className="mt-6 flex flex-wrap items-baseline gap-3">
                   <span className="text-text-muted line-through font-mono text-xl">₹897</span>
                   <span className="text-gold font-display font-bold text-5xl tracking-tighter">₹595</span>
                   <span className="text-text-muted text-sm">one-time · instant access</span>
                 </div>
               </FadeUp>
-              <FadeUp delay={230}>
+              <FadeUp delay={210}>
                 <GoldButton onClick={() => openModal('bundle', 595)} size="xl" className="mt-6 w-full sm:w-auto">
                   Get the Bundle — ₹595 <ArrowRight size={18} />
                 </GoldButton>
                 <p className="mt-3 text-xs text-text-muted">Paid via Razorpay · Instant WhatsApp delivery · No subscription</p>
+              </FadeUp>
+
+              {/* Subheadline — mobile only, below the buy button */}
+              <FadeUp delay={260}>
+                <div className="md:hidden mt-5">
+                  <p className="text-text-secondary leading-[1.65]">
+                    Hair Fixed + Beard Maxxed + Height Maxxed. Everything you need to change how you look — in one order, delivered instantly to your WhatsApp.
+                  </p>
+                  <StarRating rating={4.8} reviewCount="1,400+" />
+                </div>
               </FadeUp>
             </div>
 

@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ArrowRight, Flame, Zap } from 'lucide-react'
-import CheckoutModal from './CheckoutModal'
+
 const EXPIRY_KEY = 'bundle_offer_expiry'
 const DISMISSED_KEY = 'bundle_offer_dismissed'
 const DURATION = 15 * 60 * 1000 // 15 minutes
@@ -17,8 +18,6 @@ export default function BundleOfferPopup() {
   // phase: 'hidden' | 'popup' | 'bar'
   const [phase, setPhase] = useState('hidden')
   const [timerDisplay, setTimerDisplay] = useState('15:00')
-  const [checkout, setCheckout] = useState({ open: false, product: '', amount: 0 })
-  const openModal = (product, amount) => setCheckout({ open: true, product, amount })
 
   useEffect(() => {
     // Initialise or restore the 15-min expiry window
@@ -143,12 +142,13 @@ export default function BundleOfferPopup() {
                 </div>
 
                 {/* Main CTA */}
-                <button
-                  onClick={() => { dismiss(); openModal('bundle', 595) }}
+                <Link
+                  to="/bundle"
+                  onClick={dismiss}
                   className="flex items-center justify-center gap-2 w-full bg-gold text-bg font-bold text-[15px] rounded-[10px] py-4 hover:bg-gold-dark active:scale-[0.98] transition-all"
                 >
                   Get All 3 — ₹595 <ArrowRight size={16} />
-                </button>
+                </Link>
 
                 {/* Skip link */}
                 <button
@@ -183,23 +183,16 @@ export default function BundleOfferPopup() {
                   &nbsp;left
                 </span>
               </div>
-              <button
-                onClick={() => openModal('bundle', 595)}
+              <Link
+                to="/bundle"
                 className="shrink-0 flex items-center gap-1 bg-bg text-gold text-[11px] font-bold px-3 py-1.5 rounded-full hover:bg-bg/90 transition-colors whitespace-nowrap"
               >
                 Get All 3 — ₹595 <ArrowRight size={11} />
-              </button>
+              </Link>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-
-      <CheckoutModal
-        open={checkout.open}
-        product={checkout.product}
-        amount={checkout.amount}
-        onClose={() => setCheckout(s => ({ ...s, open: false }))}
-      />
     </>
   )
 }
