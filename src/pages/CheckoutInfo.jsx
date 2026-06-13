@@ -5,7 +5,7 @@ import { ArrowLeft, ArrowRight, Loader2 } from 'lucide-react'
 export default function CheckoutInfo() {
   const [searchParams] = useSearchParams()
   const product = searchParams.get('product') || 'hair'
-  const amount  = parseInt(searchParams.get('amount') || '29900', 10)
+  const amount  = parseInt(searchParams.get('amount') || '100', 10)
 
   const [name,       setName]       = useState('')
   const [phone,      setPhone]      = useState('')
