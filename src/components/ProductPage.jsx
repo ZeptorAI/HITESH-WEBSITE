@@ -46,7 +46,7 @@ function ProductPageHeader({ slug, hideHeaderCTA = false }) {
 }
 
 // ── Before/After Hero (Hair page only) ───────────────────────────────────────
-function BeforeAfterHero({ slug, name, subheadline, beforeImage, afterImage, rating, reviewCount }) {
+function BeforeAfterHero({ slug, name, subheadline, beforeImage, afterImage, rating, reviewCount, checkoutAmount }) {
   const [buying, setBuying] = useState(false)
 
   return (
@@ -139,7 +139,7 @@ function BeforeAfterHero({ slug, name, subheadline, beforeImage, afterImage, rat
               onClick={() => {
                 setBuying(true)
                 setTimeout(() => {
-                  window.location.href = `/checkout-info?product=${slug}&amount=${(PRODUCT_MAP[slug]?.value || 299) * 100}`
+                  window.location.href = `/checkout-info?product=${slug}&amount=${checkoutAmount ?? (PRODUCT_MAP[slug]?.value || 299) * 100}`
                 }, 200)
               }}
               disabled={buying}
@@ -637,7 +637,7 @@ export default function ProductPage({
   problem, whatsInside, sampleInsight,
   whoItIsFor, cover, faqs, valueNote,
   rating, reviewCount,
-  beforeImage, afterImage,
+  beforeImage, afterImage, checkoutAmount,
 }) {
   useEffect(() => {
     const product = PRODUCT_MAP[slug]
@@ -653,6 +653,7 @@ export default function ProductPage({
           slug={slug} name={name} subheadline={subheadline}
           beforeImage={beforeImage} afterImage={afterImage}
           rating={rating} reviewCount={reviewCount}
+          checkoutAmount={checkoutAmount}
         />
       ) : (
         <ProductHero

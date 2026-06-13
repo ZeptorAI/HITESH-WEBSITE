@@ -11,6 +11,7 @@ export default function Hair2Page() {
       reviewCount="3,200+"
       beforeImage={hairBefore}
       afterImage={hairAfter}
+      checkoutAmount={100}
     />
   )
 }
