@@ -33,6 +33,23 @@ export default function CheckoutModal({ open, product, amount, onClose }) {
     const pErr = validatePhone(phone)
     setNameError(nErr); setPhoneError(pErr)
     if (nErr || pErr) return
+
+    // Capture lead immediately — fire-and-forget so Razorpay isn't blocked
+    fetch('https://api.airtable.com/v0/appMkbkolqSWG4s3Q/Abandoned%20Carts', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_TOKEN}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        fields: {
+          Name: name.trim(),
+          'Phone Number': '+91' + phone,
+          Product: product.charAt(0).toUpperCase() + product.slice(1),
+        },
+      }),
+    }).catch(() => {})
+
     pay({ product, amount, name: name.trim(), phone })
   }
 
