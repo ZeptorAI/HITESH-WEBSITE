@@ -1,5 +1,7 @@
 import ProductPage from '../components/ProductPage'
 import hairCover from '/assets/hair-maxx-cover.webp'
+import hairBefore from '/assets/hair-result-before.webp'
+import hairAfter from '/assets/hair-result-after.webp'
 
 export const data = {
   slug: 'hair',
@@ -56,5 +58,14 @@ export const data = {
 }
 
 export default function HairPage() {
-  return <ProductPage {...data} rating={4.8} reviewCount="3,200+" />
+  return (
+    <ProductPage
+      {...data}
+      rating={4.8}
+      reviewCount="3,200+"
+      beforeImage={hairBefore}
+      afterImage={hairAfter}
+      checkoutAmount={100}
+    />
+  )
 }
