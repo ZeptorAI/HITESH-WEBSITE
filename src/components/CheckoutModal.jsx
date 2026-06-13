@@ -48,7 +48,7 @@ export default function CheckoutModal({ open, product, amount, onClose }) {
           Product: product.charAt(0).toUpperCase() + product.slice(1),
         },
       }),
-    }).catch(() => {})
+    }).catch((err) => console.error('[lead]', err))
 
     pay({ product, amount, name: name.trim(), phone })
   }
