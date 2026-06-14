@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, motion as m, AnimatePresence } from 'framer-motion'
 import {
   Check, ArrowRight, Plus, Minus,
   BookOpen, Download, Smartphone, Globe, FileText, Loader2,
 } from 'lucide-react'
-import { motion as m } from 'framer-motion'
 import bundleCovers from '/assets/bundle-covers.webp'
 import FadeUp from './ui/FadeUp'
 import Pill from './ui/Pill'
@@ -87,6 +86,7 @@ function BeforeAfterHero({ slug, name, subheadline, beforeImage, afterImage, rat
                   width="480" height="640"
                   loading="eager"
                   decoding="async"
+                  fetchpriority="high"
                 />
                 <span className="absolute bottom-2.5 left-0 right-0 text-center text-[11px] text-white/60">
                   Day 1
