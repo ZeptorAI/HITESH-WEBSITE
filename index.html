@@ -14,8 +14,11 @@
     <!-- Razorpay checkout modal — loads in background, never blocks render -->
     <script src="https://checkout.razorpay.com/v1/checkout.js" defer></script>
 
-    <!-- Preload LCP hero image (hair cover, front of homepage fan) -->
-    <link rel="preload" as="image" href="/assets/hair-maxx-cover.webp" fetchpriority="high" />
+    <!-- Preload LCP images -->
+    <!-- /hair LCP: the after-photo in the before/after widget -->
+    <link rel="preload" as="image" href="/assets/hair-result-after.webp" fetchpriority="high" />
+    <!-- product page cover (beard/height/skin hero) -->
+    <link rel="preload" as="image" href="/assets/hair-maxx-cover.webp" />
   </head>
   <body class="bg-bg">
     <div id="root"></div>

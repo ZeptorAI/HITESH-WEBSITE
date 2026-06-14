@@ -110,6 +110,7 @@ function BeforeAfterHero({ slug, name, subheadline, beforeImage, afterImage, rat
                   width="480" height="640"
                   loading="eager"
                   decoding="async"
+                  fetchpriority="high"
                 />
                 <span className="absolute bottom-2.5 left-0 right-0 text-center text-[11px] text-white/60">
                   Day 90
