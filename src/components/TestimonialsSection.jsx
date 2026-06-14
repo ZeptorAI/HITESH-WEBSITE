@@ -1,10 +1,10 @@
 import { Star } from "lucide-react"
 import FadeUp from "./ui/FadeUp"
 import Pill from "./ui/Pill"
-import dm1 from "/assets/testimonial-dm-1.jpeg"
-import dm2 from "/assets/testimonial-dm-2.jpeg"
-import dm3 from "/assets/testimonial-dm-3.jpeg"
-import dm4 from "/assets/testimonial-dm-4.jpeg"
+import dm1 from "/assets/testimonial-dm-1.webp"
+import dm2 from "/assets/testimonial-dm-2.webp"
+import dm3 from "/assets/testimonial-dm-3.webp"
+import dm4 from "/assets/testimonial-dm-4.webp"
 
 const screenshots = [
   { src: dm1, alt: "Customer DM - skin condition improved" },

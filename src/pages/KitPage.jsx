@@ -9,8 +9,8 @@ import Pill from '../components/ui/Pill'
 import GoldButton from '../components/ui/GoldButton'
 import OutlineButton from '../components/ui/OutlineButton'
 import bundleCovers from '/assets/bundle-covers.webp'
-import communityImg from '/assets/whatsapp-community.png'
-import calculatorImg from '/assets/calculator-screenshot.png'
+import communityImg from '/assets/whatsapp-community.webp'
+import calculatorImg from '/assets/calculator-screenshot.webp'
 
 const communityPerks = [
   { Icon: MessageCircle, title: "Diet Plans Monthly",        body: "Personalized monthly diet plans updated for Indian food sources, seasons, and your goals." },
