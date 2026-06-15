@@ -14,6 +14,7 @@ import BundleOfferPopup from './BundleOfferPopup'
 import StarRating from './ui/StarRating'
 import { trackViewContent, PRODUCT_MAP } from '../utils/metaPixel'
 import CheckoutModal from './CheckoutModal'
+import { logClick } from '../utils/logClick'
 
 // ─── Razorpay links — swap these once payment links are created ───────────────
 export const RAZORPAY_LINKS = {
@@ -36,7 +37,7 @@ function ProductPageHeader({ slug, hideHeaderCTA = false, openModal }) {
           Hitesh Grover<span className="text-gold">.</span>
         </Link>
         {!hideHeaderCTA && (
-          <GoldButton onClick={() => openModal('bundle', 595)} size="md">
+          <GoldButton onClick={() => { logClick(`htsh-${slug}-header-bundle`); openModal('bundle', 595) }} size="md">
             All 3 — ₹595 <ArrowRight size={14} />
           </GoldButton>
         )}
@@ -138,14 +139,14 @@ function BeforeAfterHero({ slug, name, subheadline, beforeImage, afterImage, rat
           <div className="mt-6 flex flex-col gap-3">
             {/* Bundle upsell — highlighted primary */}
             <button
-              onClick={() => openModal('bundle', 595)}
+              onClick={() => { logClick(`htsh-${slug}-hero-bundle`); openModal('bundle', 595) }}
               className="flex items-center justify-center gap-2 w-full font-bold text-[15px] px-5 py-4 rounded-[8px] bg-gold hover:bg-gold-dark text-bg transition-all active:scale-[0.98]"
             >
               Buy all 3 — ₹595 &nbsp;·&nbsp; 1 guide free <ArrowRight size={15} />
             </button>
             {/* Single guide */}
             <button
-              onClick={() => openModal(slug, PRODUCT_MAP[slug]?.value || 299)}
+              onClick={() => { logClick(`htsh-${slug}-hero-buy`); openModal(slug, PRODUCT_MAP[slug]?.value || 299) }}
               className="flex items-center justify-center gap-2 w-full font-semibold text-[14px] px-5 py-3.5 rounded-[8px] border border-gold/50 text-gold hover:border-gold hover:bg-gold/8 transition-all active:scale-[0.98]"
             >
               Get Hair Fixed only — ₹299
@@ -229,7 +230,7 @@ function ProductHero({ slug, name, tagline, subheadline, cover, rating, reviewCo
                     Best Value
                   </span>
                   <button
-                    onClick={() => openModal('bundle', 595)}
+                    onClick={() => { logClick(`htsh-${slug}-hero-bundle`); openModal('bundle', 595) }}
                     className="flex items-center justify-center gap-2 w-full bg-gold hover:bg-gold-dark text-bg font-bold text-[15px] px-5 py-3.5 rounded-[8px] transition-all active:scale-[0.98]"
                   >
                     Buy All 3 — ₹595
@@ -240,7 +241,7 @@ function ProductHero({ slug, name, tagline, subheadline, cover, rating, reviewCo
 
                 {/* Secondary — single guide */}
                 <button
-                  onClick={() => openModal(slug, PRODUCT_MAP[slug]?.value || 299)}
+                  onClick={() => { logClick(`htsh-${slug}-hero-buy`); openModal(slug, PRODUCT_MAP[slug]?.value || 299) }}
                   className="flex items-center justify-center gap-2 w-full border border-gold/45 bg-surface hover:bg-surface/60 text-gold font-semibold text-[14px] px-5 py-3.5 rounded-[8px] transition-all active:scale-[0.98]"
                 >
                   ₹{PRODUCT_MAP[slug]?.value || 299} — {name} <ArrowRight size={15} />
@@ -418,7 +419,7 @@ function PricingBlock({ slug, name, valueNote, openModal }) {
               ₹299
             </div>
             <p className="text-text-muted text-sm mb-7">{valueNote}</p>
-            <GoldButton onClick={() => openModal(slug, PRODUCT_MAP[slug]?.value || 299)} size="xl" className="w-full">
+            <GoldButton onClick={() => { logClick(`htsh-${slug}-pricing-buy`); openModal(slug, PRODUCT_MAP[slug]?.value || 299) }} size="xl" className="w-full">
               Get Instant Access <ArrowRight size={18} />
             </GoldButton>
             <p className="mt-4 text-xs text-text-muted">
@@ -459,7 +460,7 @@ function BundleUpsell({ slug, openModal }) {
                   Hair + Beard + Height — 3rd guide FREE.
                 </p>
               </div>
-              <GoldButton onClick={() => openModal('bundle', 595)} size="lg" className="shrink-0 w-full sm:w-auto">
+              <GoldButton onClick={() => { logClick(`htsh-${slug}-upsell-bundle`); openModal('bundle', 595) }} size="lg" className="shrink-0 w-full sm:w-auto">
                 Get the Bundle <ArrowRight size={14} />
               </GoldButton>
             </div>
@@ -580,10 +581,10 @@ function ProductFinalCTA({ slug, name, openModal }) {
         </FadeUp>
         <FadeUp delay={140}>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-            <GoldButton onClick={() => openModal(slug, PRODUCT_MAP[slug]?.value || 299)} size="xl">
+            <GoldButton onClick={() => { logClick(`htsh-${slug}-finalcta-buy`); openModal(slug, PRODUCT_MAP[slug]?.value || 299) }} size="xl">
               ₹{PRODUCT_MAP[slug]?.value || 299} — Get {name} Now <ArrowRight size={18} />
             </GoldButton>
-            <OutlineButton onClick={() => openModal('bundle', 595)} size="lg">
+            <OutlineButton onClick={() => { logClick(`htsh-${slug}-finalcta-bundle`); openModal('bundle', 595) }} size="lg">
               All 3 for ₹595 <ArrowRight size={14} />
             </OutlineButton>
           </div>

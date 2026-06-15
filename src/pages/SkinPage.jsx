@@ -10,6 +10,7 @@ import skinCover from '/assets/skin-maxx-cover.webp'
 import FadeUp from '../components/ui/FadeUp'
 import StarRating from '../components/ui/StarRating'
 import { trackViewContent, PRODUCT_MAP } from '../utils/metaPixel'
+import { logClick } from '../utils/logClick'
 import Pill from '../components/ui/Pill'
 import GoldButton from '../components/ui/GoldButton'
 import OutlineButton from '../components/ui/OutlineButton'
@@ -102,7 +103,7 @@ function SkinHeader({ openModal }) {
         >
           Hitesh Grover<span className="text-gold">.</span>
         </Link>
-        <GoldButton onClick={() => openModal('skin', 349)} size="md">
+        <GoldButton onClick={() => { logClick('htsh-skin-header-buy'); openModal('skin', 349) }} size="md">
           Get Skin Reset — ₹349 <ArrowRight size={14} />
         </GoldButton>
       </div>
@@ -147,7 +148,7 @@ function SkinHero({ openModal }) {
             <FadeUp delay={200}>
               <div className="mt-7 flex flex-col gap-3 w-full sm:max-w-[360px]">
                 <button
-                  onClick={() => openModal('skin', 349)}
+                  onClick={() => { logClick('htsh-skin-hero-buy'); openModal('skin', 349) }}
                   className="flex items-center justify-center gap-2 w-full bg-gold hover:bg-gold-dark text-bg font-bold text-[15px] px-5 py-3.5 rounded-[8px] transition-all active:scale-[0.98]"
                 >
                   ₹349 — Get Skin Reset <ArrowRight size={14} className="shrink-0" />
@@ -339,7 +340,7 @@ function PricingBlock({ openModal }) {
             <p className="text-text-muted text-sm mb-7">
               Less than what you spend on one wrong product.
             </p>
-            <GoldButton onClick={() => openModal('skin', 349)} size="xl" className="w-full">
+            <GoldButton onClick={() => { logClick('htsh-skin-pricing-buy'); openModal('skin', 349) }} size="xl" className="w-full">
               Get Skin Reset — ₹349 <ArrowRight size={18} />
             </GoldButton>
             <p className="mt-4 text-xs text-text-muted">
@@ -462,7 +463,7 @@ function FinalCTASection({ openModal }) {
         </FadeUp>
         <FadeUp delay={140}>
           <div className="mt-8 flex justify-center">
-            <GoldButton onClick={() => openModal('skin', 349)} size="xl">
+            <GoldButton onClick={() => { logClick('htsh-skin-finalcta-buy'); openModal('skin', 349) }} size="xl">
               Get Skin Reset — ₹349 <ArrowRight size={18} />
             </GoldButton>
           </div>

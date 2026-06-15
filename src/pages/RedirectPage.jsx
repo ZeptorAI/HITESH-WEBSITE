@@ -2,11 +2,9 @@ import { useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { linkMap } from '../data/linkMap'
 import { trackInitiateCheckout, resolveProductFromSlug } from '../utils/metaPixel'
+import { logClick } from '../utils/logClick'
 
-const SHEETS_ENDPOINT = import.meta.env.VITE_SHEETS_ENDPOINT
-
-const TIMEOUT_MS     = 800   // max wait before redirecting anyway
-const REDIRECT_DELAY = 150   // small pause so the fetch has a head-start
+const REDIRECT_DELAY = 150
 
 export default function RedirectPage() {
   const { slug }    = useParams()
@@ -14,32 +12,15 @@ export default function RedirectPage() {
   const destination = linkMap[slug] || '/'
 
   useEffect(() => {
-    const logPromise = fetch(SHEETS_ENDPOINT, {
-      method: 'POST',
-      mode: 'no-cors',          // avoids CORS preflight — Apps Script doesn't handle OPTIONS
-      headers: { 'Content-Type': 'text/plain' },  // simple header = no preflight
-      body: JSON.stringify({
-        slug,
-        timestamp: new Date().toISOString(),
-        userAgent: navigator.userAgent,
-        referrer:  document.referrer || '',
-      }),
-    })
-    .catch(() => {})  // never block the redirect on a network error
-
-    const timeoutPromise = new Promise(resolve => setTimeout(resolve, TIMEOUT_MS))
-
-    Promise.race([logPromise, timeoutPromise]).then(() => {
-      setTimeout(() => {
-        if (destination.startsWith('http')) {
-          // Fire InitiateCheckout before leaving — REDIRECT_DELAY gives it time to send
-          trackInitiateCheckout(resolveProductFromSlug(slug))
-          window.location.href = destination
-        } else {
-          navigate(destination, { replace: true })
-        }
-      }, REDIRECT_DELAY)
-    })
+    logClick(slug)
+    setTimeout(() => {
+      if (destination.startsWith('http')) {
+        trackInitiateCheckout(resolveProductFromSlug(slug))
+        window.location.href = destination
+      } else {
+        navigate(destination, { replace: true })
+      }
+    }, REDIRECT_DELAY)
   }, [slug, destination, navigate])
 
   return (

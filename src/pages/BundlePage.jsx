@@ -6,6 +6,7 @@ import { Check, ArrowRight, Plus, Minus } from 'lucide-react'
 import FadeUp from '../components/ui/FadeUp'
 import StarRating from '../components/ui/StarRating'
 import { trackViewContent, PRODUCT_MAP } from '../utils/metaPixel'
+import { logClick } from '../utils/logClick'
 import Pill from '../components/ui/Pill'
 import GoldButton from '../components/ui/GoldButton'
 import OutlineButton from '../components/ui/OutlineButton'
@@ -135,7 +136,7 @@ export default function BundlePage() {
                 </div>
               </FadeUp>
               <FadeUp delay={210}>
-                <GoldButton onClick={() => openModal('bundle', 595)} size="xl" className="mt-6 w-full sm:w-auto">
+                <GoldButton onClick={() => { logClick('htsh-bundle-hero-buy'); openModal('bundle', 595) }} size="xl" className="mt-6 w-full sm:w-auto">
                   Get the Bundle — ₹595 <ArrowRight size={18} />
                 </GoldButton>
                 <p className="mt-3 text-xs text-text-muted">Paid via Razorpay · Instant WhatsApp delivery · No subscription</p>
@@ -206,7 +207,7 @@ export default function BundlePage() {
               <div className="font-display font-bold text-[4.5rem] tracking-tighter text-gold leading-none mb-1">₹595</div>
               <p className="text-text-muted text-sm mb-2"><span className="line-through mr-2">₹897</span>You save ₹298</p>
               <p className="text-text-secondary text-[14px] mb-7">Hair Fixed + Beard Maxxed + Height Maxxed</p>
-              <GoldButton onClick={() => openModal('bundle', 595)} size="xl" className="w-full">
+              <GoldButton onClick={() => { logClick('htsh-bundle-pricing-buy'); openModal('bundle', 595) }} size="xl" className="w-full">
                 Get the Bundle — ₹595 <ArrowRight size={18} />
               </GoldButton>
               <p className="mt-4 text-xs text-text-muted">Paid via Razorpay · Secure · Instant WhatsApp delivery</p>
