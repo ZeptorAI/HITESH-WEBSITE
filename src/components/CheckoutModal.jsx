@@ -20,9 +20,8 @@ export default function CheckoutModal({ open, product, amount, onClose }) {
     }
   }, [open, setError])
 
-  const captureToAirtable = (currentName, currentPhone) => {
-    if (leadSent.current || currentPhone.length !== 10) return
-    leadSent.current = true
+  const sendToAirtable = (currentName, currentPhone) => {
+    if (currentPhone.length !== 10) return
     fetch('https://api.airtable.com/v0/appMkbkolqSWG4s3Q/Abandoned%20Carts', {
       method: 'POST',
       headers: {
@@ -46,7 +45,10 @@ export default function CheckoutModal({ open, product, amount, onClose }) {
     const digits = e.target.value.replace(/\D/g, '').slice(0, 10)
     setPhone(digits)
     if (phoneError) setPhoneError(validatePhone(digits))
-    if (digits.length === 10) captureToAirtable(name, digits)
+    if (digits.length === 10 && !leadSent.current) {
+      leadSent.current = true
+      sendToAirtable(name, digits)
+    }
   }
 
   const handleSubmit = (e) => {
@@ -56,7 +58,7 @@ export default function CheckoutModal({ open, product, amount, onClose }) {
     setNameError(nErr); setPhoneError(pErr)
     if (nErr || pErr) return
 
-    captureToAirtable(name, phone)
+    sendToAirtable(name, phone)
     pay({ product, amount, name: name.trim(), phone })
   }
 
