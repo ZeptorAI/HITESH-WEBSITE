@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ArrowRight, Loader2 } from 'lucide-react'
 import { useRazorpay } from '../hooks/useRazorpay'
@@ -9,14 +9,35 @@ export default function CheckoutModal({ open, product, amount, onClose }) {
   const [nameError,  setNameError]  = useState('')
   const [phoneError, setPhoneError] = useState('')
   const { pay, loading, error, setError } = useRazorpay()
+  const leadSent = useRef(false)
 
   useEffect(() => {
     if (!open) {
       setName(''); setPhone('')
       setNameError(''); setPhoneError('')
       setError('')
+      leadSent.current = false
     }
   }, [open, setError])
+
+  const captureToAirtable = (currentName, currentPhone) => {
+    if (leadSent.current || currentPhone.length !== 10) return
+    leadSent.current = true
+    fetch('https://api.airtable.com/v0/appMkbkolqSWG4s3Q/Abandoned%20Carts', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_TOKEN}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        fields: {
+          Name: currentName.trim() || '(not provided)',
+          'Phone Number': '+91' + currentPhone,
+          Product: product.charAt(0).toUpperCase() + product.slice(1),
+        },
+      }),
+    }).catch((err) => console.error('[lead]', err))
+  }
 
   const validateName  = (v) => (!v.trim() || v.trim().length < 2) ? 'Enter your full name' : ''
   const validatePhone = (v) => (!v || v.length !== 10) ? 'Enter a valid 10-digit number' : ''
@@ -25,6 +46,7 @@ export default function CheckoutModal({ open, product, amount, onClose }) {
     const digits = e.target.value.replace(/\D/g, '').slice(0, 10)
     setPhone(digits)
     if (phoneError) setPhoneError(validatePhone(digits))
+    if (digits.length === 10) captureToAirtable(name, digits)
   }
 
   const handleSubmit = (e) => {
@@ -34,22 +56,7 @@ export default function CheckoutModal({ open, product, amount, onClose }) {
     setNameError(nErr); setPhoneError(pErr)
     if (nErr || pErr) return
 
-    // Capture lead immediately — fire-and-forget so Razorpay isn't blocked
-    fetch('https://api.airtable.com/v0/appMkbkolqSWG4s3Q/Abandoned%20Carts', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_TOKEN}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        fields: {
-          Name: name.trim(),
-          'Phone Number': '+91' + phone,
-          Product: product.charAt(0).toUpperCase() + product.slice(1),
-        },
-      }),
-    }).catch((err) => console.error('[lead]', err))
-
+    captureToAirtable(name, phone)
     pay({ product, amount, name: name.trim(), phone })
   }
 
