@@ -35,7 +35,9 @@ export default function CheckoutModal({ open, product, amount, onClose }) {
           Product: product.charAt(0).toUpperCase() + product.slice(1),
         },
       }),
-    }).catch((err) => console.error('[lead]', err))
+    }).then((res) => {
+      if (!res.ok) console.error('[lead] Airtable error:', res.status, res.statusText)
+    }).catch((err) => console.error('[lead] network error:', err))
   }
 
   const validateName  = (v) => (!v.trim() || v.trim().length < 2) ? 'Enter your full name' : ''
