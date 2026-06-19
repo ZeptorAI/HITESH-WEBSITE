@@ -22,6 +22,7 @@ export default function CheckoutModal({ open, product, amount, onClose }) {
 
   const sendToAirtable = (currentName, currentPhone) => {
     if (currentPhone.length !== 10) return
+    console.log('[lead] firing for', currentPhone)
     fetch('/api/capture-lead', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -33,6 +34,7 @@ export default function CheckoutModal({ open, product, amount, onClose }) {
         },
       }),
     }).then((res) => {
+      console.log('[lead] response:', res.status)
       if (!res.ok) console.error('[lead] capture error:', res.status, res.statusText)
     }).catch((err) => console.error('[lead] network error:', err))
   }
