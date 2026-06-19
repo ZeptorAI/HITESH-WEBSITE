@@ -35,6 +35,7 @@ export default function CheckoutModal({ open, product, amount, onClose }) {
       }),
     }).then((res) => {
       console.log('[lead] response:', res.status)
+      res.text().then(t => console.log('[lead] body:', t))
       if (!res.ok) console.error('[lead] capture error:', res.status, res.statusText)
     }).catch((err) => console.error('[lead] network error:', err))
   }
