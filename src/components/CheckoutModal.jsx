@@ -22,12 +22,9 @@ export default function CheckoutModal({ open, product, amount, onClose }) {
 
   const sendToAirtable = (currentName, currentPhone) => {
     if (currentPhone.length !== 10) return
-    fetch('https://api.airtable.com/v0/appMkbkolqSWG4s3Q/Abandoned%20Carts', {
+    fetch('/api/capture-lead', {
       method: 'POST',
-      headers: {
-        Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_TOKEN}`,
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         fields: {
           Name: currentName.trim() || '(not provided)',
@@ -36,7 +33,7 @@ export default function CheckoutModal({ open, product, amount, onClose }) {
         },
       }),
     }).then((res) => {
-      if (!res.ok) console.error('[lead] Airtable error:', res.status, res.statusText)
+      if (!res.ok) console.error('[lead] capture error:', res.status, res.statusText)
     }).catch((err) => console.error('[lead] network error:', err))
   }
 
