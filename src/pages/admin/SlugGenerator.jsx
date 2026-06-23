@@ -45,52 +45,6 @@ function useCopy() {
   return { copied, copy }
 }
 
-function PasswordGate({ onUnlock }) {
-  const [pw, setPw] = useState('')
-  const [err, setErr] = useState(false)
-
-  const submit = (e) => {
-    e.preventDefault()
-    if (pw === import.meta.env.VITE_ADMIN_PASSWORD) {
-      onUnlock()
-    } else {
-      setErr(true)
-      setPw('')
-      setTimeout(() => setErr(false), 1500)
-    }
-  }
-
-  return (
-    <div className="min-h-screen bg-bg flex items-center justify-center px-4">
-      <div className="w-full max-w-[360px] bg-surface border border-border rounded-2xl p-8">
-        <h1 className="font-display font-bold text-2xl text-text-primary mb-1">
-          Admin<span className="text-gold">.</span>
-        </h1>
-        <p className="text-text-muted text-sm mb-6">Enter password to continue.</p>
-        <form onSubmit={submit} className="flex flex-col gap-3">
-          <input
-            type="password"
-            placeholder="Password"
-            value={pw}
-            onChange={e => setPw(e.target.value)}
-            autoFocus
-            className={`w-full bg-bg border rounded-lg px-4 py-3 text-sm text-text-primary placeholder:text-text-muted outline-none transition-colors ${
-              err ? 'border-red-500' : 'border-border focus:border-gold/60'
-            }`}
-          />
-          {err && <p className="text-xs text-red-400">Incorrect password.</p>}
-          <button
-            type="submit"
-            className="bg-gold hover:bg-gold-dark text-bg font-bold text-sm py-3 rounded-lg transition-colors"
-          >
-            Unlock
-          </button>
-        </form>
-      </div>
-    </div>
-  )
-}
-
 function CopyButton({ text, label, id, copied, copy }) {
   const active = copied === id
   return (
@@ -109,7 +63,6 @@ function CopyButton({ text, label, id, copied, copy }) {
 }
 
 export default function SlugGenerator() {
-  const [unlocked, setUnlocked] = useState(false)
   const [page, setPage] = useState('hair')
   const [reelRaw, setReelRaw] = useState('')
   const [date, setDate] = useState(todayIso())
@@ -122,8 +75,6 @@ export default function SlugGenerator() {
       setRecent(JSON.parse(localStorage.getItem(RECENT_KEY) || '[]'))
     } catch {}
   }, [])
-
-  if (!unlocked) return <PasswordGate onUnlock={() => setUnlocked(true)} />
 
   const reel = cleanReel(reelRaw)
   const dateLabel = date ? formatDate(date) : ''
