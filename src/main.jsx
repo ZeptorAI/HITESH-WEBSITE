@@ -17,6 +17,7 @@ const ThankYouPage          = lazy(() => import('./pages/ThankYouPage'))
 const ThankYouHairPage      = lazy(() => import('./pages/ThankYouHairPage'))
 const ThankYouHairBeardPage = lazy(() => import('./pages/ThankYouHairBeardPage'))
 const ThankYouHairHeightPage= lazy(() => import('./pages/ThankYouHairHeightPage'))
+const SlugGenerator         = lazy(() => import('./pages/admin/SlugGenerator'))
 
 // Inter — body / UI text (self-hosted)
 import '@fontsource/inter/300.css'
@@ -62,6 +63,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/thank-you-hair"      element={<ThankYouHairPage />} />
           <Route path="/thank-you-hair-beard"  element={<ThankYouHairBeardPage />} />
           <Route path="/thank-you-hair-height" element={<ThankYouHairHeightPage />} />
+          <Route path="/admin/slug"            element={<SlugGenerator />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
