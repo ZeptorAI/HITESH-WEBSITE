@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const PAGES = ['hair', 'height', 'beard', 'bundle', 'skin', 'kit']
+const PAGES = ['hair', 'height', 'beard', 'skin', 'bundle']
 const MONTHS = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec']
 const RECENT_KEY = 'hm_recent_slugs'
 const MAX_RECENT = 10
@@ -21,8 +21,14 @@ function formatDate(isoDate) {
   return `${yy}${mon}${day}`
 }
 
-function cleanReel(raw) {
-  return raw.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 20)
+const IG_RE = /instagram\.com\/(?:reels?|p)\/([A-Za-z0-9_-]+)/
+
+function parseReel(raw) {
+  const igMatch = IG_RE.exec(raw)
+  if (igMatch) {
+    return { code: igMatch[1].toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 20), fromIg: true }
+  }
+  return { code: raw.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 20), fromIg: false }
 }
 
 function buildSlug(page, dateLabel, reel) {
@@ -76,7 +82,7 @@ export default function SlugGenerator() {
     } catch {}
   }, [])
 
-  const reel = cleanReel(reelRaw)
+  const { code: reel, fromIg } = parseReel(reelRaw)
   const dateLabel = date ? formatDate(date) : ''
   const slug = buildSlug(page, dateLabel, reel)
   const url = slug ? buildUrl(slug) : ''
@@ -106,10 +112,10 @@ export default function SlugGenerator() {
         {/* Form */}
         <form onSubmit={generate} className="bg-surface border border-border rounded-2xl p-5 flex flex-col gap-5">
 
-          {/* Product */}
+          {/* Redirect destination */}
           <div className="flex flex-col gap-1.5">
             <label className="text-xs font-semibold text-text-secondary uppercase tracking-widest">
-              Product
+              Redirect to
             </label>
             <select
               value={page}
@@ -122,25 +128,27 @@ export default function SlugGenerator() {
                 </option>
               ))}
             </select>
+            <p className="text-xs text-text-muted">Visitor lands on this page after clicking the link.</p>
           </div>
 
           {/* Reel name */}
           <div className="flex flex-col gap-1.5">
             <label className="text-xs font-semibold text-text-secondary uppercase tracking-widest">
-              Reel name
+              Reel name or URL
             </label>
             <input
               type="text"
-              placeholder="e.g. savedmyhair"
+              placeholder="Paste IG reel URL or type a name"
               value={reelRaw}
               onChange={e => setReelRaw(e.target.value)}
               className="w-full bg-bg border border-border rounded-lg px-4 py-3 text-sm text-text-primary placeholder:text-text-muted outline-none focus:border-gold/60 transition-colors"
             />
             {reelRaw && (
               <p className="text-xs text-text-muted">
-                Cleaned:{' '}
+                {fromIg ? 'Extracted code:' : 'Cleaned:'}{' '}
                 <span className="font-mono text-gold">{reel || '—'}</span>
-                <span className="ml-2">({reel.length}/20)</span>
+                {fromIg && <span className="ml-2 text-gold/60">from Instagram URL</span>}
+                {!fromIg && <span className="ml-2">({reel.length}/20)</span>}
               </p>
             )}
           </div>
