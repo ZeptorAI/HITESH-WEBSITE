@@ -1,0 +1,18 @@
+# Cloudflare Pages — per-route HTTP Link preload headers for LCP images.
+# These fire before HTML is parsed, earlier than <link rel="preload"> in HTML.
+
+/hair
+  Link: </assets/hair-result-after.webp>; rel=preload; as=image; fetchpriority=high
+  Link: </assets/hair-result-before.webp>; rel=preload; as=image; fetchpriority=high
+
+/height
+  Link: </assets/height-maxx-cover.webp>; rel=preload; as=image; fetchpriority=high
+
+/beard
+  Link: </assets/beard-maxx-cover.webp>; rel=preload; as=image; fetchpriority=high
+
+/skin
+  Link: </assets/skin-maxx-cover.webp>; rel=preload; as=image; fetchpriority=high
+
+/bundle
+  Link: </assets/bundle-covers.webp>; rel=preload; as=image; fetchpriority=high
