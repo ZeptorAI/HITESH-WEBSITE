@@ -2,3 +2,19 @@ Options -MultiViews
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.html [QSA,L]
+
+# Per-route LCP image preloads — sent as HTTP Link headers before HTML is parsed
+<IfModule mod_headers.c>
+  SetEnvIf Request_URI "^/hair"   ROUTE_HAIR
+  SetEnvIf Request_URI "^/height" ROUTE_HEIGHT
+  SetEnvIf Request_URI "^/beard"  ROUTE_BEARD
+  SetEnvIf Request_URI "^/skin"   ROUTE_SKIN
+  SetEnvIf Request_URI "^/bundle" ROUTE_BUNDLE
+
+  Header add Link "</assets/hair-result-after.webp>; rel=preload; as=image; fetchpriority=high"  env=ROUTE_HAIR
+  Header add Link "</assets/hair-result-before.webp>; rel=preload; as=image; fetchpriority=high" env=ROUTE_HAIR
+  Header add Link "</assets/height-maxx-cover.webp>; rel=preload; as=image; fetchpriority=high"  env=ROUTE_HEIGHT
+  Header add Link "</assets/beard-maxx-cover.webp>; rel=preload; as=image; fetchpriority=high"   env=ROUTE_BEARD
+  Header add Link "</assets/skin-maxx-cover.webp>; rel=preload; as=image; fetchpriority=high"    env=ROUTE_SKIN
+  Header add Link "</assets/bundle-covers.webp>; rel=preload; as=image; fetchpriority=high"      env=ROUTE_BUNDLE
+</IfModule>
