@@ -1,5 +1,18 @@
 Options -MultiViews
 RewriteEngine On
+
+# HairMaxx Scanner waitlist — pretty URLs for the standalone static pages.
+# Must come before the SPA catch-all below so these serve the real files
+# (with their own OG tags) instead of falling through to the React app.
+RewriteRule ^scanner/?$ scanner.html [L]
+RewriteRule ^scanner-thanks/?$ scanner-thanks.html [L]
+
+# Never serve the Airtable token config as source (it also emits nothing on its
+# own, but deny it explicitly just in case).
+<Files "config.php">
+  Require all denied
+</Files>
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.html [QSA,L]
 

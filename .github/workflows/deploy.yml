@@ -18,6 +18,21 @@ jobs:
         run: npm run build
         env:
           VITE_SHEETS_ENDPOINT: ${{ secrets.VITE_SHEETS_ENDPOINT }}
+      # Write the Airtable token into the PHP proxy's server-side config.
+      # The token lives ONLY in the GitHub secret AIRTABLE_TOKEN and in this
+      # generated file on the server — it is never committed and never sent to
+      # the browser (submit.php reads it, config.php is denied by .htaccess).
+      - name: Inject Airtable token into PHP config
+        env:
+          AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
+        run: |
+          if [ -z "$AIRTABLE_TOKEN" ]; then
+            echo "::warning::AIRTABLE_TOKEN secret is not set — the /scanner waitlist form will not save leads until you add it (Settings → Secrets and variables → Actions). Rest of the site deploys normally."
+            exit 0
+          fi
+          mkdir -p dist/api
+          node -e "const fs=require('fs');fs.writeFileSync('dist/api/config.php','<?php\nreturn [\'AIRTABLE_TOKEN\' => '+JSON.stringify(process.env.AIRTABLE_TOKEN)+'];\n');"
+          echo "config.php written ($(wc -c < dist/api/config.php) bytes)"
       - name: Deploy to Hostinger via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0A0A0A" />
+
+  <title>HairMaxx Scanner — track your hairline, get a 30-day plan</title>
+  <meta name="description" content="A private, on-device tool for hair fall and a receding hairline. Six photos and seven questions turn into a personalised 30-day protocol — re-shoot on day 16 and 30 to see real change. No AI gimmicks, no miracle claims, and your photos never leave your phone." />
+  <link rel="canonical" href="https://hiteshmaxxed.com/scanner" />
+
+  <!-- Open Graph — so the link previews properly when shared on WhatsApp -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Hitesh Maxxed" />
+  <meta property="og:title" content="HairMaxx Scanner — track your hairline, get a 30-day plan" />
+  <meta property="og:description" content="Six photos + seven questions → a personalised 30-day hair protocol. Re-shoot on day 16 and 30 to see real change. Runs entirely on your phone — your photos never leave your device. Join the waitlist." />
+  <meta property="og:url" content="https://hiteshmaxxed.com/scanner" />
+  <meta property="og:image" content="https://hiteshmaxxed.com/assets/hair-maxx-cover.png" />
+  <meta property="og:image:alt" content="HairMaxx Scanner" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="HairMaxx Scanner — track your hairline, get a 30-day plan" />
+  <meta name="twitter:description" content="Six photos + seven questions → a personalised 30-day hair protocol. Runs entirely on your phone. Join the waitlist." />
+  <meta name="twitter:image" content="https://hiteshmaxxed.com/assets/hair-maxx-cover.png" />
+
+  <meta name="robots" content="index,follow" />
+
+  <style>
+    /* ── Self-hosted fonts (same families the rest of the site uses) ───────── */
+    @font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:700;font-display:swap;src:url('/scanner-assets/fonts/bricolage-grotesque-latin-700-normal.woff2') format('woff2');}
+    @font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:800;font-display:swap;src:url('/scanner-assets/fonts/bricolage-grotesque-latin-800-normal.woff2') format('woff2');}
+    @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url('/scanner-assets/fonts/inter-latin-400-normal.woff2') format('woff2');}
+    @font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url('/scanner-assets/fonts/inter-latin-600-normal.woff2') format('woff2');}
+    @font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url('/scanner-assets/fonts/inter-latin-700-normal.woff2') format('woff2');}
+    @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:500;font-display:swap;src:url('/scanner-assets/fonts/jetbrains-mono-latin-500-normal.woff2') format('woff2');}
+
+    /* ── Tokens (mirrored from tailwind.config.js) ────────────────────────── */
+    :root{
+      --bg:#0A0A0A; --surface:#141414; --surface-2:#1A1A1A;
+      --border:#1F1F1F; --border-2:#2A2A2A;
+      --gold:#D4AF37; --gold-dark:#B8932E; --gold-light:#E5C158;
+      --red:#DC2626;
+      --text-primary:#F5F5F5; --text-secondary:#A1A1AA; --text-muted:#71717A;
+      --err:#F87171; /* red-400 */
+    }
+
+    *,*::before,*::after{box-sizing:border-box;}
+    html{-webkit-text-size-adjust:100%;}
+    body{
+      margin:0; background:var(--bg); color:var(--text-primary);
+      font-family:'Inter',system-ui,sans-serif; -webkit-font-smoothing:antialiased;
+      overflow-x:hidden; line-height:1.5;
+    }
+    a{color:inherit;}
+    ::selection{background:rgba(212,175,55,.28);}
+
+    .wrap{max-width:520px; margin:0 auto; padding:0 20px;
+          padding-left:max(20px,env(safe-area-inset-left));
+          padding-right:max(20px,env(safe-area-inset-right));}
+
+    /* Brand line */
+    .brand{display:flex;align-items:center;justify-content:space-between;
+           padding:22px 0 8px;}
+    .brand__name{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;
+                 font-size:18px;letter-spacing:-.03em;}
+    .brand__name span{color:var(--gold);}
+    .brand__tag{font-family:'JetBrains Mono',monospace;font-weight:500;
+                font-size:10px;letter-spacing:.14em;color:var(--text-muted);
+                text-transform:uppercase;}
+
+    /* Hero */
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;
+             font-family:'JetBrains Mono',monospace;font-weight:500;
+             font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+             color:var(--gold);margin:26px 0 14px;}
+    .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;
+                     background:var(--gold);box-shadow:0 0 10px 1px rgba(212,175,55,.7);}
+    h1{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;
+       letter-spacing:-.04em;line-height:1.02;margin:0;
+       font-size:clamp(2.1rem,9vw,3rem);}
+    h1 .g{color:var(--gold);}
+    .lede{color:var(--text-secondary);font-size:15px;line-height:1.6;
+          margin:16px 0 0;}
+    .lede b{color:var(--text-primary);font-weight:600;}
+
+    /* Card */
+    .card{background:#0D0D0D;border:1px solid rgba(212,175,55,.30);
+          border-radius:16px;padding:22px;margin-top:26px;position:relative;
+          overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.6);}
+    .card__accent{position:absolute;top:0;left:12%;right:12%;height:1px;
+                  background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+    .card h2{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;
+             letter-spacing:-.03em;font-size:1.3rem;margin:0 0 4px;text-align:center;}
+    .card__sub{color:var(--text-secondary);font-size:13px;margin:0 0 18px;text-align:center;}
+
+    form{display:flex;flex-direction:column;gap:16px;}
+    .field{display:flex;flex-direction:column;gap:7px;}
+    label{font-size:12.5px;font-weight:600;color:var(--text-secondary);}
+    .req{color:var(--gold);}
+
+    .input{width:100%;background:var(--surface);border:1px solid var(--border);
+           border-radius:8px;padding:13px 14px;font-size:16px;/*16px = no iOS zoom*/
+           color:var(--text-primary);font-family:inherit;outline:none;
+           transition:border-color .18s ease;}
+    .input::placeholder{color:var(--text-muted);}
+    .input:focus-visible{border-color:rgba(212,175,55,.6);}
+
+    /* Phone row: country select + number */
+    .phone{display:flex;background:var(--surface);border:1px solid var(--border);
+           border-radius:8px;overflow:hidden;transition:border-color .18s ease;}
+    .phone:focus-within{border-color:rgba(212,175,55,.6);}
+    .phone__cc{appearance:none;-webkit-appearance:none;background:transparent;
+               border:0;border-right:1px solid var(--border);color:var(--text-primary);
+               font-family:inherit;font-size:15px;padding:13px 30px 13px 14px;
+               outline:none;flex:0 0 auto;max-width:44%;
+               background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2371717A' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+               background-repeat:no-repeat;background-position:right 12px center;}
+    .phone__num{flex:1 1 auto;min-width:0;background:transparent;border:0;
+                color:var(--text-primary);font-family:inherit;font-size:16px;
+                padding:13px 14px;outline:none;}
+    .phone__num::placeholder{color:var(--text-muted);}
+
+    .input[aria-invalid="true"], .phone[data-invalid="true"]{border-color:var(--red);}
+
+    .err{font-size:12px;color:var(--err);margin:0;min-height:0;}
+
+    /* Opt-in checkbox */
+    .optin{display:flex;gap:11px;align-items:flex-start;cursor:pointer;
+           background:var(--surface);border:1px solid var(--border);
+           border-radius:8px;padding:13px 14px;transition:border-color .18s ease;}
+    .optin:focus-within{border-color:rgba(212,175,55,.6);}
+    .optin input{position:absolute;opacity:0;width:1px;height:1px;}
+    .optin__box{flex:0 0 auto;width:20px;height:20px;border-radius:5px;
+                border:1.5px solid var(--border-2);background:var(--surface-2);
+                display:flex;align-items:center;justify-content:center;
+                margin-top:1px;transition:all .16s ease;}
+    .optin__box svg{width:12px;height:12px;opacity:0;transform:scale(.6);
+                    transition:all .16s ease;}
+    .optin input:checked ~ .optin__box{background:var(--gold);border-color:var(--gold);}
+    .optin input:checked ~ .optin__box svg{opacity:1;transform:scale(1);}
+    .optin input:focus-visible ~ .optin__box{box-shadow:0 0 0 3px rgba(212,175,55,.35);}
+    .optin__text{font-size:13px;color:var(--text-secondary);line-height:1.45;}
+
+    /* Submit */
+    .btn{display:flex;align-items:center;justify-content:center;gap:9px;
+         width:100%;border:0;border-radius:9px;cursor:pointer;
+         font-family:inherit;font-weight:700;font-size:16px;padding:15px 20px;
+         background:var(--gold);color:var(--bg);
+         transition:background .18s ease,transform .1s ease;}
+    .btn:hover{background:var(--gold-dark);}
+    .btn:active{transform:scale(.985);}
+    .btn:focus-visible{outline:3px solid rgba(212,175,55,.5);outline-offset:2px;}
+    .btn[disabled]{background:rgba(212,175,55,.55);cursor:not-allowed;}
+
+    .spinner{width:18px;height:18px;border-radius:50%;
+             border:2.5px solid rgba(10,10,10,.35);border-top-color:var(--bg);
+             animation:spin .7s linear infinite;}
+    @keyframes spin{to{transform:rotate(360deg);}}
+
+    .privacy{font-size:11.5px;color:var(--text-muted);line-height:1.5;
+             text-align:center;margin:2px 0 0;}
+
+    .formerr{font-size:13px;color:var(--err);text-align:center;margin:0;}
+
+    /* Success state */
+    .success{text-align:center;padding:8px 4px 4px;}
+    .success__badge{width:56px;height:56px;border-radius:50%;margin:0 auto 16px;
+                    background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.4);
+                    display:flex;align-items:center;justify-content:center;color:var(--gold);}
+    .success h2{margin:0 0 8px;}
+    .success p{color:var(--text-secondary);font-size:14px;line-height:1.6;margin:0;}
+    .success .num{color:var(--text-primary);font-weight:600;font-family:'JetBrains Mono',monospace;font-size:13px;}
+    [hidden]{display:none !important;}
+
+    /* Sections */
+    section{margin-top:44px;}
+    .kicker{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:11px;
+            letter-spacing:.16em;text-transform:uppercase;color:var(--text-muted);
+            margin:0 0 16px;}
+    .h-sec{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;
+           letter-spacing:-.03em;font-size:1.5rem;line-height:1.1;margin:0 0 18px;}
+
+    .steps{display:flex;flex-direction:column;gap:12px;}
+    .step{display:flex;gap:14px;background:var(--surface);border:1px solid var(--border);
+          border-radius:12px;padding:16px;}
+    .step__n{flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:500;
+             font-size:12px;color:var(--gold);border:1px solid rgba(212,175,55,.35);
+             border-radius:7px;width:34px;height:34px;display:flex;
+             align-items:center;justify-content:center;}
+    .step__t{font-weight:600;font-size:15px;margin:2px 0 4px;}
+    .step__d{color:var(--text-secondary);font-size:13.5px;line-height:1.55;margin:0;}
+
+    .diff{display:flex;flex-direction:column;gap:11px;}
+    .diff li{list-style:none;display:flex;gap:11px;align-items:flex-start;
+             font-size:14px;color:var(--text-secondary);line-height:1.55;}
+    .diff{padding:0;margin:0;}
+    .diff .tick{flex:0 0 auto;color:var(--gold);margin-top:2px;}
+    .diff b{color:var(--text-primary);font-weight:600;}
+
+    .honest{background:var(--surface);border:1px solid var(--border);
+            border-radius:12px;padding:18px;margin-top:16px;}
+    .honest p{margin:0 0 10px;font-size:13.5px;color:var(--text-secondary);line-height:1.55;}
+    .honest p:last-child{margin-bottom:0;}
+    .honest strong{color:var(--text-primary);}
+
+    .privacy-note{display:flex;gap:11px;align-items:flex-start;
+                  background:linear-gradient(180deg,rgba(212,175,55,.06),rgba(212,175,55,.02));
+                  border:1px solid rgba(212,175,55,.25);border-radius:12px;
+                  padding:16px;margin-top:16px;}
+    .privacy-note svg{flex:0 0 auto;color:var(--gold);margin-top:1px;}
+    .privacy-note p{margin:0;font-size:13.5px;color:var(--text-secondary);line-height:1.55;}
+    .privacy-note b{color:var(--text-primary);font-weight:600;}
+
+    footer{margin:46px 0 40px;text-align:center;color:var(--text-muted);font-size:12px;line-height:1.6;}
+    footer a{color:var(--text-secondary);text-decoration:none;}
+
+    .skip{position:absolute;left:-9999px;top:0;background:var(--gold);color:var(--bg);
+          padding:10px 14px;border-radius:8px;font-weight:700;z-index:10;}
+    .skip:focus{left:16px;top:16px;}
+
+    @media (prefers-reduced-motion: reduce){
+      *{animation-duration:.001ms !important;animation-iteration-count:1 !important;
+        transition-duration:.001ms !important;scroll-behavior:auto !important;}
+    }
+  </style>
+</head>
+<body>
+  <a href="#waitlist-form" class="skip">Skip to the waitlist form</a>
+
+  <div class="wrap">
+    <div class="brand">
+      <div class="brand__name">Hitesh Grover<span>.</span></div>
+      <div class="brand__tag">HairMaxx Scanner</div>
+    </div>
+
+    <!-- 1. Headline + one-sentence explainer -->
+    <header>
+      <span class="eyebrow">Waitlist</span>
+      <h1>Know where your <span class="g">hair</span> stands.</h1>
+      <p class="lede">
+        Six photos, seven questions, and a personalised <b>30-day plan</b> —
+        all on your phone.
+      </p>
+    </header>
+
+    <!-- 2. Form, high on the page -->
+    <div class="card" id="waitlist">
+      <div class="card__accent"></div>
+
+      <div id="form-view">
+        <h2>Get early access</h2>
+        <p class="card__sub">Two fields. Ten seconds.</p>
+
+        <form id="waitlist-form" novalidate>
+          <div class="field">
+            <label for="name">Name <span class="req" aria-hidden="true">*</span></label>
+            <input class="input" id="name" name="name" type="text"
+                   autocomplete="name" autocapitalize="words"
+                   placeholder="Your name" required
+                   aria-required="true" aria-describedby="name-err" />
+            <p class="err" id="name-err" role="alert"></p>
+          </div>
+
+          <div class="field">
+            <label for="phone">WhatsApp number <span class="req" aria-hidden="true">*</span></label>
+            <div class="phone" id="phone-wrap">
+              <select class="phone__cc" id="country" name="country"
+                      aria-label="Country calling code">
+                <!-- options injected by JS -->
+              </select>
+              <input class="phone__num" id="phone" name="phone" type="tel"
+                     inputmode="numeric" autocomplete="tel-national"
+                     placeholder="WhatsApp number" required
+                     aria-required="true" aria-describedby="phone-err" />
+            </div>
+            <p class="err" id="phone-err" role="alert"></p>
+          </div>
+
+          <div class="field">
+            <label class="optin" for="optin">
+              <input id="optin" name="optin" type="checkbox" aria-describedby="optin-err" />
+              <span class="optin__box" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              </span>
+              <span class="optin__text">
+                WhatsApp me when it launches. Reply <b>STOP</b> anytime.
+              </span>
+            </label>
+            <p class="err" id="optin-err" role="alert"></p>
+          </div>
+
+          <p class="formerr" id="form-err" role="alert" hidden></p>
+
+          <button class="btn" id="submit" type="submit">
+            <span id="btn-label">Join the waitlist</span>
+            <span class="spinner" id="btn-spinner" hidden aria-hidden="true"></span>
+          </button>
+
+          <p class="privacy">
+            Only for launch updates. Never shared. Reply STOP anytime.
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <!-- 3. How it works -->
+    <section aria-labelledby="how-title">
+      <p class="kicker">How it works</p>
+      <h2 class="h-sec" id="how-title">Three steps.</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step__n">01</div>
+          <div>
+            <p class="step__t">Six photos</p>
+            <p class="step__d">Your Day&nbsp;0 baseline. Reshoot on day 16 and 30 to see the change.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step__n">02</div>
+          <div>
+            <p class="step__t">Seven questions</p>
+            <p class="step__d">Age, goals, scalp type, family history — then match your Norwood/Ludwig stage.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step__n">03</div>
+          <div>
+            <p class="step__t">Your 30-day plan</p>
+            <p class="step__d">Daily tasks, a wash schedule for your scalp, and honest timelines.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. What makes it different -->
+    <section aria-labelledby="diff-title">
+      <p class="kicker">Why it's different</p>
+      <h2 class="h-sec" id="diff-title">Built around you.</h2>
+      <ul class="diff">
+        <li><span class="tick" aria-hidden="true">▸</span><span>Adapts to your <b>scalp type, genetics, age and goals</b>.</span></li>
+        <li><span class="tick" aria-hidden="true">▸</span><span><b>Honest timelines</b> — no overnight promises.</span></li>
+        <li><span class="tick" aria-hidden="true">▸</span><span><b>No AI, no photo scanning</b> — your answers and stage match drive the plan.</span></li>
+      </ul>
+
+      <div class="honest">
+        <p>It won't diagnose or promise regrowth. It builds a plan and tells you honestly what to expect. For medical concerns, see a doctor.</p>
+      </div>
+    </section>
+
+    <!-- 5. Photos never leave your device -->
+    <div class="privacy-note">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      <p><b>Your photos never leave your phone.</b> No account, no uploads, no server.</p>
+    </div>
+
+    <footer>
+      <p><a href="https://hiteshmaxxed.com">hiteshmaxxed.com</a></p>
+    </footer>
+  </div>
+
+  <script>
+  (function () {
+    "use strict";
+
+    // Country list: dial code + plausible national number length [min,max].
+    // Default is India, the main audience. "digits" excludes the dial code.
+    var COUNTRIES = [
+      { iso:"IN", name:"India",        dial:"+91",  flag:"🇮🇳", min:10, max:10 },
+      { iso:"US", name:"United States",dial:"+1",   flag:"🇺🇸", min:10, max:10 },
+      { iso:"GB", name:"UK",           dial:"+44",  flag:"🇬🇧", min:9,  max:10 },
+      { iso:"AE", name:"UAE",          dial:"+971", flag:"🇦🇪", min:8,  max:9  },
+      { iso:"CA", name:"Canada",       dial:"+1",   flag:"🇨🇦", min:10, max:10 },
+      { iso:"AU", name:"Australia",    dial:"+61",  flag:"🇦🇺", min:9,  max:9  },
+      { iso:"SG", name:"Singapore",    dial:"+65",  flag:"🇸🇬", min:8,  max:8  },
+      { iso:"SA", name:"Saudi Arabia", dial:"+966", flag:"🇸🇦", min:9,  max:9  },
+      { iso:"QA", name:"Qatar",        dial:"+974", flag:"🇶🇦", min:8,  max:8  },
+      { iso:"KW", name:"Kuwait",       dial:"+965", flag:"🇰🇼", min:8,  max:8  },
+      { iso:"OM", name:"Oman",         dial:"+968", flag:"🇴🇲", min:8,  max:8  },
+      { iso:"PK", name:"Pakistan",     dial:"+92",  flag:"🇵🇰", min:10, max:10 },
+      { iso:"BD", name:"Bangladesh",   dial:"+880", flag:"🇧🇩", min:10, max:10 },
+      { iso:"NP", name:"Nepal",        dial:"+977", flag:"🇳🇵", min:10, max:10 },
+      { iso:"LK", name:"Sri Lanka",    dial:"+94",  flag:"🇱🇰", min:9,  max:9  },
+      { iso:"MY", name:"Malaysia",     dial:"+60",  flag:"🇲🇾", min:9,  max:10 },
+      { iso:"ZA", name:"South Africa", dial:"+27",  flag:"🇿🇦", min:9,  max:9  },
+      { iso:"NG", name:"Nigeria",      dial:"+234", flag:"🇳🇬", min:10, max:10 },
+      { iso:"OTHER", name:"Other",     dial:"+",    flag:"🌐", min:6,  max:14 }
+    ];
+
+    var $  = function (id) { return document.getElementById(id); };
+    var countrySel = $("country");
+    var nameEl  = $("name");
+    var phoneEl = $("phone");
+    var optinEl = $("optin");
+    var phoneWrap = $("phone-wrap");
+    var form = $("waitlist-form");
+
+    // Populate country dropdown
+    COUNTRIES.forEach(function (c, i) {
+      var o = document.createElement("option");
+      o.value = String(i);
+      o.textContent = c.flag + "  " + (c.dial === "+" ? c.name : c.dial + " " + c.name);
+      countrySel.appendChild(o);
+    });
+    countrySel.value = "0"; // India
+
+    function currentCountry() { return COUNTRIES[parseInt(countrySel.value, 10) || 0]; }
+    function nationalDigits() {
+      var d = phoneEl.value.replace(/\D/g, "");
+      if (d.length > 1 && d.charAt(0) === "0") d = d.replace(/^0+/, ""); // drop trunk 0
+      return d;
+    }
+
+    function setError(inputEl, errId, msg) {
+      $(errId).textContent = msg || "";
+      if (inputEl) inputEl.setAttribute("aria-invalid", msg ? "true" : "false");
+    }
+
+    function validateName() {
+      var v = nameEl.value.trim();
+      if (v.length < 2) { setError(nameEl, "name-err", "Enter your name (at least 2 letters)."); return false; }
+      setError(nameEl, "name-err", ""); return true;
+    }
+
+    function validatePhone() {
+      var c = currentCountry(), d = nationalDigits();
+      if (!d) {
+        phoneWrap.setAttribute("data-invalid", "true");
+        $("phone-err").textContent = "Enter your WhatsApp number.";
+        phoneEl.setAttribute("aria-invalid", "true"); return false;
+      }
+      if (d.length < c.min || d.length > c.max) {
+        phoneWrap.setAttribute("data-invalid", "true");
+        var need = (c.min === c.max) ? (c.min + " digits") : (c.min + "–" + c.max + " digits");
+        $("phone-err").textContent = "That doesn't look right for " + c.name + " (" + c.dial + "). Enter " + need + ", without the country code.";
+        phoneEl.setAttribute("aria-invalid", "true"); return false;
+      }
+      phoneWrap.setAttribute("data-invalid", "false");
+      $("phone-err").textContent = "";
+      phoneEl.setAttribute("aria-invalid", "false"); return true;
+    }
+
+    function validateOptin() {
+      if (!optinEl.checked) { $("optin-err").textContent = "Please tick this so we're allowed to message you."; return false; }
+      $("optin-err").textContent = ""; return true;
+    }
+
+    function e164() { return currentCountry().dial + nationalDigits(); }
+
+    // Live re-validation once a field has been touched
+    nameEl.addEventListener("blur", validateName);
+    nameEl.addEventListener("input", function(){ if ($("name-err").textContent) validateName(); });
+    phoneEl.addEventListener("blur", validatePhone);
+    phoneEl.addEventListener("input", function(){ if ($("phone-err").textContent) validatePhone(); });
+    countrySel.addEventListener("change", function(){ if ($("phone-err").textContent) validatePhone(); });
+    optinEl.addEventListener("change", function(){ if ($("optin-err").textContent) validateOptin(); });
+
+    var submitting = false;
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (submitting) return;
+
+      var okName = validateName(), okPhone = validatePhone(), okOptin = validateOptin();
+      $("form-err").hidden = true;
+      if (!okName || !okPhone || !okOptin) {
+        var first = !okName ? nameEl : (!okPhone ? phoneEl : optinEl);
+        if (first && first.focus) first.focus();
+        return;
+      }
+
+      setLoading(true);
+
+      var payload = {
+        name: nameEl.value.trim(),
+        phone: e164(),
+        country: currentCountry().iso + " " + currentCountry().dial,
+        optIn: true,
+        source: "scanner-waitlist"
+      };
+
+      fetch("/api/submit.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      })
+      .then(function (res) { return res.json().catch(function(){ return { status:"error" }; }); })
+      .then(function (data) {
+        if (data && (data.status === "ok" || data.status === "duplicate")) {
+          // Straight to the thank-you page: 5s countdown -> /hair.
+          // Keep the button in its loading state so the form never flashes back.
+          window.location.href = "/scanner-thanks";
+        } else {
+          fail((data && data.message) || "Something went wrong. Please try again.");
+        }
+      })
+      .catch(function () {
+        fail("Couldn't reach the server. Check your connection and try again.");
+      });
+    });
+
+    function setLoading(on) {
+      submitting = on;
+      $("submit").disabled = on;
+      $("btn-label").textContent = on ? "Joining…" : "Join the waitlist";
+      $("btn-spinner").hidden = !on;
+    }
+
+    function fail(msg) {
+      // Never wipe what the user typed — just show the error and re-enable.
+      setLoading(false);
+      var fe = $("form-err");
+      fe.textContent = msg;
+      fe.hidden = false;
+    }
+  })();
+  </script>
+</body>
+</html>

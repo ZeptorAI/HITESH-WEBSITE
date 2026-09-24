@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0A0A0A" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>You're on the list — HairMaxx Scanner</title>
+
+  <style>
+    @font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:700;font-display:swap;src:url('/scanner-assets/fonts/bricolage-grotesque-latin-700-normal.woff2') format('woff2');}
+    @font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:800;font-display:swap;src:url('/scanner-assets/fonts/bricolage-grotesque-latin-800-normal.woff2') format('woff2');}
+    @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url('/scanner-assets/fonts/inter-latin-400-normal.woff2') format('woff2');}
+    @font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url('/scanner-assets/fonts/inter-latin-600-normal.woff2') format('woff2');}
+    @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:500;font-display:swap;src:url('/scanner-assets/fonts/jetbrains-mono-latin-500-normal.woff2') format('woff2');}
+
+    :root{
+      --bg:#0A0A0A; --surface:#141414; --border:#1F1F1F; --border-2:#2A2A2A;
+      --gold:#D4AF37; --gold-dark:#B8932E;
+      --text-primary:#F5F5F5; --text-secondary:#A1A1AA; --text-muted:#71717A;
+    }
+    *,*::before,*::after{box-sizing:border-box;}
+    body{margin:0;background:var(--bg);color:var(--text-primary);
+         font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;
+         min-height:100dvh;display:flex;align-items:center;justify-content:center;
+         padding:24px;padding-left:max(24px,env(safe-area-inset-left));
+         padding-right:max(24px,env(safe-area-inset-right));overflow-x:hidden;}
+
+    .card{width:100%;max-width:420px;text-align:center;
+          background:#0D0D0D;border:1px solid rgba(212,175,55,.30);
+          border-radius:16px;padding:34px 24px 30px;position:relative;overflow:hidden;
+          box-shadow:0 24px 70px rgba(0,0,0,.6);}
+    .accent{position:absolute;top:0;left:12%;right:12%;height:1px;
+            background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+
+    .badge{width:60px;height:60px;border-radius:50%;margin:0 auto 20px;
+           background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.4);
+           display:flex;align-items:center;justify-content:center;color:var(--gold);}
+    .badge svg{animation:pop .4s ease both;}
+    @keyframes pop{from{transform:scale(.5);opacity:0;}to{transform:scale(1);opacity:1;}}
+
+    h1{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;
+       letter-spacing:-.03em;line-height:1.1;margin:0 0 10px;font-size:1.8rem;}
+    .sub{color:var(--text-secondary);font-size:14.5px;line-height:1.6;margin:0 0 24px;}
+
+    .redir{display:flex;align-items:center;justify-content:center;gap:9px;
+           font-family:'JetBrains Mono',monospace;font-weight:500;font-size:12.5px;
+           letter-spacing:.02em;color:var(--text-muted);margin:0 0 20px;}
+    .count{display:inline-flex;align-items:center;justify-content:center;
+           min-width:26px;height:26px;padding:0 7px;border-radius:7px;
+           background:var(--surface);border:1px solid var(--border-2);
+           color:var(--gold);font-weight:500;}
+
+    .btn{display:flex;align-items:center;justify-content:center;gap:9px;
+         width:100%;border:0;border-radius:9px;cursor:pointer;text-decoration:none;
+         font-family:inherit;font-weight:700;font-size:16px;padding:15px 20px;
+         background:var(--gold);color:var(--bg);transition:background .18s ease,transform .1s ease;}
+    .btn:hover{background:var(--gold-dark);}
+    .btn:active{transform:scale(.985);}
+    .btn:focus-visible{outline:3px solid rgba(212,175,55,.5);outline-offset:2px;}
+
+    @media (prefers-reduced-motion: reduce){
+      *{animation-duration:.001ms !important;transition-duration:.001ms !important;}
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="accent"></div>
+
+    <div class="badge" aria-hidden="true">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+    </div>
+
+    <h1>You're on the list.</h1>
+    <p class="sub">We'll message you on WhatsApp the moment HairMaxx Scanner opens.</p>
+
+    <p class="redir" role="status" aria-live="polite">
+      Taking you to Hair Care Maxx in <span class="count" id="count">5</span>
+    </p>
+
+    <a class="btn" id="go" href="/hair">Go now
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </main>
+
+  <script>
+  (function () {
+    "use strict";
+    var DEST = "/hair";
+    var n = 5;
+    var el = document.getElementById("count");
+    var timer = setInterval(function () {
+      n -= 1;
+      if (el) el.textContent = n < 0 ? 0 : n;
+      if (n <= 0) {
+        clearInterval(timer);
+        window.location.href = DEST;
+      }
+    }, 1000);
+    // Manual button should cancel the timer so we don't double-navigate.
+    var go = document.getElementById("go");
+    if (go) go.addEventListener("click", function () { clearInterval(timer); });
+  })();
+  </script>
+</body>
+</html>

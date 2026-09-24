@@ -9,6 +9,14 @@ dist/
 .env.local
 .env.*.local
 
+# Airtable token for the scanner waitlist PHP proxy (created on the server)
+public/api/config.php
+
+# Abandoned Netlify build of the waitlist (superseded by the Hostinger version) — safe to delete
+netlify-waitlist/
+hairmaxx-waitlist-netlify/
+hairmaxx-waitlist-netlify.zip
+
 # editor
 .vscode/
 .idea/
